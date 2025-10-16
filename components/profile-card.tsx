@@ -38,7 +38,7 @@ const ANIMATION_CONFIG = {
 
 export function ProfileCard({
   avatarUrl = "/placeholder.svg?height=400&width=300",
-  iconUrl,
+  iconUrl = "/assets/iconpattern-light.png",
   grainUrl,
   behindGradient,
   innerGradient,
@@ -49,8 +49,8 @@ export function ProfileCard({
   name = "Tariq Said",
   title = "Full-Stack Developer",
   handle = "tariqsaidofficial",
-  status = "Available",
-  contactText = "Contact",
+  status = "Online",
+  contactText = "Contact Me",
   showUserInfo = true,
   onContactClick,
 }: ProfileCardProps) {
@@ -222,14 +222,13 @@ export function ProfileCard({
 
                 <button
                   className="pc-contact-btn"
-                  style={{ pointerEvents: "auto" }}   // ✅ هذا هو السطر الذي يفعل الزر
+                  style={{ pointerEvents: "auto" }} // ✅ هذا هو السطر الذي يفعل الزر
                   onClick={onContactClick}
                   type="button"
                   aria-label={`Contact ${name || "user"}`}
                 >
                   {contactText}
                 </button>
-
               </div>
             )}
           </div>

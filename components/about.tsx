@@ -49,7 +49,7 @@ export function About() {
               name="Tariq Said"
               title="Full-Stack Developer & AV Specialist"
               handle="tariqsaidofficial"
-              status="Available for Projects"
+              status="Online"
               contactText="Contact Me"
               avatarUrl="/professional-developer-portrait.png"
               miniAvatarUrl="/professional-avatar.png"

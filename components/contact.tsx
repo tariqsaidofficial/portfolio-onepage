@@ -15,10 +15,35 @@ export function Contact() {
     email: "",
     message: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setIsLoading(true)
+    setSubmitStatus("idle")
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error("[v0] Error submitting form:", error)
+      setSubmitStatus("error")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -39,6 +64,8 @@ export function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="glass-strong border-border"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -48,6 +75,8 @@ export function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="glass-strong border-border"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -56,10 +85,20 @@ export function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="glass-strong border-border min-h-[150px]"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-                  Send Message
+                {submitStatus === "success" && (
+                  <p className="text-sm text-green-500">Message sent successfully! I'll get back to you soon.</p>
+                )}
+                {submitStatus === "error" && (
+                  <p className="text-sm text-red-500">
+                    Failed to send message. Please try again or contact me directly.
+                  </p>
+                )}
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
+                  {isLoading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
