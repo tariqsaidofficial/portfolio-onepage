@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Download } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -34,8 +35,15 @@ export function Header() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-foreground">
-            Tariq Said
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/TariqSaid-logo.png"
+              alt="Tariq Said"
+              width={120}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -44,7 +52,7 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-[#f8fafc] hover:text-[#ffffff] transition-colors"
               >
                 {item.label}
               </a>
@@ -68,7 +76,7 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-[#f8fafc] hover:text-[#ffffff] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}

@@ -1,3 +1,7 @@
+"use client"
+
+import { ProfileCard } from "./profile-card"
+
 export function About() {
   const timeline = [
     {
@@ -14,13 +18,12 @@ export function About() {
     { year: "2024", title: "Co-Founder, DXBMark", description: "Built platform serving 3K+ users with 98% uptime" },
   ]
 
-  const expertise = [
-    "Web Development",
-    "DevOps & Infrastructure",
-    "AV System Design",
-    "Event Technology",
-    "Mobile Development",
-  ]
+  const handleContactClick = () => {
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
     <section id="about" className="py-20 px-4">
@@ -41,15 +44,20 @@ export function About() {
             </p>
           </div>
 
-          <div className="glass rounded-xl p-6">
-            <h3 className="text-xl font-semibold mb-4">Key Areas</h3>
-            <div className="flex flex-wrap gap-3">
-              {expertise.map((area) => (
-                <span key={area} className="px-4 py-2 glass-strong rounded-full text-sm">
-                  {area}
-                </span>
-              ))}
-            </div>
+          <div className="flex justify-center items-center">
+            <ProfileCard
+              name="Tariq Said"
+              title="Full-Stack Developer & AV Specialist"
+              handle="tariqsaidofficial"
+              status="Available for Projects"
+              contactText="Contact Me"
+              avatarUrl="/professional-developer-portrait.png"
+              miniAvatarUrl="/professional-avatar.png"
+              showUserInfo={true}
+              showBehindGradient={true}
+              enableTilt={true}
+              onContactClick={handleContactClick}
+            />
           </div>
         </div>
 
