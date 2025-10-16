@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to Cloudflare Pages
 
 on:
   push:
@@ -7,38 +7,36 @@ on:
   pull_request:
 
 jobs:
-  build:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # إعداد Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # إعداد pnpm بدل npm
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
 
-      # تثبيت الاعتمادات (dependencies)
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # بناء المشروع
       - name: Build project
         run: pnpm run build
 
-      # حفظ نتائج الـ build كـ artifact (اختياري)
-      - name: Upload build output
-        uses: actions/upload-artifact@v4
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          name: build-output
-          path: out
-
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: portfolio
+          directory: out
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
