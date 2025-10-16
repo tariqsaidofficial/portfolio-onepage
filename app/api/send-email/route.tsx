@@ -1,39 +1,21 @@
 import { NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { Resend } from "resend"
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json()
 
-    // Validate input
     if (!name || !email || !message) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 })
     }
 
-    // Create transporter using SMTP settings
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    })
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
-    // Email content
-    const mailOptions = {
-      from: `"${name}" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
-      to: "info@dxbmark.com, tariq.yousef@outlook.com",
-      replyTo: email,
+    await resend.emails.send({
+      from: "DXBMark <info@dxbmark.com>",  // ✅ use your verified domain email
+      to: ["info@dxbmark.com", "tariq.yousef@outlook.com"],
       subject: `New Contact Form Submission from ${name}`,
-      text: `
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-      `,
+      reply_to: email,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #e11d48;">New Contact Form Submission</h2>
@@ -47,14 +29,11 @@ ${message}
           </div>
         </div>
       `,
-    }
-
-    // Send email
-    await transporter.sendMail(mailOptions)
+    })
 
     return NextResponse.json({ message: "Email sent successfully" }, { status: 200 })
   } catch (error) {
-    console.error("[v0] Error sending email:", error)
+    console.error("[v0] Resend Error:", error)
     return NextResponse.json({ error: "Failed to send email. Please try again later." }, { status: 500 })
   }
 }
