@@ -106,6 +106,16 @@ Customize the look and feel by modifying your **Tailwind CSS configuration** and
 ## 🤖 Auto-Updating Stats
 
 <!--AUTO-README:START-->
+### 🔴 Live
+- **Production:** غير مُحدد
+- **Last update:** 2025-10-16T23:09:08.163Z
+
+### 📊 Repo stats
+- **Stars:** 1
+- **Forks:** 0
+- **Last commit:** `790e163` — Update quality-check.yml (2025-10-17T03:06:51+04:00)
+
+![GitHub Repo stars](https://img.shields.io/github/stars/tariqsaidofficial/portfolio-onepage?style=flat)&nbsp;![GitHub forks](https://img.shields.io/github/forks/tariqsaidofficial/portfolio-onepage?style=flat)
 <!--AUTO-README:END-->
 
 ---
