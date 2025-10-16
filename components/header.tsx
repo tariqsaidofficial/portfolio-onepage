@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, Download } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useToast } from "@/components/ui/use-toast"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { toast } = useToast()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,16 @@ export function Header() {
     { label: "Contact", href: "#contact" },
   ]
 
+  // 🔹 Toast + Auto-close mobile menu on download
+  const handleResumeDownload = () => {
+    toast({
+      title: "Downloading résumé…",
+      description: "Your CV will download shortly.",
+      duration: 2500,
+    })
+    setIsMobileMenuOpen(false) // close mobile menu if open
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -35,7 +47,8 @@ export function Header() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+          {/* Logo */}
+          <Link href="/" className="flex items-center" prefetch={false}>
             <Image
               src="/TariqSaid-logo.png"
               alt="Tariq Said"
@@ -57,15 +70,30 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-primary hover:bg-primary/90">
-              <Download className="w-4 h-4 mr-2" />
-              Download Résumé
-            </Button>
+
+            <Link
+              href="/TariqResume-Oct2025-final.pdf"
+              download
+              prefetch={false}
+              onClick={handleResumeDownload}
+            >
+              <Button size="sm" className="bg-primary hover:bg-primary/90">
+                <Download className="w-4 h-4 mr-2" />
+                Download Résumé
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -82,10 +110,19 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-primary hover:bg-primary/90 w-full">
-              <Download className="w-4 h-4 mr-2" />
-              Download Résumé
-            </Button>
+
+            <Link
+              href="/TariqResume-Oct2025-final.pdf"
+              download
+              prefetch={false}
+              onClick={handleResumeDownload}
+              className="w-full"
+            >
+              <Button size="sm" className="bg-primary hover:bg-primary/90 w-full">
+                <Download className="w-4 h-4 mr-2" />
+                Download Résumé
+              </Button>
+            </Link>
           </nav>
         )}
       </div>
