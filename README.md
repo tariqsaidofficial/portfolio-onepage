@@ -128,4 +128,4 @@ Want to use this as a base for your own portfolio? Click **"Use this template"**
 
 ## 🪪 License
 
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute it.
+This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it.
