@@ -1,30 +1,131 @@
-# SaaS landing page
+# 🌐 Portfolio OnePage Template — by Tariq Said
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A sleek, one-page personal portfolio built with **Next.js 15**, **Tailwind CSS 4**, and **ShadCN UI**, designed using [v0.dev](https://v0.dev) by Vercel and deployed automatically through **Cloudflare Pages + GitHub Actions**.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/elmonkared-2804s-projects/v0-saa-s-landing-page)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/dKZVUJaDzth)
+Perfect as a starting point for your own modern portfolio or creative showcase.
 
-## Overview
+---
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+[![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare_Pages-orange?style=for-the-badge&logo=cloudflare)](https://portflio.dxbmark.com/)
+[![Synced with GitHub](https://img.shields.io/badge/Integrated%20with-GitHub_Actions-black?style=for-the-badge&logo=github)](https://github.com/tariqsaidofficial/portfolio-onepage)
+[![Built with v0.dev](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge&logo=vercel)](https://v0.dev)
+[![Support on GitHub Sponsors](https://img.shields.io/badge/Support%20Tariq-GitHub_Sponsors-ff69b4?style=for-the-badge&logo=githubsponsors)](https://github.com/sponsors/tariqsaidofficial)
 
-## Deployment
+---
 
-Your project is live at:
+## 🪄 Overview
 
-**[https://vercel.com/elmonkared-2804s-projects/v0-saa-s-landing-page](https://vercel.com/elmonkared-2804s-projects/v0-saa-s-landing-page)**
+This repository stays in sync with [v0.dev](https://v0.dev) projects. Any visual or structural updates made within **v0.dev** can be automatically reflected here and deployed through Cloudflare Pages via GitHub Actions.
 
-## Build your app
+---
 
-Continue building your app on:
+## 🚀 Features
 
-**[https://v0.app/chat/projects/dKZVUJaDzth](https://v0.app/chat/projects/dKZVUJaDzth)**
+- ⚡ **Next.js 15 (App Router)** for performance and modularity
+- 🎨 **Tailwind CSS 4** with ShadCN UI components
+- ☁️ **Automatic deployment** via Cloudflare Pages + GitHub Actions
+- 🧠 **Generated and bootstrapped** using [v0.dev](https://v0.dev) by Vercel
+- 🪶 Lightweight, clean component structure
+- 🔄 **Auto-updating README** with live stats (stars, forks, last commit)
+- 🔒 Supports custom Cloudflare environment variables
 
-## How It Works
+---
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## 💫 Live Deployment
+
+**Production:** [https://portflio.dxbmark.com/](https://portflio.dxbmark.com/)
+
+**Status:** ✅ Active & auto-synced through GitHub
+
+---
+
+## 🧰 Tech Stack
+
+| Category | Tools |
+|-----------|--------|
+| Framework | Next.js 15 (App Router) |
+| Styling | Tailwind CSS 4 + ShadCN UI + Lucide Icons |
+| Deployment | Cloudflare Pages + GitHub Actions |
+| Automation | Custom Node.js scripts |
+| Design Origin | [v0.dev](https://v0.dev) by Vercel |
+| Version Control | Git & GitHub |
+
+---
+
+## 🧑💻 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/tariqsaidofficial/portfolio-onepage.git
+```
+
+### Navigate to the Project Directory
+
+```bash
+cd portfolio-onepage
+```
+
+### Install Dependencies
+
+```bash
+pnpm install
+```
+
+### Run the Development Server
+
+```bash
+pnpm dev
+```
+
+### Build for Production
+
+```bash
+pnpm build
+```
+
+---
+
+## 🛠️ Configuration & Customization
+
+### Personalize Content
+Update the text, links, and sections in the relevant component files (found in the `app` directory and `components` folder).
+
+### Theme and Styling
+Customize the look and feel by modifying your **Tailwind CSS configuration** and the **`globals.css`** file. The primary color palette is managed through **ShadCN UI variables**.
+
+### Deployment on Cloudflare
+
+1. Fork the repository
+2. Connect your new GitHub repository to **Cloudflare Pages**
+3. Set the build command to `pnpm build` and the output directory to `out`
+4. The existing **GitHub Actions** will handle the synchronization and deployment process automatically upon pushes to the `main` branch
+
+---
+
+## 🤖 Auto-Updating Stats
+
+<!--AUTO-README:START-->
+<!--AUTO-README:END-->
+
+---
+
+## ❤️ Credits
+
+**Created and maintained by:** [Tariq Said](https://dxbmark.com)
+
+**Deployed via:** [Cloudflare Pages](https://pages.cloudflare.com)
+
+**Designed and generated through:** [v0.dev](https://v0.dev) by Vercel
+
+---
+
+## 🍴 Fork This Project
+
+Want to use this as a base for your own portfolio? Click **"Use this template"** at the top of this repo and start customizing it!
+
+---
+
+## 🪪 License
+
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute it.
