@@ -5,7 +5,7 @@ A sleek, one-page personal portfolio built with **Next.js 15**, **Tailwind CSS 4
 Perfect as a starting point for your own modern portfolio or creative showcase.
 
 ---
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
 [![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare_Pages-orange?style=for-the-badge&logo=cloudflare)](https://portflio.dxbmark.com/)
 [![Synced with GitHub](https://img.shields.io/badge/Integrated%20with-GitHub_Actions-black?style=for-the-badge&logo=github)](https://github.com/tariqsaidofficial/portfolio-onepage)
 [![Built with v0.dev](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge&logo=vercel)](https://v0.dev)
