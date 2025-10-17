@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said Logo" style="background: #0a122c; padding: 30px 60px; border-radius: 12px; margin: 20px 0;" width="400">
+
 **A blazing-fast, SEO-optimized personal portfolio built with Next.js 15**
 
 Built with performance in mind • Optimized for Google PageSpeed • Production-ready
