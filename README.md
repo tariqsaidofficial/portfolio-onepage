@@ -127,14 +127,15 @@ A production-ready, high-performance portfolio template featuring:
 
 ### 📊 PageSpeed Insights Results
 
-> **[Insert your PageSpeed Insights screenshot here]**
+![PageSpeed Insights](./public/assets/Screenshot-PageSpeed.png)
 
-```
+```text
 🎯 Performance Score: 90+
 ⚡ LCP (Largest Contentful Paint): < 3s
 🎨 CLS (Cumulative Layout Shift): < 0.1
 ⏱️ FID (First Input Delay): < 100ms
 📦 Total Bundle Size: ~250KB (images)
+🧰 Best Practices: 96/100
 ```
 
 ### 🚀 Optimization Techniques Applied

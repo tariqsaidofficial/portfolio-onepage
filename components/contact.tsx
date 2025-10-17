@@ -40,7 +40,7 @@ export function Contact() {
         setSubmitStatus("error")
       }
     } catch (error) {
-      console.error("[v0] Error submitting form:", error)
+      // Error handled silently for production
       setSubmitStatus("error")
     } finally {
       setIsLoading(false)
