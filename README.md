@@ -2,13 +2,7 @@
 
 # 🌐 OnePage — Modern Portfolio
 
-<table>
-<tr>
-<td align="center" style="background: #0a122c; padding: 30px 60px;">
-<img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said Logo" width="400">
-</td>
-</tr>
-</table>
+<img src="https://portfolio.dxbmark.com/TariqSaid-logo-dark.png" alt="Tariq Said Logo" width="500">
 
 <br>
 
