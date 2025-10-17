@@ -6,6 +6,7 @@ import { Projects } from "@/components/projects"
 import { Services } from "@/components/services"
 import { Testimonials } from "@/components/testimonials"
 import { Contact } from "@/components/contact"
+import { Footer } from "@/components/footer"
 // import { LaserFlow } from "@/components/laser-flow"
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
         <Services />
         <Testimonials />
         <Contact />
+        <Footer />
       </div>
     </main>
   )
