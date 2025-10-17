@@ -1,8 +1,16 @@
-# 🌐 Portfolio OnePage — High-Performance Modern Portfolio
-
 <div align="center">
 
-<img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said Logo" style="background: #0a122c; padding: 30px 60px; border-radius: 12px; margin: 20px 0;" width="400">
+# 🌐 OnePage — Modern Portfolio
+
+<table>
+<tr>
+<td align="center" style="background: #0a122c; padding: 30px 60px;">
+<img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said Logo" width="400">
+</td>
+</tr>
+</table>
+
+<br>
 
 **A blazing-fast, SEO-optimized personal portfolio built with Next.js 15**
 
