@@ -30,6 +30,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build project
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: pnpm run build
 
       - name: Publish to Cloudflare Pages
@@ -40,4 +42,3 @@ jobs:
           projectName: portfolio
           directory: out
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          commitDirty: true

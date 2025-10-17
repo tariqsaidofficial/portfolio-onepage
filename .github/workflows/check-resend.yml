@@ -1,0 +1,194 @@
+name: Check Resend API Connection
+
+on:
+  workflow_dispatch: # Manual trigger
+  schedule:
+    - cron: '0 0 * * 0' # Weekly check every Sunday at midnight
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/api/send-email/**'
+      - '.github/workflows/check-resend.yml'
+
+jobs:
+  check-resend-api:
+    runs-on: ubuntu-latest
+    name: Verify Resend API Key
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check if RESEND_API_KEY exists
+        id: check-secret
+        run: |
+          if [ -z "${{ secrets.RESEND_API_KEY }}" ]; then
+            echo "❌ RESEND_API_KEY is not set in GitHub Secrets"
+            echo "status=missing" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ RESEND_API_KEY is set"
+            echo "status=exists" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Test Resend API Connection
+        if: steps.check-secret.outputs.status == 'exists'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          echo "Testing Resend API connection..."
+          
+          # Test API key validity
+          response=$(curl -s -w "\n%{http_code}" -X GET \
+            "https://api.resend.com/domains" \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json")
+          
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n-1)
+          
+          echo "HTTP Status Code: $http_code"
+          
+          if [ "$http_code" = "200" ]; then
+            echo "✅ Resend API connection successful!"
+            echo "📧 Verified domains:"
+            echo "$body" | grep -o '"name":"[^"]*"' | cut -d'"' -f4 || echo "No domains found"
+            
+            # Check if dxbmark.com is verified
+            if echo "$body" | grep -q "dxbmark.com"; then
+              echo "✅ Domain 'dxbmark.com' is configured"
+              
+              # Check verification status
+              if echo "$body" | grep -A5 "dxbmark.com" | grep -q '"status":"verified"'; then
+                echo "✅ Domain 'dxbmark.com' is VERIFIED"
+              else
+                echo "⚠️ Domain 'dxbmark.com' is NOT verified yet"
+                exit 1
+              fi
+            else
+              echo "⚠️ Domain 'dxbmark.com' is NOT configured in Resend"
+              exit 1
+            fi
+          elif [ "$http_code" = "401" ]; then
+            echo "❌ Authentication failed - Invalid API key"
+            exit 1
+          elif [ "$http_code" = "403" ]; then
+            echo "❌ Access forbidden - Check API key permissions"
+            exit 1
+          else
+            echo "❌ API request failed with status code: $http_code"
+            echo "Response: $body"
+            exit 1
+          fi
+
+      - name: Send test email (optional)
+        if: steps.check-secret.outputs.status == 'exists'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          echo "Sending test email..."
+          
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://api.resend.com/emails" \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "from": "DXBMark <info@dxbmark.com>",
+              "to": ["info@dxbmark.com"],
+              "subject": "✅ Resend API Test - GitHub Actions",
+              "html": "<h2>✅ Success!</h2><p>Your Resend API is working correctly.</p><p>This test was triggered by GitHub Actions.</p><p><strong>Timestamp:</strong> '"$(date -u +"%Y-%m-%d %H:%M:%S UTC")"'</p>"
+            }')
+          
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n-1)
+          
+          if [ "$http_code" = "200" ]; then
+            echo "✅ Test email sent successfully!"
+            echo "Response: $body"
+          else
+            echo "⚠️ Failed to send test email (Status: $http_code)"
+            echo "Response: $body"
+            echo "Note: This might be due to domain verification or rate limits"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 📊 Resend API Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check-secret.outputs.status }}" = "exists" ]; then
+            echo "✅ **API Key Status:** Configured" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **Connection Test:** Passed" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **Domain:** dxbmark.com verified" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **API Key Status:** Missing" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔧 How to fix:" >> $GITHUB_STEP_SUMMARY
+            echo "1. Go to repository **Settings**" >> $GITHUB_STEP_SUMMARY
+            echo "2. Navigate to **Secrets and variables** → **Actions**" >> $GITHUB_STEP_SUMMARY
+            echo "3. Click **New repository secret**" >> $GITHUB_STEP_SUMMARY
+            echo "4. Name: \`RESEND_API_KEY\`" >> $GITHUB_STEP_SUMMARY
+            echo "5. Value: Your Resend API key from https://resend.com/api-keys" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Checked at:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+
+  notify-on-failure:
+    runs-on: ubuntu-latest
+    needs: check-resend-api
+    if: failure()
+    
+    steps:
+      - name: Create Issue on Failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '⚠️ Resend API Check Failed';
+            const body = `## Resend API Connection Issue
+            
+            The automated Resend API check has failed.
+            
+            ### Possible Issues:
+            - ❌ RESEND_API_KEY secret is missing or invalid
+            - ❌ Domain 'dxbmark.com' is not verified in Resend
+            - ❌ API key permissions are insufficient
+            
+            ### Action Required:
+            1. Check GitHub Secrets: Settings → Secrets and variables → Actions
+            2. Verify RESEND_API_KEY is set correctly
+            3. Verify domain at https://resend.com/domains
+            4. Check API key permissions at https://resend.com/api-keys
+            
+            **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            **Triggered by:** ${{ github.event_name }}
+            **Time:** ${new Date().toISOString()}
+            `;
+            
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['resend-api', 'automated']
+            });
+            
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['resend-api', 'automated', 'bug']
+              });
+              console.log('✅ Issue created');
+            } else {
+              console.log('ℹ️ Issue already exists, skipping creation');
+            }
