@@ -40,6 +40,8 @@ Both emails follow a consistent design system with branding, professional layout
 ┌─────────────────────────────────────┐
 │ Header (Dark Navy #0a122c)          │
 │ - Logo: TARIQSAID (centered)        │
+│   • display: block                  │
+│   • margin: 0 auto 15px auto        │
 │ - Title: "New Contact Form..."     │
 │   (Red #e11d48)                     │
 ├─────────────────────────────────────┤
@@ -51,13 +53,18 @@ Both emails follow a consistent design system with branding, professional layout
 │ - Message:                          │
 │   {message content}                 │
 │                                     │
-│ - Best regards,                     │
-│   John                              │
+│ - Timestamp (italic, muted):        │
+│   "Received: [date & time]"         │
+│   • Dubai timezone (Asia/Dubai)     │
+│   • Format: Full date, short time   │
 ├─────────────────────────────────────┤
 │ Footer (Dark Navy #0a122c)          │
 │ - Slogan: "Code. Create. Deliver." │
 │   (italic, muted color)             │
 │ - Copyright with dynamic year       │
+│ - "Tariq Said" as hyperlink         │
+│   • Link: portfolio.dxbmark.com     │
+│   • Color: #e11d48                  │
 └─────────────────────────────────────┘
 ```
 
@@ -65,10 +72,12 @@ Both emails follow a consistent design system with branding, professional layout
 - ✅ Simple, clean design
 - ✅ Dark header and footer (#0a122c)
 - ✅ White body background
-- ✅ No cards or boxes
+- ✅ Logo centered with block display
 - ✅ Clickable email and phone links (red)
 - ✅ Pre-formatted message display
+- ✅ Timestamp with Dubai timezone
 - ✅ Dynamic copyright year
+- ✅ Portfolio link in footer
 - ✅ Professional minimal design
 
 ---
@@ -86,6 +95,8 @@ Both emails follow a consistent design system with branding, professional layout
 ┌─────────────────────────────────────┐
 │ Header (Dark Navy #0a122c)          │
 │ - Logo: TARIQSAID (centered)        │
+│   • display: block                  │
+│   • margin: 0 auto 15px auto        │
 │ - Title: "Message Received..."     │
 │   (Red #e11d48)                     │
 ├─────────────────────────────────────┤
@@ -104,27 +115,57 @@ Both emails follow a consistent design system with branding, professional layout
 │   Phone: +971 50 123 4567 (red)     │
 │                                     │
 │ - Thank you for choosing us!        │
+│                                     │
+│ - Timestamp (italic, muted):        │
+│   "Sent: [date & time]"             │
+│   • Dubai timezone (Asia/Dubai)     │
+├─────────────────────────────────────┤
+│ Promotional Section                 │
+│ - Gradient background (red tint)    │
+│ - "Why Choose Us?" heading          │
+│ - Description:                      │
+│   "Expert in full-stack dev, IT,    │
+│    and Audio-Visual integration"    │
+│ - "View Portfolio" CTA button       │
+│   • Background: #e11d48             │
+│   • Link: portfolio.dxbmark.com     │
 ├─────────────────────────────────────┤
 │ Footer (Dark Navy #0a122c)          │
+│ - Social Media Icons:               │
+│   • GitHub (stroke SVG)             │
+│   • LinkedIn (stroke SVG)           │
+│   • Behance (official SVG path)     │
+│   • Background: rgba(255,255,255,.1)│
+│   • Border radius: 8px              │
+│   • Padding: 10px                   │
+│                                     │
 │ - Slogan: "Code. Create. Deliver." │
 │   (italic, muted color)             │
+│                                     │
 │ - Copyright with dynamic year       │
+│ - "Tariq Said" as hyperlink         │
+│   • Link: portfolio.dxbmark.com     │
+│   • Color: #e11d48                  │
+│                                     │
 │ - No-reply notice                   │
 │ - Support email (red link)          │
 └─────────────────────────────────────┘
 ```
 
 #### Key Features:
-- ✅ Simple, clean design
+- ✅ Professional design with promotional section
 - ✅ Dark header and footer (#0a122c)
 - ✅ White body background
+- ✅ Logo centered with block display
 - ✅ Personalized greeting with client's name
 - ✅ Message recap with left red border
 - ✅ Direct contact information (email & phone)
-- ✅ No promotional sections
-- ✅ No social media icons
+- ✅ Timestamp with Dubai timezone
+- ✅ Promotional "Why Choose Us?" section
+- ✅ Social media icons (GitHub, LinkedIn, Behance)
+- ✅ Portfolio link in footer
 - ✅ Clear no-reply notice
-- ✅ Professional minimal design
+- ✅ CTA button for portfolio
 
 ---
 
@@ -434,25 +475,22 @@ gh run list --workflow=check-resend.yml
 
 ## Changelog
 
-### Version 3.0 (2025-10-18) - Simplified Design
-- ✅ Complete redesign to simple, clean layout
-- ✅ Removed all cards, boxes, and gradients
-- ✅ Dark header and footer (#0a122c)
-- ✅ White body background
-- ✅ Removed emoji icons
-- ✅ Removed social media links
-- ✅ Removed promotional sections
-- ✅ Removed quick action buttons
-- ✅ Simple text-based design
-- ✅ Updated from "DXBMark" to "Tariq Said"
-- ✅ Professional minimal aesthetic
+### Version 4.0 (2025-10-18) - Enhanced Professional Design
+- ✅ Logo centered in header with block display
+- ✅ Added timestamp to both emails (Dubai timezone)
+- ✅ Removed "Best regards, John" from admin email
+- ✅ Added promotional "Why Choose Us?" section to client email
+- ✅ Added social media icons (GitHub, LinkedIn, Behance) to client email footer
+- ✅ "Tariq Said" as clickable link in footer (both emails)
+- ✅ Official Behance SVG icon with proper path
+- ✅ Improved promotional text with IT and AV integration
+- ✅ Professional gradient background for promotional section
+- ✅ CTA button for portfolio viewing
 
-### Version 2.0 (2025-10-18) - Enhanced Design (Deprecated)
-- ❌ Complex design with gradients and cards
-- ❌ Social media icons
-- ❌ Promotional sections
-- ❌ Multiple action buttons
-- ❌ Emoji icons
+### Version 3.0 (2025-10-18) - Simplified Design (Deprecated)
+- ❌ Too simple, missing promotional elements
+- ❌ No social media presence
+- ❌ No timestamp information
 
 ### Version 1.0 (Initial)
 - ✅ Basic admin notification email
