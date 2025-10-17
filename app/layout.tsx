@@ -95,7 +95,7 @@ export const metadata: Metadata = {
       "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems. Serving clients across GCC, Middle East, and the Arab World. Based in Dubai, UAE & Egypt.",
     images: [
       {
-        url: "https://portfolio.dxbmark.com/professional-developer-portrait.png",
+        url: "https://portfolio.dxbmark.com/professional-developer-portrait.webp",
         width: 1200,
         height: 630,
         alt: "Tariq Said - Full-Stack Developer & AV Specialist",
@@ -107,7 +107,7 @@ export const metadata: Metadata = {
     title: "Tariq Said | Code. Create. Deliver.",
     description:
       "Full-stack developer and audio-visual specialist with 15+ years of experience. Serving GCC, Middle East & Arab World. Based in Dubai, UAE & Egypt.",
-    images: ["https://portfolio.dxbmark.com/professional-developer-portrait.png"],
+    images: ["https://portfolio.dxbmark.com/professional-developer-portrait.webp"],
     creator: "@tariqsaidofficial",
   },
   other: {
@@ -162,7 +162,7 @@ export default function RootLayout({
                 "@type": "Person",
                 "name": "Tariq Said",
                 "url": "https://portfolio.dxbmark.com",
-                "image": "https://portfolio.dxbmark.com/professional-developer-portrait.png",
+                "image": "https://portfolio.dxbmark.com/professional-developer-portrait.webp",
                 "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
                 "worksFor": {
                   "@type": "Organization",

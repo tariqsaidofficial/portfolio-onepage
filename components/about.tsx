@@ -51,8 +51,8 @@ export function About() {
               handle="tariqsaidofficial"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/professional-developer-portrait.png"
-              miniAvatarUrl="/professional-avatar.png"
+              avatarUrl="/professional-developer-portrait.webp"
+              miniAvatarUrl="/professional-avatar.webp"
               showUserInfo={true}
               showBehindGradient={true}
               enableTilt={true}

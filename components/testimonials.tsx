@@ -7,21 +7,21 @@ import { motion } from "framer-motion"
 export function Testimonials() {
   const testimonials = [
     {
-      avatar: "/professional-woman-avatar.png",
+      avatar: "/professional-woman-avatar.webp",
       feedback: "Tariq delivered exceptional technical excellence. His problem-solving skills are remarkable!",
     },
     {
-      avatar: "/professional-man-avatar.png",
+      avatar: "/professional-man-avatar.webp",
       username: "@michaelchen",
       feedback: "Working with Tariq on our event AV systems was transformative. Highly recommended!",
     },
     {
-      avatar: "/professional-woman-avatar-2.png",
+      avatar: "/professional-woman-avatar-2.webp",
       username: "@emmawilliams",
       feedback: "The streaming infrastructure Tariq built is flawless. Unmatched expertise!",
     },
     {
-      avatar: "/professional-man-avatar-2.png",
+      avatar: "/professional-man-avatar-2.webp",
       username: "@davidbrown",
       feedback: "Incredible full-stack developer. Delivered our project ahead of schedule!",
     },
