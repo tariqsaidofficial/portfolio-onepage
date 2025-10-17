@@ -2,7 +2,7 @@
 
 # 🌐 OnePage — Modern Portfolio
 
-<img src="https://portfolio.dxbmark.com/TariqSaid-logo-dark.png" alt="Tariq Said Logo" width="500">
+<img src="public/assets/TariqSaid-logo-dark.png" alt="Tariq Said Logo" width="500">
 
 <br>
 
