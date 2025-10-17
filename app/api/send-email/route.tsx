@@ -156,8 +156,25 @@ export async function POST(request: Request) {
     })
 
     return NextResponse.json({ message: "Email sent successfully" }, { status: 200 })
-  } catch (error) {
-    console.error("[v0] Resend Error:", error)
-    return NextResponse.json({ error: "Failed to send email. Please try again later." }, { status: 500 })
+  } catch (error: any) {
+    console.error("[Resend API Error]:", error)
+    console.error("Error details:", {
+      message: error?.message,
+      statusCode: error?.statusCode,
+      name: error?.name,
+      cause: error?.cause,
+    })
+    
+    // Return detailed error for debugging
+    const errorMessage = error?.message || "Failed to send email. Please try again later."
+    const errorDetails = process.env.NODE_ENV === 'development' ? {
+      error: errorMessage,
+      details: error?.statusCode || error?.name || 'Unknown error',
+      apiKey: process.env.RESEND_API_KEY ? 'Set' : 'Missing'
+    } : {
+      error: "Failed to send email. Please try again later."
+    }
+    
+    return NextResponse.json(errorDetails, { status: 500 })
   }
 }

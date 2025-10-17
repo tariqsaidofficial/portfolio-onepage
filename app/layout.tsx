@@ -103,7 +103,6 @@ export const metadata: Metadata = {
     creator: "@tariqsaidofficial",
   },
   other: {
-    "fb:app_id": "your-facebook-app-id", // TODO: Add Facebook App ID from developers.facebook.com
     "facebook:profile_id": "tariqsaidofficial",
     "instagram:username": "tariqsaidofficial",
     "linkedin:profile": "tariqsaidofficial",
