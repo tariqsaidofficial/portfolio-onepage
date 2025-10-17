@@ -1,12 +1,27 @@
+import dynamic from 'next/dynamic'
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
-import { Skills } from "@/components/skills"
-import { Projects } from "@/components/projects"
-import { Services } from "@/components/services"
-import { Testimonials } from "@/components/testimonials"
-import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+
+// Lazy load heavy components
+const About = dynamic(() => import('@/components/about').then(mod => ({ default: mod.About })), {
+  loading: () => <div className="min-h-screen" />
+})
+const Skills = dynamic(() => import('@/components/skills').then(mod => ({ default: mod.Skills })), {
+  loading: () => <div className="min-h-screen" />
+})
+const Projects = dynamic(() => import('@/components/projects').then(mod => ({ default: mod.Projects })), {
+  loading: () => <div className="min-h-screen" />
+})
+const Services = dynamic(() => import('@/components/services').then(mod => ({ default: mod.Services })), {
+  loading: () => <div className="min-h-screen" />
+})
+const Testimonials = dynamic(() => import('@/components/testimonials').then(mod => ({ default: mod.Testimonials })), {
+  loading: () => <div className="min-h-screen" />
+})
+const Contact = dynamic(() => import('@/components/contact').then(mod => ({ default: mod.Contact })), {
+  loading: () => <div className="min-h-screen" />
+})
 // import { LaserFlow } from "@/components/laser-flow"
 
 export default function Home() {

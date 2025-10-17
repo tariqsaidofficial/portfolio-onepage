@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
+// Force dynamic rendering for API routes
+export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: Request) {
   try {
     const { name, email, phone, message } = await request.json()

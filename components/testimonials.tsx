@@ -1,12 +1,13 @@
 "use client"
 
+import type React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 
 export function Testimonials() {
   const testimonials = [
     {
       avatar: "/professional-woman-avatar.png",
-      username: "@sarahjohnson",
       feedback: "Tariq delivered exceptional technical excellence. His problem-solving skills are remarkable!",
     },
     {
@@ -50,14 +51,21 @@ export function Testimonials() {
   const row2 = testimonials.slice(3, 6)
   const row3 = testimonials.slice(6, 8)
 
-  const TestimonialCard = ({ avatar, username, feedback }: { avatar: string; username: string; feedback: string }) => (
+  const TestimonialCard = ({ avatar, username, feedback }: { avatar: string; username?: string; feedback: string }) => (
     <motion.div
       whileHover={{ scale: 1.03, y: -4 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className="glass border border-border rounded-xl p-6 min-w-[320px] md:min-w-[380px] mx-3 cursor-pointer"
     >
       <div className="flex items-start gap-4">
-        <img src={avatar || "/placeholder.svg"} alt={username} className="w-10 h-10 rounded-full object-cover border-2 border-primary/20" />
+        <Image 
+          src={avatar || "/placeholder.svg"} 
+          alt={username || "User"} 
+          width={40} 
+          height={40} 
+          className="rounded-full object-cover border-2 border-primary/20" 
+          loading="lazy"
+        />
         <div className="flex-1">
           <p className="text-primary font-semibold mb-2">{username}</p>
           <p className="text-muted-foreground text-sm leading-relaxed">{feedback}</p>
