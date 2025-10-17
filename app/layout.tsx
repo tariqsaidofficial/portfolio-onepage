@@ -63,8 +63,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.ico', sizes: 'any' },
+    ],
     apple: '/favicon.ico',
+    shortcut: '/favicon.ico',
   },
   openGraph: {
     type: "website",
@@ -121,6 +125,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
