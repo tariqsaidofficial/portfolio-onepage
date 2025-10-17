@@ -44,6 +44,7 @@ jobs:
           if ! git diff --quiet README.md; then
             git add README.md
             git commit -m "chore(readme): auto-update profile block"
+            git pull --rebase origin main
             git push
           else
             echo "No changes to commit."
