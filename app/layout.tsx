@@ -103,6 +103,7 @@ export const metadata: Metadata = {
     creator: "@tariqsaidofficial",
   },
   other: {
+    "fb:app_id": "your-facebook-app-id", // TODO: Add Facebook App ID from developers.facebook.com
     "facebook:profile_id": "tariqsaidofficial",
     "instagram:username": "tariqsaidofficial",
     "linkedin:profile": "tariqsaidofficial",
@@ -140,7 +141,55 @@ export default function RootLayout({
         {/* Canonical URL */}
         <link rel="canonical" href="https://portfolio.dxbmark.com/" />
         
-        {/* Structured Data - Person */}
+        {/* Structured Data - ProfilePage (Better for Rich Results) */}
+        <Script
+          id="structured-data-profilepage"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              "mainEntity": {
+                "@type": "Person",
+                "name": "Tariq Said",
+                "url": "https://portfolio.dxbmark.com",
+                "image": "https://portfolio.dxbmark.com/professional-developer-portrait.png",
+                "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
+                "worksFor": {
+                  "@type": "Organization",
+                  "name": "DXBMark",
+                  "url": "https://dxbmark.com"
+                },
+                "description": "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems.",
+                "knowsAbout": [
+                  "Web Development",
+                  "Full-Stack Development",
+                  "Audio-Visual Systems",
+                  "Event Technology",
+                  "React",
+                  "Next.js",
+                  "Node.js",
+                  "IT Infrastructure"
+                ],
+                "sameAs": [
+                  "https://github.com/tariqsaidofficial",
+                  "https://www.linkedin.com/in/tariqsaidofficial/",
+                  "https://www.behance.net/tariqsaidofficial"
+                ],
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressCountry": "AE",
+                  "addressLocality": "Dubai",
+                  "addressRegion": "Dubai"
+                },
+                "email": "info@dxbmark.com"
+              }
+            })
+          }}
+        />
+        
+        {/* Structured Data - Person (Additional) */}
         <Script
           id="structured-data-person"
           type="application/ld+json"
@@ -176,11 +225,11 @@ export default function RootLayout({
               ],
               "address": {
                 "@type": "PostalAddress",
-                "addressCountry": ["AE", "EG"],
-                "addressLocality": "Dubai"
+                "addressCountry": "AE",
+                "addressLocality": "Dubai",
+                "addressRegion": "Dubai"
               },
-              "email": "info@dxbmark.com",
-              "telephone": "+971-50-123-4567"
+              "email": "info@dxbmark.com"
             })
           }}
         />
@@ -207,6 +256,57 @@ export default function RootLayout({
                 "target": "https://portfolio.dxbmark.com/#contact",
                 "query-input": "required name=search_term_string"
               }
+            })
+          }}
+        />
+        
+        {/* Structured Data - BreadcrumbList */}
+        <Script
+          id="structured-data-breadcrumb"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://portfolio.dxbmark.com"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "About",
+                  "item": "https://portfolio.dxbmark.com/#about"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Skills",
+                  "item": "https://portfolio.dxbmark.com/#skills"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "Projects",
+                  "item": "https://portfolio.dxbmark.com/#projects"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
+                  "name": "Services",
+                  "item": "https://portfolio.dxbmark.com/#services"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 6,
+                  "name": "Contact",
+                  "item": "https://portfolio.dxbmark.com/#contact"
+                }
+              ]
             })
           }}
         />
