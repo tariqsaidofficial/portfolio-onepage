@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'DXBMark <info@dxbmark.com>',
+        from: 'Tariq Said <info@dxbmark.com>',
         to: ['info@dxbmark.com', 'tariq.yousef@outlook.com'],
         subject: `New Contact Form Submission from ${name}`,
         reply_to: email,
@@ -174,7 +174,7 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'DXBMark <noreply@dxbmark.com>',
+        from: 'Tariq Said <noreply@dxbmark.com>',
         to: [email],
         subject: 'Thank you for contacting Tariq Said',
         html: `
