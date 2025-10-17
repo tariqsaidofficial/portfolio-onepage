@@ -45,11 +45,11 @@ export function Projects() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project) => (
-            <Card key={project.name} className="glass border-border hover:border-primary/50 transition-colors">
+            <Card key={project.name} className="glass border-border group cursor-pointer">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  {project.name}
-                  <ExternalLink className="w-5 h-5 text-primary" />
+                  <span className="group-hover:text-primary transition-colors">{project.name}</span>
+                  <ExternalLink className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">{project.description}</CardDescription>
               </CardHeader>

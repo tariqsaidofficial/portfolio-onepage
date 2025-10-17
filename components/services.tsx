@@ -55,11 +55,11 @@ export function Services() {
             <Card
               key={tier.name}
               className={`glass border-border ${
-                tier.available ? "hover:border-primary/50" : "opacity-75"
-              } transition-colors`}
+                tier.available ? "cursor-pointer" : "opacity-75"
+              }`}
             >
               <CardHeader>
-                <CardTitle className="text-2xl">{tier.name}</CardTitle>
+                <CardTitle className="text-2xl text-primary">{tier.name}</CardTitle>
                 <CardDescription className="text-muted-foreground">{tier.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -72,8 +72,8 @@ export function Services() {
                   ))}
                 </ul>
                 <Button
-                  className={`w-full ${
-                    tier.available ? "bg-primary hover:bg-primary/90" : "bg-secondary hover:bg-secondary/90"
+                  className={`w-full transition-all duration-200 ${
+                    tier.available ? "bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30" : "bg-secondary hover:bg-secondary/90"
                   }`}
                   disabled={!tier.available}
                 >

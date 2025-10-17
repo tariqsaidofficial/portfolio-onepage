@@ -41,20 +41,20 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-strong" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "glass-strong shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center" prefetch={false}>
+          <Link href="/" className="flex items-center relative z-10" prefetch={false}>
             <Image
               src="/TariqSaid-logo.png"
               alt="Tariq Said"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              className="h-10 w-auto drop-shadow-lg"
               priority
             />
           </Link>
@@ -65,7 +65,7 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[#f8fafc] hover:text-[#ffffff] transition-colors"
+                className="text-sm font-medium text-white/90 hover:text-white transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative z-10"
               >
                 {item.label}
               </a>
@@ -77,7 +77,7 @@ export function Header() {
               prefetch={false}
               onClick={handleResumeDownload}
             >
-              <Button size="sm" className="bg-primary hover:bg-primary/90">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-primary/50 transition-all duration-200 relative z-10">
                 <Download className="w-4 h-4 mr-2" />
                 Download Résumé
               </Button>
@@ -86,7 +86,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-white relative z-10"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -99,12 +99,12 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-strong p-4 rounded-lg">
+          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-strong p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[#f8fafc] hover:text-[#ffffff] transition-colors"
+                className="text-sm font-medium text-white/90 hover:text-white transition-colors relative z-10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
@@ -118,7 +118,7 @@ export function Header() {
               onClick={handleResumeDownload}
               className="w-full"
             >
-              <Button size="sm" className="bg-primary hover:bg-primary/90 w-full">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 w-full shadow-lg hover:shadow-primary/50 transition-all duration-200 relative z-10">
                 <Download className="w-4 h-4 mr-2" />
                 Download Résumé
               </Button>

@@ -149,11 +149,11 @@ export function Skills() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category) => (
-            <div key={category.category} className="glass rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">{category.category}</h3>
+            <div key={category.category} className="glass rounded-xl p-6 border border-border group cursor-default">
+              <h3 className="text-xl font-semibold mb-4 text-primary group-hover:scale-105 transition-transform inline-block">{category.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-secondary/50 rounded-full text-sm border border-border">
+                  <span key={skill} className="px-3 py-1 bg-secondary/50 rounded-full text-sm border border-border hover:border-primary/50 hover:bg-secondary/70 transition-all duration-200 cursor-pointer">
                     {skill}
                   </span>
                 ))}

@@ -52,11 +52,12 @@ export function Testimonials() {
 
   const TestimonialCard = ({ avatar, username, feedback }: { avatar: string; username: string; feedback: string }) => (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="glass border border-border rounded-xl p-6 min-w-[320px] md:min-w-[380px] mx-3"
+      whileHover={{ scale: 1.03, y: -4 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="glass border border-border rounded-xl p-6 min-w-[320px] md:min-w-[380px] mx-3 cursor-pointer"
     >
       <div className="flex items-start gap-4">
-        <img src={avatar || "/placeholder.svg"} alt={username} className="w-10 h-10 rounded-full object-cover" />
+        <img src={avatar || "/placeholder.svg"} alt={username} className="w-10 h-10 rounded-full object-cover border-2 border-primary/20" />
         <div className="flex-1">
           <p className="text-primary font-semibold mb-2">{username}</p>
           <p className="text-muted-foreground text-sm leading-relaxed">{feedback}</p>
@@ -66,23 +67,24 @@ export function Testimonials() {
   )
 
   const MarqueeRow = ({ items, direction }: { items: typeof testimonials; direction: "left" | "right" }) => {
-    const duplicatedItems = [...items, ...items, ...items]
+    const duplicatedItems = [...items, ...items, ...items, ...items]
 
     return (
-      <div className="overflow-hidden py-4">
+      <div className="overflow-hidden py-4 relative">
         <motion.div
           className="flex"
           animate={{
-            x: direction === "left" ? [0, -33.33 + "%"] : [-33.33 + "%", 0],
+            x: direction === "left" ? ["0%", "-25%"] : ["-25%", "0%"],
           }}
           transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
+            duration: 30,
+            repeat: Infinity,
             ease: "linear",
+            repeatType: "loop",
           }}
         >
           {duplicatedItems.map((testimonial, index) => (
-            <TestimonialCard key={index} {...testimonial} />
+            <TestimonialCard key={`${testimonial.username}-${index}`} {...testimonial} />
           ))}
         </motion.div>
       </div>

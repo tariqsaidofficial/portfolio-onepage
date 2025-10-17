@@ -133,19 +133,147 @@
 
 /* Added glassmorphism utility classes */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.4);  /* شفافية أكثر للزجاج الحقيقي */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.15);  /* أقل شفافية لتقليل ظهور ما خلفه */
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 25px;
-  box-shadow: 0 4px 25px rgba(10, 18, 44, 0.25); /* ظل أغمق لتحديد الحواف */
+  background: rgba(10, 18, 44, 0.75);  /* خلفية أقوى للهيدر فقط */
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Contact Form Gradient Border Effect with Animation */
+.contact-form-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.contact-form-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotating gradient border - First line */
+.contact-form-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 70deg,
+    rgba(225, 29, 72, 0.4) 85deg,
+    rgba(225, 29, 72, 0.6) 90deg,
+    rgba(225, 29, 72, 0.4) 95deg,
+    transparent 110deg,
+    transparent 360deg
+  );
+  animation: borderRotate 10s linear infinite;
+  z-index: 0;
+}
+
+/* Second rotating line removed - testing which one you want */
+
+/* Inner card background */
+.contact-form-card::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 18, 44, 0.98) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 14.5px;
+  z-index: 1;
+}
+
+.contact-form-card:hover {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Ensure content is above the background */
+.contact-form-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.form-field-group {
+  position: relative;
+}
+
+.contact-input {
+  font-family: inherit;
+  color: #f1f5f9;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-width: 1.5px;
+}
+
+.contact-input::placeholder {
+  color: rgba(148, 163, 184, 0.5);
+}
+
+.contact-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.1);
+}
+
+.contact-submit-btn {
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-submit-btn:hover {
+  transform: translateY(-2px);
+}
+
+.contact-submit-btn:active {
+  transform: scale(0.95);
 }
 
 /* Added ProfileCard styles */
