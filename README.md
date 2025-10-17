@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Portfolio Preview](https://portfolio.dxbmark.com/professional-developer-portrait.webp)
-
 **A blazing-fast, SEO-optimized personal portfolio built with Next.js 15**
 
 Built with performance in mind • Optimized for Google PageSpeed • Production-ready

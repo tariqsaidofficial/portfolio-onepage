@@ -30,7 +30,7 @@ Both emails follow a consistent design system with branding, professional layout
 
 **Purpose:** Notify the admin of new contact form submissions
 
-**From:** `DXBMark <info@dxbmark.com>`  
+**From:** `Tariq Said <info@dxbmark.com>`  
 **To:** `info@dxbmark.com`, `tariq.yousef@outlook.com`  
 **Reply-To:** Client's email address  
 **Subject:** `New Contact Form Submission from {name}`
@@ -38,31 +38,38 @@ Both emails follow a consistent design system with branding, professional layout
 #### Structure:
 ```
 ┌─────────────────────────────────────┐
-│ Header (Gradient Background)        │
-│ - Logo (centered)                   │
+│ Header (Dark Navy #0a122c)          │
+│ - Logo: TARIQSAID (centered)        │
 │ - Title: "New Contact Form..."     │
+│   (Red #e11d48)                     │
 ├─────────────────────────────────────┤
-│ Content Section                     │
-│ - Contact Details Box               │
-│   • Name                            │
-│   • Email (clickable)               │
-│   • Phone (clickable)               │
-│ - Message Box                       │
-│   • Full message content            │
+│ Content Section (White Background)  │
+│ - Name: {name}                      │
+│ - Email: {email} (red link)         │
+│ - Phone: {phone} (red link)         │
+│                                     │
+│ - Message:                          │
+│   {message content}                 │
+│                                     │
+│ - Best regards,                     │
+│   John                              │
 ├─────────────────────────────────────┤
-│ Footer (Dark Background)            │
+│ Footer (Dark Navy #0a122c)          │
 │ - Slogan: "Code. Create. Deliver." │
+│   (italic, muted color)             │
 │ - Copyright with dynamic year       │
 └─────────────────────────────────────┘
 ```
 
 #### Key Features:
-- ✅ Centered logo in header
-- ✅ Gradient background (#0a122c → #0f172a)
-- ✅ Clickable email and phone links
+- ✅ Simple, clean design
+- ✅ Dark header and footer (#0a122c)
+- ✅ White body background
+- ✅ No cards or boxes
+- ✅ Clickable email and phone links (red)
 - ✅ Pre-formatted message display
 - ✅ Dynamic copyright year
-- ✅ Professional color scheme
+- ✅ Professional minimal design
 
 ---
 
@@ -70,51 +77,54 @@ Both emails follow a consistent design system with branding, professional layout
 
 **Purpose:** Confirm to the client that their message was received
 
-**From:** `DXBMark <noreply@dxbmark.com>`  
+**From:** `Tariq Said <noreply@dxbmark.com>`  
 **To:** Client's email address  
-**Subject:** `Thank You for Contacting Us - Message Received`
+**Subject:** `Thank you for contacting Tariq Said`
 
 #### Structure:
 ```
 ┌─────────────────────────────────────┐
-│ Header (Gradient Background)        │
-│ - Logo (centered)                   │
+│ Header (Dark Navy #0a122c)          │
+│ - Logo: TARIQSAID (centered)        │
 │ - Title: "Message Received..."     │
+│   (Red #e11d48)                     │
 ├─────────────────────────────────────┤
-│ Content Section                     │
-│ - Personalized greeting             │
-│ - Confirmation message              │
-│ - Message recap (quoted)            │
-│ - Response time expectation         │
-│ - Direct contact information        │
-│ - Closing message                   │
+│ Content Section (White Background)  │
+│ - Dear {name},                      │
 │                                     │
-│ Promotional Section                 │
-│ - "Why Choose Us?" box              │
-│ - Brief description                 │
-│ - "View Portfolio" CTA button       │
+│ - Thank you message                 │
+│                                     │
+│ - Your Message: (left red border)   │
+│   {message content}                 │
+│                                     │
+│ - Response time (24-48 hours)       │
+│                                     │
+│ - Direct contact:                   │
+│   Email: info@dxbmark.com (red)     │
+│   Phone: +971 50 123 4567 (red)     │
+│                                     │
+│ - Thank you for choosing us!        │
 ├─────────────────────────────────────┤
-│ Footer (Dark Background)            │
-│ - Social Media Links                │
-│   • GitHub                          │
-│   • LinkedIn                        │
-│   • Behance                         │
+│ Footer (Dark Navy #0a122c)          │
 │ - Slogan: "Code. Create. Deliver." │
+│   (italic, muted color)             │
 │ - Copyright with dynamic year       │
 │ - No-reply notice                   │
-│ - Support contact info              │
+│ - Support email (red link)          │
 └─────────────────────────────────────┘
 ```
 
 #### Key Features:
+- ✅ Simple, clean design
+- ✅ Dark header and footer (#0a122c)
+- ✅ White body background
 - ✅ Personalized greeting with client's name
-- ✅ Message recap with left border accent
+- ✅ Message recap with left red border
 - ✅ Direct contact information (email & phone)
-- ✅ Promotional "Why Choose Us?" section
-- ✅ Social media links with SVG icons
-- ✅ Professional branding throughout
+- ✅ No promotional sections
+- ✅ No social media icons
 - ✅ Clear no-reply notice
-- ✅ Alternative support contact
+- ✅ Professional minimal design
 
 ---
 
@@ -424,20 +434,25 @@ gh run list --workflow=check-resend.yml
 
 ## Changelog
 
-### Version 2.0 (2025-10-18)
-- ✅ Added Behance icon to social media links
-- ✅ Updated icon library to use official SVG paths
-- ✅ Optimized Behance icon size and stroke width
-- ✅ Added promotional "Why Choose Us?" section
-- ✅ Enhanced client confirmation email with social links
-- ✅ Created comprehensive documentation
-- ✅ Removed email demo page from production
+### Version 3.0 (2025-10-18) - Simplified Design
+- ✅ Complete redesign to simple, clean layout
+- ✅ Removed all cards, boxes, and gradients
+- ✅ Dark header and footer (#0a122c)
+- ✅ White body background
+- ✅ Removed emoji icons
+- ✅ Removed social media links
+- ✅ Removed promotional sections
+- ✅ Removed quick action buttons
+- ✅ Simple text-based design
+- ✅ Updated from "DXBMark" to "Tariq Said"
+- ✅ Professional minimal aesthetic
 
-### Version 1.5 (2025-10-17)
-- ✅ Added client confirmation email
-- ✅ Added social media links (GitHub, LinkedIn, Behance)
-- ✅ Created email demo page for preview
-- ✅ Added dynamic footer with year and slogan
+### Version 2.0 (2025-10-18) - Enhanced Design (Deprecated)
+- ❌ Complex design with gradients and cards
+- ❌ Social media icons
+- ❌ Promotional sections
+- ❌ Multiple action buttons
+- ❌ Emoji icons
 
 ### Version 1.0 (Initial)
 - ✅ Basic admin notification email
