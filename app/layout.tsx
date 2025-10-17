@@ -138,14 +138,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="https://portfolio.dxbmark.com/favicon.ico" />
         <meta name="theme-color" content="#0a122c" />
         
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://portfolio.dxbmark.com/" />
+        {/* Additional Meta Tags */}
+        <meta name="author" content="Tariq Said" />
+        <meta name="copyright" content="© 2025 Tariq Said" />
+        <meta name="application-name" content="Tariq Said Portfolio" />
         
         {/* Structured Data - ProfilePage (Better for Rich Results) */}
         <Script
           id="structured-data-profilepage"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -183,7 +184,7 @@ export default function RootLayout({
                   "addressLocality": "Dubai",
                   "addressRegion": "Dubai"
                 },
-                "email": "info@dxbmark.com"
+                "email": "mailto:info@dxbmark.com"
               }
             })
           }}
@@ -193,7 +194,6 @@ export default function RootLayout({
         <Script
           id="structured-data-person"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -229,7 +229,7 @@ export default function RootLayout({
                 "addressLocality": "Dubai",
                 "addressRegion": "Dubai"
               },
-              "email": "info@dxbmark.com"
+              "email": "mailto:info@dxbmark.com"
             })
           }}
         />
@@ -238,7 +238,6 @@ export default function RootLayout({
         <Script
           id="structured-data-website"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -264,7 +263,6 @@ export default function RootLayout({
         <Script
           id="structured-data-breadcrumb"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -315,7 +313,6 @@ export default function RootLayout({
         <Script
           id="structured-data-organization"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -330,7 +327,7 @@ export default function RootLayout({
               },
               "contactPoint": {
                 "@type": "ContactPoint",
-                "email": "info@dxbmark.com",
+                "email": "mailto:info@dxbmark.com",
                 "contactType": "Customer Service",
                 "areaServed": ["AE", "EG", "SA", "KW", "QA", "BH", "OM"],
                 "availableLanguage": ["en", "ar"]
