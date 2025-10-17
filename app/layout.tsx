@@ -17,9 +17,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Tariq Said | Code. Create. Deliver.",
+  metadataBase: new URL('https://portfolio.dxbmark.com'),
+  title: {
+    default: "Tariq Said | Code. Create. Deliver.",
+    template: "%s | Tariq Said"
+  },
   description:
     "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems. Serving clients across GCC, Middle East, and the Arab World. Based in Dubai, UAE & Egypt.",
+  alternates: {
+    canonical: 'https://portfolio.dxbmark.com',
+  },
   keywords: [
     "Full-Stack Developer",
     "Audio-Visual Specialist",
@@ -80,7 +87,7 @@ export const metadata: Metadata = {
       "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems. Serving clients across GCC, Middle East, and the Arab World. Based in Dubai, UAE & Egypt.",
     images: [
       {
-        url: "/professional-developer-portrait.png",
+        url: "https://portfolio.dxbmark.com/professional-developer-portrait.png",
         width: 1200,
         height: 630,
         alt: "Tariq Said - Full-Stack Developer & AV Specialist",
@@ -92,7 +99,8 @@ export const metadata: Metadata = {
     title: "Tariq Said | Code. Create. Deliver.",
     description:
       "Full-stack developer and audio-visual specialist with 15+ years of experience. Serving GCC, Middle East & Arab World. Based in Dubai, UAE & Egypt.",
-    images: ["/professional-developer-portrait.png"],
+    images: ["https://portfolio.dxbmark.com/professional-developer-portrait.png"],
+    creator: "@tariqsaidofficial",
   },
   other: {
     "facebook:profile_id": "tariqsaidofficial",
@@ -112,9 +120,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
 }
 
 export default function RootLayout({
@@ -125,10 +130,119 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Favicon */}
+        {/* Favicon - Enhanced for all platforms */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="https://portfolio.dxbmark.com/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="https://portfolio.dxbmark.com/favicon.ico" />
+        <meta name="theme-color" content="#0a122c" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://portfolio.dxbmark.com/" />
+        
+        {/* Structured Data - Person */}
+        <Script
+          id="structured-data-person"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Tariq Said",
+              "url": "https://portfolio.dxbmark.com",
+              "image": "https://portfolio.dxbmark.com/professional-developer-portrait.png",
+              "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "DXBMark",
+                "url": "https://dxbmark.com"
+              },
+              "description": "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems.",
+              "knowsAbout": [
+                "Web Development",
+                "Full-Stack Development",
+                "Audio-Visual Systems",
+                "Event Technology",
+                "React",
+                "Next.js",
+                "Node.js",
+                "IT Infrastructure"
+              ],
+              "sameAs": [
+                "https://github.com/tariqsaidofficial",
+                "https://www.linkedin.com/in/tariqsaidofficial/",
+                "https://www.behance.net/tariqsaidofficial"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": ["AE", "EG"],
+                "addressLocality": "Dubai"
+              },
+              "email": "info@dxbmark.com",
+              "telephone": "+971-50-123-4567"
+            })
+          }}
+        />
+        
+        {/* Structured Data - WebSite */}
+        <Script
+          id="structured-data-website"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Tariq Said Portfolio",
+              "url": "https://portfolio.dxbmark.com",
+              "description": "Professional portfolio of Tariq Said - Full-Stack Developer & Audio-Visual Specialist",
+              "inLanguage": "en",
+              "author": {
+                "@type": "Person",
+                "name": "Tariq Said"
+              },
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://portfolio.dxbmark.com/#contact",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+        
+        {/* Structured Data - Organization */}
+        <Script
+          id="structured-data-organization"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "DXBMark",
+              "url": "https://dxbmark.com",
+              "logo": "https://portfolio.dxbmark.com/TariqSaid-logo.png",
+              "founder": {
+                "@type": "Person",
+                "name": "Tariq Said",
+                "url": "https://portfolio.dxbmark.com"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "info@dxbmark.com",
+                "contactType": "Customer Service",
+                "areaServed": ["AE", "EG", "SA", "KW", "QA", "BH", "OM"],
+                "availableLanguage": ["en", "ar"]
+              },
+              "sameAs": [
+                "https://github.com/tariqsaidofficial",
+                "https://www.linkedin.com/in/tariqsaidofficial/",
+                "https://www.behance.net/tariqsaidofficial"
+              ]
+            })
+          }}
+        />
         
         {/* Google Analytics */}
         <Script
