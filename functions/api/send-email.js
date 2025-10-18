@@ -291,15 +291,7 @@ This is an automatic confirmation of receipt. No commitments are made until furt
               </div>
               
               <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 20px 0 15px 0;">
-                We typically respond within 24-48 hours. If you need immediate assistance, please feel free to contact us directly at:
-              </p>
-              
-              <p style="margin: 0 0 5px 0; color: #333; font-size: 15px;">
-                <strong style="color: #0a122c;">Email:</strong> <a href="mailto:info@dxbmark.com" style="color: #e11d48; text-decoration: none;">info@dxbmark.com</a>
-              </p>
-              
-              <p style="margin: 0 0 20px 0; color: #333; font-size: 15px;">
-                <strong style="color: #0a122c;">Phone:</strong> <a href="tel:+971501234567" style="color: #e11d48; text-decoration: none;">+971 50 123 4567</a>
+                We typically respond within 24-48 hours.
               </p>
               
               <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0;">
@@ -344,6 +336,11 @@ This is an automatic confirmation of receipt. No commitments are made until furt
                   <td style="padding: 0 8px;">
                     <a href="https://www.behance.net/tariqsaidofficial" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
                       <img src="https://img.icons8.com/ios-filled/50/ffffff/behance.png" alt="Behance" width="24" height="24" style="display: block; border: 0;" />
+                    </a>
+                  </td>
+                  <td style="padding: 0 8px;">
+                    <a href="https://wa.me/971505121583" style="display: inline-block; background: rgba(37, 211, 102, 0.2); padding: 10px; border-radius: 8px; text-decoration: none;">
+                      <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp" width="24" height="24" style="display: block; border: 0;" />
                     </a>
                   </td>
                 </tr>
