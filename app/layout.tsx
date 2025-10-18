@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Poppins, Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
+import { FloatingWhatsApp } from "@/components/floating-whatsapp"
+import { BackToTop } from "@/components/back-to-top"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -386,6 +388,10 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        
+        {/* Floating Action Buttons */}
+        <FloatingWhatsApp />
+        <BackToTop />
       </body>
     </html>
   )

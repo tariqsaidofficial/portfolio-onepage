@@ -3,6 +3,40 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header */
+}
+
+/* Custom Scrollbar - Glassmorphism Style */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 18, 44, 0.3);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(225, 29, 72, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 72, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
+  border: 2px solid rgba(10, 18, 44, 0.2);
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.8);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(225, 29, 72, 1);
+}
+
 :root {
   /* Updated theme to use exact maroon (#e11d48) and dark navy (#0a122c) colors */
   --background: #0a122c;

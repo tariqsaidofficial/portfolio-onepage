@@ -8,11 +8,6 @@ const nextConfig = {
   },
   // trailingSlash: false, // Removed to fix logo link issue
 
-  // ⬇️ يقلل حجم build بتعطيل ملفات السيرفر
-  experimental: {
-    outputFileTracingRoot: undefined,
-  },
-
   webpack(config) {
     // إزالة sourcemaps والملفات الكبيرة
     config.devtool = false;
