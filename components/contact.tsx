@@ -16,10 +16,12 @@ const CATEGORIES: Record<string, {
   subcategories: string[]
   hasProjectType?: boolean
   hasFileUpload?: boolean
+  hideSubcategory?: boolean
 }> = {
   "general": {
     label: "General Inquiries",
-    subcategories: ["New Inquiry – Website Contact Form Submission"]
+    subcategories: [],
+    hideSubcategory: true
   },
   "project": {
     label: "Project Request / Quotation",
@@ -70,12 +72,23 @@ export function Contact() {
     setSubmitStatus("idle")
 
     try {
+      // Use FormData for file upload support
+      const submitData = new FormData()
+      submitData.append("name", formData.name)
+      submitData.append("email", formData.email)
+      submitData.append("phone", formData.phone)
+      submitData.append("category", formData.category)
+      submitData.append("subcategory", formData.subcategory)
+      submitData.append("projectType", formData.projectType)
+      submitData.append("message", formData.message)
+      
+      if (formData.cvFile) {
+        submitData.append("cvFile", formData.cvFile)
+      }
+
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: submitData,
       })
 
       if (response.ok) {
@@ -102,10 +115,11 @@ export function Contact() {
   }
 
   const handleCategoryChange = (value: string) => {
+    const selectedCat = CATEGORIES[value as keyof typeof CATEGORIES]
     setFormData({ 
       ...formData, 
       category: value, 
-      subcategory: "", 
+      subcategory: selectedCat?.hideSubcategory ? "General Inquiry" : "", 
       projectType: "",
       cvFile: null
     })
@@ -188,8 +202,8 @@ export function Contact() {
                     </Select>
                   </div>
 
-                  {/* Subcategory - appears when category is selected */}
-                  {selectedCategory && (
+                  {/* Subcategory - appears when category is selected and not hidden */}
+                  {selectedCategory && !selectedCategory.hideSubcategory && (
                     <div className="form-field-group">
                       <Select 
                         value={formData.subcategory} 

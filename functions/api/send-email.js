@@ -2,11 +2,29 @@
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
-    const { name, email, phone, category, subcategory, projectType, message, cvFile } = await request.json();
+    
+    // Parse FormData for file upload support
+    const formData = await request.formData();
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const category = formData.get('category');
+    const subcategory = formData.get('subcategory');
+    const projectType = formData.get('projectType');
+    const message = formData.get('message');
+    const cvFile = formData.get('cvFile');
 
     // Validate required fields
-    if (!name || !email || !category || !subcategory || !message) {
+    if (!name || !email || !category || !message) {
       return new Response(JSON.stringify({ error: "Required fields are missing" }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    // Subcategory is not required for General Inquiries
+    if (category !== "general" && !subcategory) {
+      return new Response(JSON.stringify({ error: "Subcategory is required" }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -22,6 +40,19 @@ export async function onRequestPost(context) {
     };
     const categoryLabel = categoryLabels[category] || category;
 
+    // Prepare CV attachment if exists
+    let cvAttachment = null;
+    if (cvFile && cvFile.size > 0) {
+      const arrayBuffer = await cvFile.arrayBuffer();
+      const base64Content = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+      cvAttachment = {
+        filename: cvFile.name || 'cv.pdf',
+        content: base64Content,
+        type: 'application/pdf',
+        disposition: 'attachment'
+      };
+    }
+
     // Send email using Resend API
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -32,8 +63,9 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: 'Tariq Said <info@dxbmark.com>',
         to: ['info@dxbmark.com', 'tariq.yousef@outlook.com'],
-        subject: `${subcategory} from ${name}`,
+        subject: subcategory ? `${subcategory} from ${name}` : `${categoryLabel} from ${name}`,
         reply_to: email,
+        ...(cvAttachment && { attachments: [cvAttachment] }),
         html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +78,7 @@ export async function onRequestPost(context) {
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory}</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory || categoryLabel}</h1>
             </td>
           </tr>
           
@@ -58,10 +90,10 @@ export async function onRequestPost(context) {
                 ${categoryLabel}
               </p>
               
-              <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
+              ${subcategory ? `<p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Subtype:</strong><br/>
                 ${subcategory}
-              </p>
+              </p>` : ''}
               
               <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Name:</strong><br/>
@@ -133,7 +165,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: 'Tariq Said <noreply@dxbmark.com>',
         to: [email],
-        subject: `Thank you for your ${subcategory}`,
+        subject: subcategory ? `Thank you for your ${subcategory}` : `Thank you for contacting us`,
         html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -152,7 +184,7 @@ export async function onRequestPost(context) {
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory}</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory || 'Message Received Successfully'}</h1>
             </td>
           </tr>
           
@@ -164,13 +196,13 @@ export async function onRequestPost(context) {
               </p>
               
               <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0;">
-                Thank you for your <strong>${subcategory}</strong>! We have successfully received your submission and will get back to you as soon as possible.
+                Thank you for ${subcategory ? `your <strong>${subcategory}</strong>` : 'contacting us'}! We have successfully received your submission and will get back to you as soon as possible.
               </p>
               
               <div style="background: #f5f5f5; border-left: 4px solid #e11d48; padding: 15px; margin: 20px 0; border-radius: 4px;">
                 <p style="margin: 0 0 10px 0; color: #0a122c; font-size: 14px; font-weight: bold;">Submission Details:</p>
                 <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Category:</strong> ${categoryLabel}</p>
-                <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Type:</strong> ${subcategory}</p>
+                ${subcategory ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Type:</strong> ${subcategory}</p>` : ''}
                 ${projectType ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Project Type:</strong> ${projectType}</p>` : ''}
                 ${cvFile ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>CV:</strong> <span style="color: #e11d48;">✓ Attached</span></p>` : ''}
               </div>
