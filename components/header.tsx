@@ -54,18 +54,20 @@ export function Header() {
               alt="Tariq Said"
               width={120}
               height={40}
-              className="h-10 w-auto drop-shadow-lg"
+              className={`transition-all duration-500 drop-shadow-lg flex-shrink-0 ${
+                isScrolled ? "h-8 w-auto" : "h-9 md:h-10 lg:h-12 w-auto"
+              }`}
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8" aria-label="Main navigation">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-white/90 hover:text-white transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative z-10"
+                className="text-xs lg:text-sm font-medium text-white/90 hover:text-white transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative z-10 whitespace-nowrap"
               >
                 {item.label}
               </a>
@@ -101,7 +103,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-strong p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300" aria-label="Mobile navigation">
+          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-mobile-menu p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300" aria-label="Mobile navigation">
             {navItems.map((item) => (
               <a
                 key={item.href}

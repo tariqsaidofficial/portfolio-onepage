@@ -45,12 +45,11 @@ export function BackToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 p-3 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0, opacity: 0 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="glass-whatsapp fixed bottom-6 right-6 z-50 p-3 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5" />

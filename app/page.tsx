@@ -25,7 +25,7 @@ const Contact = dynamic(() => import('@/components/contact').then(mod => ({ defa
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-screen bg-[#0a122c] text-foreground relative">
+    <main id="main-content" className="min-h-screen text-foreground relative z-10">
       <Header />
       <Hero />
       <About />

@@ -5,6 +5,7 @@ import Script from "next/script"
 import "./globals.css"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
 import { BackToTop } from "@/components/back-to-top"
+import { AnimatedBackground } from "@/components/animated-background"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -387,6 +388,10 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        
+        {/* Animated Background */}
+        <AnimatedBackground />
+        
         {children}
         
         {/* Floating Action Buttons */}
