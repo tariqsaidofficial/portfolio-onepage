@@ -43,14 +43,28 @@ export async function onRequestPost(context) {
     // Prepare CV attachment if exists
     let cvAttachment = null;
     if (cvFile && cvFile.size > 0) {
-      const arrayBuffer = await cvFile.arrayBuffer();
-      const base64Content = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
-      cvAttachment = {
-        filename: cvFile.name || 'cv.pdf',
-        content: base64Content,
-        type: 'application/pdf',
-        disposition: 'attachment'
-      };
+      try {
+        const arrayBuffer = await cvFile.arrayBuffer();
+        const bytes = new Uint8Array(arrayBuffer);
+        
+        // Convert to base64 in chunks to avoid call stack size exceeded
+        let binary = '';
+        const chunkSize = 0x8000; // 32KB chunks
+        for (let i = 0; i < bytes.length; i += chunkSize) {
+          const chunk = bytes.subarray(i, i + chunkSize);
+          binary += String.fromCharCode.apply(null, chunk);
+        }
+        const base64Content = btoa(binary);
+        
+        cvAttachment = {
+          filename: cvFile.name || 'cv.pdf',
+          content: base64Content,
+          type: 'application/pdf'
+        };
+      } catch (error) {
+        console.error('Error processing CV file:', error);
+        // Continue without attachment if there's an error
+      }
     }
 
     // Send email using Resend API
