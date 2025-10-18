@@ -77,6 +77,26 @@ export async function onRequestPost(context) {
       "feedback": "Feedback / Complaint / Support"
     };
     const categoryLabel = categoryLabels[category] || category;
+    
+    // Auto-reply messages based on category
+    const autoReplies = {
+      general: `Thank you for getting in touch. Your message has been received and will be reviewed shortly.
+This is an automatic confirmation of receipt. No commitments are made until further discussion.`,
+      
+      project: `Your project details have been received. I'll review them carefully and follow up soon with an estimate or next steps.
+This is an automatic confirmation of receipt. No commitments are made until further discussion.`,
+      
+      collaboration: `Thank you for your collaboration request. I'll review your message and respond shortly to discuss possibilities.
+This is an automatic confirmation of receipt. No commitments are made until further discussion.`,
+      
+      job: `Your information has been received. I'll review your details and get back to you if a suitable opportunity is available.
+This is an automatic confirmation of receipt. No commitments are made until further discussion.`,
+      
+      feedback: `Thank you for your message. I'll review your feedback and handle it as soon as possible.
+This is an automatic confirmation of receipt. No commitments are made until further discussion.`
+    };
+    
+    const autoReplyMessage = autoReplies[category] || autoReplies.general;
 
     // Prepare CV attachment if exists
     let cvAttachment = null;
@@ -221,9 +241,9 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Tariq Said <noreply@dxbmark.com>',
+        from: 'Tariq Said | Code. Create. Deliver. <noreply@dxbmark.com>',
         to: [email],
-        subject: subcategory ? `Thank you for your ${subcategory}` : `Thank you for contacting us`,
+        subject: `Thank you for contacting us - ${categoryLabel}`,
         html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -242,7 +262,7 @@ export async function onRequestPost(context) {
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory || 'Message Received Successfully'}</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">Message Received Successfully</h1>
             </td>
           </tr>
           
@@ -253,8 +273,8 @@ export async function onRequestPost(context) {
                 Dear <strong>${name}</strong>,
               </p>
               
-              <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0;">
-                Thank you for ${subcategory ? `your <strong>${subcategory}</strong>` : 'contacting us'}! We have successfully received your submission and will get back to you as soon as possible.
+              <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0; white-space: pre-line;">
+                ${autoReplyMessage}
               </p>
               
               <div style="background: #f5f5f5; border-left: 4px solid #e11d48; padding: 15px; margin: 20px 0; border-radius: 4px;">
