@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 export function Testimonials() {
   const testimonials = [
     {
-      avatar: "/professional-woman-avatar.webp",
+      avatar: "/professional-woman-avatar.png",
       feedback: "Tariq delivered exceptional technical excellence. His problem-solving skills are remarkable!",
     },
     {
