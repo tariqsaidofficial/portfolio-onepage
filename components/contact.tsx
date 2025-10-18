@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -63,11 +63,28 @@ export function Contact() {
     message: "",
     cvFile: null as File | null,
   })
+  const [turnstileToken, setTurnstileToken] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  
+  // Setup Turnstile callback
+  useEffect(() => {
+    // @ts-ignore
+    window.onTurnstileSuccess = (token: string) => {
+      setTurnstileToken(token)
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate Turnstile
+    if (!turnstileToken) {
+      setSubmitStatus("error")
+      alert("Please complete the security verification")
+      return
+    }
+    
     setIsLoading(true)
     setSubmitStatus("idle")
 
@@ -81,6 +98,7 @@ export function Contact() {
       submitData.append("subcategory", formData.subcategory)
       submitData.append("projectType", formData.projectType)
       submitData.append("message", formData.message)
+      submitData.append("turnstileToken", turnstileToken)
       
       if (formData.cvFile) {
         submitData.append("cvFile", formData.cvFile)
@@ -278,6 +296,16 @@ export function Contact() {
                       disabled={isLoading}
                     />
                   </div>
+                  {/* Cloudflare Turnstile */}
+                  <div className="flex justify-center">
+                    <div 
+                      className="cf-turnstile" 
+                      data-sitekey="0x4AAAAAAAzLj8P7XqJGLhxh"
+                      data-callback="onTurnstileSuccess"
+                      data-theme="dark"
+                    ></div>
+                  </div>
+                  
                   {submitStatus === "success" && (
                     <p className="text-sm text-green-500">Message sent successfully! I'll get back to you soon.</p>
                   )}
@@ -289,7 +317,7 @@ export function Contact() {
                   <Button 
                     type="submit" 
                     className="contact-submit-btn w-full bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 active:scale-95" 
-                    disabled={isLoading}
+                    disabled={isLoading || !turnstileToken}
                   >
                     {isLoading ? "Sending..." : "Send Message"}
                   </Button>

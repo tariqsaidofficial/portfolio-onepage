@@ -13,6 +13,34 @@ export async function onRequestPost(context) {
     const projectType = formData.get('projectType');
     const message = formData.get('message');
     const cvFile = formData.get('cvFile');
+    const turnstileToken = formData.get('turnstileToken');
+    
+    // Verify Turnstile token
+    if (!turnstileToken) {
+      return new Response(JSON.stringify({ error: "Security verification required" }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: turnstileToken
+      })
+    });
+    
+    const turnstileResult = await turnstileResponse.json();
+    if (!turnstileResult.success) {
+      return new Response(JSON.stringify({ error: "Security verification failed" }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
 
     // Validate required fields
     if (!name || !email || !category || !message) {
@@ -88,6 +116,12 @@ export async function onRequestPost(context) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Contact Form Submission</title>
 </head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background: #f5f5f5;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 20px 0;">
+        <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background: #ffffff;">
+          
           <!-- Header -->
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
@@ -264,25 +298,16 @@ export async function onRequestPost(context) {
           <!-- Footer -->
           <tr>
             <td style="background: #0a122c; padding: 25px 20px; text-align: center;">
-              <!-- Social Media Icons -->
+              <!-- Social Media Links -->
               <div style="margin-bottom: 20px;">
-                <a href="https://github.com/tariqsaidofficial" style="display: inline-block; margin: 0 8px; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                    <path d="M9 18c-4.51 2-5-2-7-2"/>
-                  </svg>
+                <a href="https://github.com/tariqsaidofficial" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
+                  GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/tariqsaidofficial/" style="display: inline-block; margin: 0 8px; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect width="4" height="12" x="2" y="9"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
+                <a href="https://www.linkedin.com/in/tariqsaidofficial/" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
+                  LinkedIn
                 </a>
-                <a href="https://www.behance.net/tariqsaid" style="display: inline-block; margin: 0 8px; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                  <svg width="24" height="24" viewBox="1 1 22 22" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round">
-                    <path d="M20.3331 7.66665H14.4998V6H20.3331V7.66665ZM21.7714 15.9999C21.4031 17.0807 20.0806 18.4999 17.5206 18.4999C14.959 18.4999 12.884 17.059 12.884 13.7707C12.884 10.5125 14.8215 8.83747 17.439 8.83747C20.0073 8.83747 21.5756 10.3225 21.9181 12.5258C21.9831 12.9474 22.0089 13.5158 21.9973 14.3091H15.3082C15.4165 16.9849 18.2106 17.069 19.1315 15.9999H21.7714ZM15.3665 12.6666H19.5039C19.4164 11.3774 18.5573 10.8174 17.4398 10.8174C16.2181 10.8174 15.5423 11.4574 15.3665 12.6666ZM7.38824 18.4899H1.99997V6.0175H7.79407C12.3574 6.085 12.444 10.5541 10.0607 11.7724C12.9449 12.8224 13.0415 18.4899 7.38824 18.4899V18.4899ZM4.49994 10.9999H7.48658C9.57655 10.9999 9.90822 8.49997 7.22658 8.49997H4.49994V10.9999V10.9999ZM7.32574 13.4999H4.49994V16.0132H7.28408C9.82988 16.0132 9.67405 13.4999 7.32574 13.4999V13.4999Z"/>
-                  </svg>
+                <a href="https://www.behance.net/tariqsaidofficial" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
+                  Behance
                 </a>
               </div>
               
