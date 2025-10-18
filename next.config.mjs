@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
-  trailingSlash: true,
+  // trailingSlash: false, // Removed to fix logo link issue
 
   // ⬇️ يقلل حجم build بتعطيل ملفات السيرفر
   experimental: {
