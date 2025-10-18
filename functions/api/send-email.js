@@ -333,17 +333,17 @@ This is an automatic confirmation of receipt. No commitments are made until furt
                 <tr>
                   <td style="padding: 0 8px;">
                     <a href="https://github.com/tariqsaidofficial" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                      <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" width="24" height="24" style="display: block; border: 0;" />
+                      <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub" width="24" height="24" style="display: block; border: 0;" />
                     </a>
                   </td>
                   <td style="padding: 0 8px;">
                     <a href="https://www.linkedin.com/in/tariqsaidofficial/" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                      <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn" width="24" height="24" style="display: block; border: 0;" />
+                      <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" width="24" height="24" style="display: block; border: 0;" />
                     </a>
                   </td>
                   <td style="padding: 0 8px;">
                     <a href="https://www.behance.net/tariqsaidofficial" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
-                      <img src="https://cdn.simpleicons.org/behance/ffffff" alt="Behance" width="24" height="24" style="display: block; border: 0;" />
+                      <img src="https://img.icons8.com/ios-filled/50/ffffff/behance.png" alt="Behance" width="24" height="24" style="display: block; border: 0;" />
                     </a>
                   </td>
                 </tr>
