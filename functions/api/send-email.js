@@ -155,7 +155,7 @@ This is an automatic confirmation of receipt. No commitments are made until furt
           <!-- Header -->
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
-              <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
+              <img src="https://portfolio.dxbmark.com/TariqSaid-logo.webp" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
               <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory || categoryLabel}</h1>
             </td>
           </tr>
@@ -261,7 +261,7 @@ This is an automatic confirmation of receipt. No commitments are made until furt
           <!-- Header -->
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
-              <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
+              <img src="https://portfolio.dxbmark.com/TariqSaid-logo.webp" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
               <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">Message Received Successfully</h1>
             </td>
           </tr>

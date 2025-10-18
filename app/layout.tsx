@@ -137,6 +137,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to external domains for better performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        
         {/* Favicon - Enhanced for all platforms */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="https://portfolio.dxbmark.com/favicon.ico" />
@@ -206,7 +211,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Tariq Said",
               "url": "https://portfolio.dxbmark.com",
-              "image": "https://portfolio.dxbmark.com/professional-developer-portrait.png",
+              "image": "https://portfolio.dxbmark.com/professional-developer-portrait.webp",
               "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
               "worksFor": {
                 "@type": "Organization",
@@ -325,7 +330,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "DXBMark",
               "url": "https://dxbmark.com",
-              "logo": "https://portfolio.dxbmark.com/TariqSaid-logo.png",
+              "logo": "https://portfolio.dxbmark.com/TariqSaid-logo.webp",
               "founder": {
                 "@type": "Person",
                 "name": "Tariq Said",
@@ -354,14 +359,14 @@ export default function RootLayout({
           defer
         />
         
-        {/* Google Analytics */}
+        {/* Google Analytics - Lazy loaded for better performance */}
         <Script
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=G-P6EHS0QWTZ"
         />
         <Script
           id="google-analytics"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -372,7 +377,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${poppins.variable} ${inter.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+        {/* Skip to main content link for accessibility */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

@@ -22,33 +22,19 @@ const Testimonials = dynamic(() => import('@/components/testimonials').then(mod 
 const Contact = dynamic(() => import('@/components/contact').then(mod => ({ default: mod.Contact })), {
   loading: () => <div className="min-h-screen" />
 })
-// import { LaserFlow } from "@/components/laser-flow"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a122c] text-foreground relative">
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
-        <LaserFlow
-          horizontalBeamOffset={0.1}
-          verticalBeamOffset={0.0}
-          color="#e11d48"
-          fogIntensity={0.5}
-          wispDensity={1.2}
-          flowSpeed={0.4}
-        />
-      </div> */}
-
-      <div className="relative z-10">
-        <Header />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Services />
-        <Testimonials />
-        <Contact />
-        <Footer />
-      </div>
+    <main id="main-content" className="min-h-screen bg-[#0a122c] text-foreground relative">
+      <Header />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Services />
+      <Testimonials />
+      <Contact />
+      <Footer />
     </main>
   )
 }
