@@ -3,7 +3,10 @@ export default function EmailDemo() {
   const name = "Mohamed Yousef"
   const email = "elmonkared_2007@live.com"
   const phone = "+971 50 512 1583"
-  const message = "TEST ONLY [Audio-Visual Specialist | Media Technician Freelance filmmaker and video editor based in Dubai. Directed major events including the Mediterranean Minimally Invasive Surgery Congress and Egyptian Congress of Pediatric Pulmonology.]"
+  const category = "Project Request / Quotation"
+  const subcategory = "Request for Quotation"
+  const projectType = "Audio-Visual Production"
+  const message = "I would like to request a quotation for a corporate event video production. The event will be held in Dubai and requires full AV coverage including cameras, sound, and post-production editing."
 
   return (
     <div style={{ padding: '40px 20px', background: '#f5f5f5', minHeight: '100vh' }}>
@@ -22,27 +25,46 @@ export default function EmailDemo() {
                   <tr>
                     <td style={{ background: '#0a122c', padding: '30px 20px', textAlign: 'center' }}>
                       <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style={{ height: '50px', display: 'block', margin: '0 auto 15px auto' }} />
-                      <h1 style={{ color: '#e11d48', margin: 0, fontSize: '24px', fontWeight: 'normal' }}>New Contact Form Submission</h1>
+                      <h1 style={{ color: '#e11d48', margin: 0, fontSize: '24px', fontWeight: 'normal' }}>{subcategory}</h1>
                     </td>
                   </tr>
                   
                   {/* Content */}
                   <tr>
                     <td style={{ padding: '30px 20px' }}>
-                      <p style={{ margin: '0 0 10px 0', color: '#333', fontSize: '15px' }}>
+                      <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
+                        <strong style={{ color: '#0a122c' }}>Category:</strong><br/>
+                        {category}
+                      </p>
+                      
+                      <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
+                        <strong style={{ color: '#0a122c' }}>Subtype:</strong><br/>
+                        {subcategory}
+                      </p>
+                      
+                      <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
                         <strong style={{ color: '#0a122c' }}>Name:</strong><br/>
                         {name}
                       </p>
                       
-                      <p style={{ margin: '0 0 10px 0', color: '#333', fontSize: '15px' }}>
+                      <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
                         <strong style={{ color: '#0a122c' }}>Email:</strong><br/>
                         <a href={`mailto:${email}`} style={{ color: '#e11d48', textDecoration: 'none' }}>{email}</a>
                       </p>
                       
-                      <p style={{ margin: '0 0 20px 0', color: '#333', fontSize: '15px' }}>
-                        <strong style={{ color: '#0a122c' }}>Phone:</strong><br/>
-                        <a href={`tel:${phone}`} style={{ color: '#e11d48', textDecoration: 'none' }}>{phone}</a>
-                      </p>
+                      {phone && (
+                        <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
+                          <strong style={{ color: '#0a122c' }}>Phone:</strong><br/>
+                          <a href={`tel:${phone}`} style={{ color: '#e11d48', textDecoration: 'none' }}>{phone}</a>
+                        </p>
+                      )}
+                      
+                      {projectType && (
+                        <p style={{ margin: '0 0 15px 0', color: '#333', fontSize: '15px' }}>
+                          <strong style={{ color: '#0a122c' }}>Project Type:</strong><br/>
+                          {projectType}
+                        </p>
+                      )}
                       
                       <p style={{ margin: '0 0 10px 0', color: '#0a122c', fontSize: '15px', fontWeight: 'bold' }}>Message:</p>
                       <p style={{ whiteSpace: 'pre-wrap', color: '#333', lineHeight: '1.6', margin: '0 0 20px 0', fontSize: '15px' }}>{message}</p>
@@ -80,8 +102,8 @@ export default function EmailDemo() {
                   {/* Header */}
                   <tr>
                     <td style={{ background: '#0a122c', padding: '30px 20px', textAlign: 'center' }}>
-                      <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style={{ height: '50px', marginBottom: '15px', display: 'block', margin: '0 auto 15px auto' }} />
-                      <h1 style={{ color: '#e11d48', margin: 0, fontSize: '24px', fontWeight: 'normal' }}>Message Received Successfully</h1>
+                      <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style={{ height: '50px', display: 'block', margin: '0 auto 15px auto' }} />
+                      <h1 style={{ color: '#e11d48', margin: 0, fontSize: '24px', fontWeight: 'normal' }}>{subcategory}</h1>
                     </td>
                   </tr>
                   
@@ -93,8 +115,15 @@ export default function EmailDemo() {
                       </p>
                       
                       <p style={{ color: '#333', fontSize: '15px', lineHeight: '1.6', margin: '0 0 20px 0' }}>
-                        Thank you for reaching out to us! We have successfully received your message and will get back to you as soon as possible.
+                        Thank you for your <strong>{subcategory}</strong>! We have successfully received your submission and will get back to you as soon as possible.
                       </p>
+                      
+                      <div style={{ background: '#f5f5f5', borderLeft: '4px solid #e11d48', padding: '15px', margin: '20px 0', borderRadius: '4px' }}>
+                        <p style={{ margin: '0 0 10px 0', color: '#0a122c', fontSize: '14px', fontWeight: 'bold' }}>Submission Details:</p>
+                        <p style={{ margin: '0 0 5px 0', color: '#666', fontSize: '14px' }}><strong>Category:</strong> {category}</p>
+                        <p style={{ margin: '0 0 5px 0', color: '#666', fontSize: '14px' }}><strong>Type:</strong> {subcategory}</p>
+                        {projectType && <p style={{ margin: '0 0 5px 0', color: '#666', fontSize: '14px' }}><strong>Project Type:</strong> {projectType}</p>}
+                      </div>
                       
                       <div style={{ borderLeft: '4px solid #e11d48', paddingLeft: '15px', margin: '20px 0' }}>
                         <p style={{ margin: '0 0 5px 0', color: '#0a122c', fontSize: '14px', fontWeight: 'bold' }}>Your Message:</p>

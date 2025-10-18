@@ -7,14 +7,59 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, MessageSquare, Github, Linkedin } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Mail, MessageSquare, Github, Linkedin, Upload } from "lucide-react"
+
+// Category options with their subcategories
+const CATEGORIES: Record<string, {
+  label: string
+  subcategories: string[]
+  hasProjectType?: boolean
+  hasFileUpload?: boolean
+}> = {
+  "general": {
+    label: "General Inquiries",
+    subcategories: ["New Inquiry – Website Contact Form Submission"]
+  },
+  "project": {
+    label: "Project Request / Quotation",
+    subcategories: ["Estimate Request", "Request for Quotation", "Project Proposal"],
+    hasProjectType: true
+  },
+  "collaboration": {
+    label: "Collaboration / Partnership",
+    subcategories: ["Collaboration Opportunity", "Creative Partnership Inquiry"]
+  },
+  "job": {
+    label: "Job / Hiring Opportunity",
+    subcategories: ["Employment Inquiry", "Ask for Vacancy", "Freelance"],
+    hasFileUpload: true
+  },
+  "feedback": {
+    label: "Feedback / Complaint / Support",
+    subcategories: ["New Client Feedback", "Issue Report", "Support Request"]
+  }
+}
+
+const PROJECT_TYPES = [
+  "Web Development",
+  "Mobile App Development",
+  "Audio-Visual Production",
+  "IT Infrastructure",
+  "System Integration",
+  "Other"
+]
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    category: "",
+    subcategory: "",
+    projectType: "",
     message: "",
+    cvFile: null as File | null,
   })
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
@@ -35,7 +80,16 @@ export function Contact() {
 
       if (response.ok) {
         setSubmitStatus("success")
-        setFormData({ name: "", email: "", phone: "", message: "" })
+        setFormData({ 
+          name: "", 
+          email: "", 
+          phone: "", 
+          category: "",
+          subcategory: "",
+          projectType: "",
+          message: "",
+          cvFile: null
+        })
       } else {
         setSubmitStatus("error")
       }
@@ -46,6 +100,27 @@ export function Contact() {
       setIsLoading(false)
     }
   }
+
+  const handleCategoryChange = (value: string) => {
+    setFormData({ 
+      ...formData, 
+      category: value, 
+      subcategory: "", 
+      projectType: "",
+      cvFile: null
+    })
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type === "application/pdf" && file.size <= 2 * 1024 * 1024) {
+      setFormData({ ...formData, cvFile: file })
+    } else {
+      alert("Please upload a PDF file (max 2MB)")
+    }
+  }
+
+  const selectedCategory = formData.category ? CATEGORIES[formData.category as keyof typeof CATEGORIES] : null
 
   return (
     <section id="contact" className="py-20 px-4 bg-secondary/20">
@@ -60,6 +135,7 @@ export function Contact() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Name */}
                   <div className="form-field-group">
                     <Input
                       placeholder="Your Name"
@@ -70,6 +146,8 @@ export function Contact() {
                       disabled={isLoading}
                     />
                   </div>
+
+                  {/* Email */}
                   <div className="form-field-group">
                     <Input
                       type="email"
@@ -81,17 +159,101 @@ export function Contact() {
                       disabled={isLoading}
                     />
                   </div>
+
+                  {/* Phone */}
                   <div className="form-field-group">
                     <Input
                       type="tel"
-                      placeholder="Your Phone Number"
+                      placeholder="Your Phone Number (Optional)"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="contact-input bg-transparent border-border/50 hover:border-primary/50 focus:border-primary transition-all duration-200"
-                      required
                       disabled={isLoading}
                     />
                   </div>
+
+                  {/* Category */}
+                  <div className="form-field-group">
+                    <Select value={formData.category} onValueChange={handleCategoryChange} disabled={isLoading} required>
+                      <SelectTrigger className="contact-input bg-transparent border-border/50 hover:border-primary/50 focus:border-primary transition-all duration-200">
+                        <SelectValue placeholder="Select Category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Object.entries(CATEGORIES).map(([key, value]) => (
+                          <SelectItem key={key} value={key}>
+                            {value.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Subcategory - appears when category is selected */}
+                  {selectedCategory && (
+                    <div className="form-field-group">
+                      <Select 
+                        value={formData.subcategory} 
+                        onValueChange={(value) => setFormData({ ...formData, subcategory: value })}
+                        disabled={isLoading}
+                        required
+                      >
+                        <SelectTrigger className="contact-input bg-transparent border-border/50 hover:border-primary/50 focus:border-primary transition-all duration-200">
+                          <SelectValue placeholder="Select Subtype" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {selectedCategory.subcategories.map((sub) => (
+                            <SelectItem key={sub} value={sub}>
+                              {sub}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  {/* Project Type - appears only for Project category */}
+                  {selectedCategory?.hasProjectType && (
+                    <div className="form-field-group">
+                      <Select 
+                        value={formData.projectType} 
+                        onValueChange={(value) => setFormData({ ...formData, projectType: value })}
+                        disabled={isLoading}
+                        required
+                      >
+                        <SelectTrigger className="contact-input bg-transparent border-border/50 hover:border-primary/50 focus:border-primary transition-all duration-200">
+                          <SelectValue placeholder="Select Project Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {PROJECT_TYPES.map((type) => (
+                            <SelectItem key={type} value={type}>
+                              {type}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  {/* CV Upload - appears only for Job category */}
+                  {selectedCategory?.hasFileUpload && (
+                    <div className="form-field-group">
+                      <label className="flex items-center gap-2 px-4 py-2 border border-border/50 rounded-md cursor-pointer hover:border-primary/50 transition-all duration-200 bg-transparent">
+                        <Upload className="w-4 h-4 text-primary" />
+                        <span className="text-sm text-muted-foreground">
+                          {formData.cvFile ? formData.cvFile.name : "Upload CV (PDF, max 2MB)"}
+                        </span>
+                        <input
+                          type="file"
+                          accept=".pdf"
+                          onChange={handleFileChange}
+                          className="hidden"
+                          disabled={isLoading}
+                        />
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Message */}
                   <div className="form-field-group">
                     <Textarea
                       placeholder="Your Message"

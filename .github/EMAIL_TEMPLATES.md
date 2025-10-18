@@ -20,7 +20,30 @@ The contact form sends two types of emails:
 1. **Admin Notification Email** - Sent to the website owner when a new contact form is submitted
 2. **Client Confirmation Email** - Sent to the user confirming their message was received
 
-Both emails follow a consistent design system with branding, professional layout, and responsive HTML.
+Both emails follow a unified design system with branding, professional layout, and responsive HTML.
+
+### Contact Form Structure
+
+The contact form includes dynamic fields based on user selection:
+
+**Always Visible Fields:**
+- Name (required)
+- Email (required)
+- Phone (optional)
+- Category (required, dropdown with 5 options)
+- Subcategory (required, dynamic based on category)
+- Message (required)
+
+**Conditional Fields:**
+- **Project Type** - Appears only when "Project Request / Quotation" is selected
+- **CV Upload** - Appears only when "Job / Hiring Opportunity" is selected (PDF only, max 2MB)
+
+**Categories:**
+1. General Inquiries
+2. Project Request / Quotation (+ Project Type field)
+3. Collaboration / Partnership
+4. Job / Hiring Opportunity (+ CV Upload field)
+5. Feedback / Complaint / Support
 
 ---
 
@@ -475,17 +498,33 @@ gh run list --workflow=check-resend.yml
 
 ## Changelog
 
-### Version 4.0 (2025-10-18) - Enhanced Professional Design
-- ✅ Logo centered in header with block display
-- ✅ Added timestamp to both emails (Dubai timezone)
-- ✅ Removed "Best regards, John" from admin email
-- ✅ Added promotional "Why Choose Us?" section to client email
-- ✅ Added social media icons (GitHub, LinkedIn, Behance) to client email footer
-- ✅ "Tariq Said" as clickable link in footer (both emails)
-- ✅ Official Behance SVG icon with proper path
-- ✅ Improved promotional text with IT and AV integration
-- ✅ Professional gradient background for promotional section
-- ✅ CTA button for portfolio viewing
+### Version 5.0 (2025-10-18) - Dynamic Contact Form & Unified Email Design
+- ✅ Enhanced contact form with 5 main categories
+- ✅ Dynamic subcategory field based on category selection
+- ✅ Conditional Project Type field (for Project category)
+- ✅ Conditional CV upload field (for Job category, PDF only, max 2MB)
+- ✅ Phone field made optional
+- ✅ Unified email design for Admin and Client
+- ✅ Subject line uses subcategory: "{subcategory} from {name}"
+- ✅ Header displays subcategory as title (both emails)
+- ✅ Admin email shows: Category, Subtype, Name, Email, Phone (optional), Project Type (optional), CV status (optional)
+- ✅ Client email shows: Submission Details box with all info
+- ✅ Dynamic field display based on category
+- ✅ TypeScript type safety with proper interfaces
+- ✅ Improved UX with smooth transitions
+- ✅ Professional validation and error handling
+
+### Version 4.0 (2025-10-18) - Enhanced Professional Design (Superseded)
+- Logo centered in header with block display
+- Added timestamp to both emails (Dubai timezone)
+- Removed "Best regards, John" from admin email
+- Added promotional "Why Choose Us?" section to client email
+- Added social media icons (GitHub, LinkedIn, Behance) to client email footer
+- "Tariq Said" as clickable link in footer (both emails)
+- Official Behance SVG icon with proper path
+- Improved promotional text with IT and AV integration
+- Professional gradient background for promotional section
+- CTA button for portfolio viewing
 
 ### Version 3.0 (2025-10-18) - Simplified Design (Deprecated)
 - ❌ Too simple, missing promotional elements

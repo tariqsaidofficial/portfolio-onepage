@@ -2,14 +2,25 @@
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
-    const { name, email, phone, message } = await request.json();
+    const { name, email, phone, category, subcategory, projectType, message, cvFile } = await request.json();
 
-    if (!name || !email || !phone || !message) {
-      return new Response(JSON.stringify({ error: "All fields are required" }), {
+    // Validate required fields
+    if (!name || !email || !category || !subcategory || !message) {
+      return new Response(JSON.stringify({ error: "Required fields are missing" }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
+
+    // Get category label
+    const categoryLabels = {
+      "general": "General Inquiries",
+      "project": "Project Request / Quotation",
+      "collaboration": "Collaboration / Partnership",
+      "job": "Job / Hiring Opportunity",
+      "feedback": "Feedback / Complaint / Support"
+    };
+    const categoryLabel = categoryLabels[category] || category;
 
     // Send email using Resend API
     const resendResponse = await fetch('https://api.resend.com/emails', {
@@ -21,7 +32,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: 'Tariq Said <info@dxbmark.com>',
         to: ['info@dxbmark.com', 'tariq.yousef@outlook.com'],
-        subject: `New Contact Form Submission from ${name}`,
+        subject: `${subcategory} from ${name}`,
         reply_to: email,
         html: `
 <!DOCTYPE html>
@@ -35,26 +46,47 @@ export async function onRequestPost(context) {
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">New Contact Form Submission</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory}</h1>
             </td>
           </tr>
           
           <!-- Content -->
           <tr>
             <td style="padding: 30px 20px;">
-              <p style="margin: 0 0 10px 0; color: #333; font-size: 15px;">
+              <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
+                <strong style="color: #0a122c;">Category:</strong><br/>
+                ${categoryLabel}
+              </p>
+              
+              <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
+                <strong style="color: #0a122c;">Subtype:</strong><br/>
+                ${subcategory}
+              </p>
+              
+              <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Name:</strong><br/>
                 ${name}
+              </p>
               
-              <p style="margin: 0 0 10px 0; color: #333; font-size: 15px;">
+              <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Email:</strong><br/>
                 <a href="mailto:${email}" style="color: #e11d48; text-decoration: none;">${email}</a>
               </p>
               
-              <p style="margin: 0 0 20px 0; color: #333; font-size: 15px;">
+              ${phone ? `<p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Phone:</strong><br/>
                 <a href="tel:${phone}" style="color: #e11d48; text-decoration: none;">${phone}</a>
-              </p>
+              </p>` : ''}
+              
+              ${projectType ? `<p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
+                <strong style="color: #0a122c;">Project Type:</strong><br/>
+                ${projectType}
+              </p>` : ''}
+              
+              ${cvFile ? `<p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
+                <strong style="color: #0a122c;">CV Attached:</strong><br/>
+                <span style="color: #e11d48;">✓ CV file included</span>
+              </p>` : ''}
               
               <p style="margin: 0 0 10px 0; color: #0a122c; font-size: 15px; font-weight: bold;">Message:</p>
               <p style="white-space: pre-wrap; color: #333; line-height: 1.6; margin: 0 0 20px 0; font-size: 15px;">${message}</p>
@@ -101,7 +133,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: 'Tariq Said <noreply@dxbmark.com>',
         to: [email],
-        subject: 'Thank you for contacting Tariq Said',
+        subject: `Thank you for your ${subcategory}`,
         html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +152,7 @@ export async function onRequestPost(context) {
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.png" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">Message Received Successfully</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory}</h1>
             </td>
           </tr>
           
@@ -132,8 +164,16 @@ export async function onRequestPost(context) {
               </p>
               
               <p style="color: #333; font-size: 15px; line-height: 1.6; margin: 0 0 20px 0;">
-                Thank you for reaching out to us! We have successfully received your message and will get back to you as soon as possible.
+                Thank you for your <strong>${subcategory}</strong>! We have successfully received your submission and will get back to you as soon as possible.
               </p>
+              
+              <div style="background: #f5f5f5; border-left: 4px solid #e11d48; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                <p style="margin: 0 0 10px 0; color: #0a122c; font-size: 14px; font-weight: bold;">Submission Details:</p>
+                <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Category:</strong> ${categoryLabel}</p>
+                <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Type:</strong> ${subcategory}</p>
+                ${projectType ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Project Type:</strong> ${projectType}</p>` : ''}
+                ${cvFile ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>CV:</strong> <span style="color: #e11d48;">✓ Attached</span></p>` : ''}
+              </div>
               
               <div style="border-left: 4px solid #e11d48; padding-left: 15px; margin: 20px 0;">
                 <p style="margin: 0 0 5px 0; color: #0a122c; font-size: 14px; font-weight: bold;">Your Message:</p>
