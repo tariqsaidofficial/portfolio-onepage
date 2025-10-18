@@ -6,8 +6,8 @@ import { CurvedLoop } from "@/components/curved-loop"
 export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative">
-      {/* Curved Text Loop - Top Left Corner */}
-      <div className="absolute w-[600px] origin-top-left" style={{ top: '264px', left: '40px', transform: 'rotate(-42deg)' }}>
+      {/* Curved Text Loop - Top Left Corner - Behind Content - Hidden on Mobile */}
+      <div className="hidden lg:block absolute w-[600px] origin-top-left" style={{ top: '264px', left: '40px', transform: 'rotate(-42deg)', zIndex: 0 }}>
         <CurvedLoop
           marqueeText="Code ✦ Create ✦ Deliver ✦ "
           speed={1.5}
@@ -20,7 +20,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="container mx-auto max-w-5xl text-center">
+      <div className="container mx-auto max-w-5xl text-center relative z-10">
         <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl font-bold text-balance leading-tight">
             Full-Stack Developer & <span className="text-primary">Audio-Visual Specialist</span>

@@ -205,7 +205,8 @@ export function CurvedLoop({
             xmlSpace="preserve" 
             className={`${variantConfig[variant]} ${className}`}
             style={{ 
-              transition: 'opacity 0.3s ease',
+              opacity: 0.6,
+              transition: 'opacity 0.6s ease-in',
               willChange: 'transform'
             }}
           >
