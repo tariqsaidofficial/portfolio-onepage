@@ -21,7 +21,7 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <a href="#contact">
+            <a href="#contact" aria-label="Navigate to contact section">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
                 Hire Me
                 <ArrowRight className="w-5 h-5 ml-2" />

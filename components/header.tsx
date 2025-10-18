@@ -50,7 +50,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center relative z-10" prefetch={false}>
             <Image
-              src="/TariqSaid-logo.png"
+              src="/TariqSaid-logo.webp"
               alt="Tariq Said"
               width={120}
               height={40}
@@ -60,7 +60,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -88,6 +88,8 @@ export function Header() {
           <button
             className="md:hidden text-white relative z-10"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -99,7 +101,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-strong p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
+          <nav className="md:hidden mt-4 flex flex-col gap-4 glass-strong p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300" aria-label="Mobile navigation">
             {navItems.map((item) => (
               <a
                 key={item.href}
