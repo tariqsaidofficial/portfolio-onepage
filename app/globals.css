@@ -555,29 +555,32 @@ html {
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0.1px) rotateX(0deg) rotateY(0deg);
   
-  /* Holographic gradient layers */
+  /* Background animation */
+  animation: glow-bg 12s linear infinite;
+  
+  /* Holographic gradient layers - DarkNavy + Gold + Red theme */
   background-size: 100% 100%;
   background-position: 0 0, 0 0, 50% 50%, 0 0;
   background-image: 
-    /* Interactive spotlight */
+    /* Interactive spotlight - Dark with subtle glow */
     radial-gradient(
       farthest-side circle at var(--pointer-x) var(--pointer-y),
-      hsla(266, 100%, 90%, var(--card-opacity)) 4%,
-      hsla(266, 50%, 80%, calc(var(--card-opacity) * 0.75)) 10%,
-      hsla(266, 25%, 70%, calc(var(--card-opacity) * 0.5)) 50%,
-      hsla(266, 0%, 60%, 0) 100%
+      hsla(0, 0%, 20%, var(--card-opacity)) 4%,
+      hsla(0, 0%, 15%, calc(var(--card-opacity) * 0.75)) 10%,
+      hsla(0, 0%, 10%, calc(var(--card-opacity) * 0.5)) 50%,
+      hsla(0, 0%, 5%, 0) 100%
     ),
-    /* Top accent gradient */
-    radial-gradient(35% 52% at 55% 20%, #00ffaac4 0%, #073aff00 100%),
-    /* Center glow */
-    radial-gradient(100% 100% at 50% 50%, #00c1ffff 1%, #073aff00 76%),
-    /* Base holographic gradient */
+    /* Top accent gradient - Gold */
+    radial-gradient(35% 52% at 55% 20%, #fbbf24cc 0%, #0a122c00 100%),
+    /* Center glow - Red */
+    radial-gradient(100% 100% at 50% 50%, #e11d48ff 1%, #0a122c00 76%),
+    /* Base holographic gradient - DarkNavy to Gold */
     conic-gradient(
       from 124deg at 50% 50%, 
-      #c137ffff 0%, 
-      #07c6ffff 40%, 
-      #07c6ffff 60%, 
-      #c137ffff 100%
+      #0a122cff 0%, 
+      #fbbf24ff 40%, 
+      #fbbf24ff 60%, 
+      #0a122cff 100%
     );
 }
 
@@ -599,12 +602,12 @@ html {
   pointer-events: none;
 }
 
-/* Inner card layer - dark background */
+/* Inner card layer - DarkNavy background */
 .pc-inside {
   inset: 1px;
   position: absolute;
   background-image: var(--inner-gradient);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #0a122c;  /* DarkNavy base */
   transform: translate3d(0, 0, 0.01px);
 }
 
@@ -673,7 +676,134 @@ html {
 
   /* Blend mode for holographic effect */
   mix-blend-mode: color-dodge;
-  filter: brightness(1.1) contrast(1.6) saturate(1.3) opacity(0.9);
+  
+  /* Default state - MORE VISIBLE iconpattern */
+  transition: filter 0.6s ease;
+  filter: brightness(0.85) contrast(1.8) saturate(0.6) opacity(0.75);
+  
+  /* Animation */
+  animation: holo-bg 18s linear infinite;
+}
+
+/* Grain overlay with rainbow gradient - ::before */
+.pc-shine::before {
+  content: '';
+  display: grid;
+  grid-area: 1 / 1;
+  border-radius: var(--card-radius);
+  transform: translate3d(0, 0, 0.1px);
+  pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  background-image:
+    /* Rainbow gradient */
+    linear-gradient(
+      45deg,
+      var(--sunpillar-clr-4),
+      var(--sunpillar-clr-5),
+      var(--sunpillar-clr-6),
+      var(--sunpillar-clr-1),
+      var(--sunpillar-clr-2),
+      var(--sunpillar-clr-3)
+    ),
+    /* Pointer glow */
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      hsl(0, 0%, 70%) 0%,
+      hsla(0, 0%, 30%, 0.2) 90%
+    ),
+    /* Grain texture */
+    var(--grain);
+  
+  background-size:
+    250% 250%,
+    100% 100%,
+    220px 220px;
+  
+  background-position:
+    var(--pointer-x) var(--pointer-y),
+    center,
+    calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
+  
+  background-blend-mode: color-dodge;
+  mix-blend-mode: luminosity;
+  
+  filter: brightness(calc(2 - var(--pointer-from-center))) 
+          contrast(calc(var(--pointer-from-center) + 2)) 
+          saturate(calc(0.5 + var(--pointer-from-center)));
+}
+
+/* Alternative shine pattern - ::after */
+.pc-shine::after {
+  content: '';
+  display: grid;
+  grid-area: 1 / 1;
+  border-radius: var(--card-radius);
+  transform: translate3d(0, 0, 0.1px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  background-image:
+    /* Vertical rainbow bars */
+    repeating-linear-gradient(
+      0deg,
+      var(--sunpillar-clr-1) calc(5% * 1),
+      var(--sunpillar-clr-2) calc(5% * 2),
+      var(--sunpillar-clr-3) calc(5% * 3),
+      var(--sunpillar-clr-4) calc(5% * 4),
+      var(--sunpillar-clr-5) calc(5% * 5),
+      var(--sunpillar-clr-6) calc(5% * 6),
+      var(--sunpillar-clr-1) calc(5% * 7)
+    ),
+    /* Diagonal shine lines */
+    repeating-linear-gradient(
+      -45deg,
+      #0e152e 0%,
+      hsl(180, 10%, 60%) 3.8%,
+      hsl(180, 29%, 66%) 4.5%,
+      hsl(180, 10%, 60%) 5.2%,
+      #0e152e 10%,
+      #0e152e 12%
+    ),
+    /* Interactive shadow */
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x) var(--pointer-y),
+      hsla(0, 0%, 0%, 0.1) 12%,
+      hsla(0, 0%, 0%, 0.15) 20%,
+      hsla(0, 0%, 0%, 0.25) 120%
+    );
+  
+  background-position:
+    0 var(--background-y),
+    calc(var(--background-x) * 0.4) calc(var(--background-y) * 0.5),
+    center;
+  
+  background-size:
+    200% 300%,
+    700% 700%,
+    100% 100%;
+  
+  mix-blend-mode: difference;
+  filter: brightness(0.8) contrast(1.5);
+}
+
+/* Hover state - enhance shine and iconpattern */
+.pc-card:hover .pc-shine,
+.pc-card.active .pc-shine {
+  filter: brightness(1) contrast(2) saturate(0.8) opacity(0.9);
+  animation: none;
+}
+
+/* Show grain overlays on hover */
+.pc-card:hover .pc-shine::before,
+.pc-card.active .pc-shine::before,
+.pc-card:hover .pc-shine::after,
+.pc-card.active .pc-shine::after {
+  opacity: 1;
 }
 
 /* Light reflection layer */
@@ -829,19 +959,19 @@ html {
   flex-direction: column;
 }
 
-/* Name text with gradient */
+/* Name text with gradient - White to Gold */
 .pc-details h3 {
   font-weight: 600;
   margin: 0;
   font-size: min(5svh, 3em);
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
+  background-image: linear-gradient(to bottom, #fff, #fbbf24);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
 }
 
-/* Title text with gradient */
+/* Title text with gradient - White to Red */
 .pc-details p {
   font-weight: 600;
   position: relative;
@@ -850,7 +980,7 @@ html {
   width: min-content;
   white-space: nowrap;
   font-size: 16px;
-  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
+  background-image: linear-gradient(to bottom, #fff, #e11d48);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -861,6 +991,40 @@ html {
    ProfileCard Responsive Styles (Mobile)
    ============================================ */
 
+/* Animations */
+@keyframes glow-bg {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      50% 50%,
+      0 0;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0,
+      50% 50%,
+      0 0;
+  }
+}
+
+@keyframes holo-bg {
+  0% {
+    background-position:
+      0 var(--background-y),
+      0 0,
+      center;
+  }
+  100% {
+    background-position:
+      0 var(--background-y),
+      90% 90%,
+      center;
+  }
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .pc-card {
     height: 70svh;
