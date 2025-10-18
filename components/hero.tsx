@@ -1,10 +1,25 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Download } from "lucide-react"
 import Link from "next/link"
+import { CurvedLoop } from "@/components/curved-loop"
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 pt-20">
+    <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative">
+      {/* Curved Text Loop - Top Left Corner */}
+      <div className="absolute w-[600px] origin-top-left" style={{ top: '264px', left: '40px', transform: 'rotate(-42deg)' }}>
+        <CurvedLoop
+          marqueeText="Code ✦ Create ✦ Deliver ✦ "
+          speed={1.5}
+          curveAmount={300}
+          direction="left"
+          interactive={false}
+          variant="primary"
+          size="md"
+          position="top"
+        />
+      </div>
+
       <div className="container mx-auto max-w-5xl text-center">
         <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl font-bold text-balance leading-tight">

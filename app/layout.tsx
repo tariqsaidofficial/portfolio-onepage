@@ -379,7 +379,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${poppins.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body id="root" className={`${poppins.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         {/* Skip to main content link for accessibility */}
         <a 
           href="#main-content" 
