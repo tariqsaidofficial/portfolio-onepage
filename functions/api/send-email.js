@@ -23,20 +23,30 @@ export async function onRequestPost(context) {
       });
     }
     
+    // Get client IP
+    const clientIP = request.headers.get('CF-Connecting-IP') || 
+                     request.headers.get('X-Forwarded-For') || 
+                     'unknown';
+    
+    // Verify Turnstile token with Cloudflare
+    const verifyFormData = new FormData();
+    verifyFormData.append('secret', env.TURNSTILE_SECRET_KEY);
+    verifyFormData.append('response', turnstileToken);
+    verifyFormData.append('remoteip', clientIP);
+    
     const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        secret: env.TURNSTILE_SECRET_KEY,
-        response: turnstileToken
-      })
+      body: verifyFormData
     });
     
     const turnstileResult = await turnstileResponse.json();
+    
     if (!turnstileResult.success) {
-      return new Response(JSON.stringify({ error: "Security verification failed" }), {
+      console.error('Turnstile verification failed:', turnstileResult['error-codes']);
+      return new Response(JSON.stringify({ 
+        error: "Security verification failed",
+        details: turnstileResult['error-codes']
+      }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });

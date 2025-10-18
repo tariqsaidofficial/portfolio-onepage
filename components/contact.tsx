@@ -64,16 +64,45 @@ export function Contact() {
     cvFile: null as File | null,
   })
   const [turnstileToken, setTurnstileToken] = useState<string>("")
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   
-  // Setup Turnstile callback
+  // Render Turnstile widget using explicit rendering
   useEffect(() => {
-    // @ts-ignore
-    window.onTurnstileSuccess = (token: string) => {
-      setTurnstileToken(token)
+    const renderTurnstile = () => {
+      if (typeof window !== 'undefined' && (window as any).turnstile && !turnstileWidgetId) {
+        const widgetId = (window as any).turnstile.render('#turnstile-container', {
+          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
+          theme: 'dark',
+          callback: (token: string) => {
+            setTurnstileToken(token)
+          },
+          'error-callback': () => {
+            setTurnstileToken("")
+          },
+        })
+        setTurnstileWidgetId(widgetId)
+      }
     }
-  }, [])
+
+    // Wait for turnstile to be available
+    if (typeof window !== 'undefined') {
+      if ((window as any).turnstile) {
+        renderTurnstile()
+      } else {
+        // Poll for turnstile availability
+        const interval = setInterval(() => {
+          if ((window as any).turnstile) {
+            renderTurnstile()
+            clearInterval(interval)
+          }
+        }, 100)
+        
+        return () => clearInterval(interval)
+      }
+    }
+  }, [turnstileWidgetId])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -121,6 +150,12 @@ export function Contact() {
           message: "",
           cvFile: null
         })
+        setTurnstileToken("")
+        
+        // Reset Turnstile widget
+        if (typeof window !== 'undefined' && (window as any).turnstile && turnstileWidgetId) {
+          (window as any).turnstile.reset(turnstileWidgetId)
+        }
       } else {
         setSubmitStatus("error")
       }
@@ -296,14 +331,9 @@ export function Contact() {
                       disabled={isLoading}
                     />
                   </div>
-                  {/* Cloudflare Turnstile */}
+                  {/* Cloudflare Turnstile - Explicit Rendering */}
                   <div className="flex justify-center">
-                    <div 
-                      className="cf-turnstile" 
-                      data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
-                      data-callback="onTurnstileSuccess"
-                      data-theme="dark"
-                    ></div>
+                    <div id="turnstile-container"></div>
                   </div>
                   
                   {submitStatus === "success" && (

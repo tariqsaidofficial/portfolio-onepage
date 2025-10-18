@@ -348,10 +348,11 @@ export default function RootLayout({
           }}
         />
         
-        {/* Cloudflare Turnstile */}
+        {/* Cloudflare Turnstile - Explicit Rendering for SPA */}
         <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          strategy="beforeInteractive"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          async
+          defer
         />
         
         {/* Google Analytics */}
