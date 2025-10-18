@@ -308,18 +308,26 @@ export async function onRequestPost(context) {
           <!-- Footer -->
           <tr>
             <td style="background: #0a122c; padding: 25px 20px; text-align: center;">
-              <!-- Social Media Links -->
-              <div style="margin-bottom: 20px;">
-                <a href="https://github.com/tariqsaidofficial" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
-                  GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/tariqsaidofficial/" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
-                  LinkedIn
-                </a>
-                <a href="https://www.behance.net/tariqsaidofficial" style="display: inline-block; margin: 0 10px; padding: 12px 20px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; color: #e11d48; text-decoration: none; font-size: 14px; font-weight: 600;">
-                  Behance
-                </a>
-              </div>
+              <!-- Social Media Icons -->
+              <table role="presentation" style="margin: 0 auto 20px auto; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 8px;">
+                    <a href="https://github.com/tariqsaidofficial" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
+                      <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" width="24" height="24" style="display: block; border: 0;" />
+                    </a>
+                  </td>
+                  <td style="padding: 0 8px;">
+                    <a href="https://www.linkedin.com/in/tariqsaidofficial/" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
+                      <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn" width="24" height="24" style="display: block; border: 0;" />
+                    </a>
+                  </td>
+                  <td style="padding: 0 8px;">
+                    <a href="https://www.behance.net/tariqsaidofficial" style="display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 8px; text-decoration: none;">
+                      <img src="https://cdn.simpleicons.org/behance/ffffff" alt="Behance" width="24" height="24" style="display: block; border: 0;" />
+                    </a>
+                  </td>
+                </tr>
+              </table>
               
               <p style="color: #94a3b8; margin: 0 0 8px 0; font-size: 14px; font-style: italic;">Code. Create. Deliver.</p>
               <p style="color: #64748b; margin: 0 0 12px 0; font-size: 12px;">© ${new Date().getFullYear()} <a href="https://portfolio.dxbmark.com/" style="color: #e11d48; text-decoration: none;">Tariq Said</a>. All rights reserved.</p>
