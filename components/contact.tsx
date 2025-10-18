@@ -300,7 +300,7 @@ export function Contact() {
                   <div className="flex justify-center">
                     <div 
                       className="cf-turnstile" 
-                      data-sitekey="0x4AAAAAAAzLj8P7XqJGLhxh"
+                      data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
                       data-callback="onTurnstileSuccess"
                       data-theme="dark"
                     ></div>
