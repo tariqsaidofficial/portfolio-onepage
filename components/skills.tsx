@@ -4,126 +4,324 @@ import { LogoLoop } from "./logo-loop"
 
 export function Skills() {
   const techLogos = [
+    // Programming Languages
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      src: "https://cdn.simpleicons.org/python/3776AB",
       alt: "Python",
       title: "Python",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      src: "https://cdn.simpleicons.org/javascript/F7DF1E",
       alt: "JavaScript",
       title: "JavaScript",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      src: "https://cdn.simpleicons.org/typescript/3178C6",
       alt: "TypeScript",
       title: "TypeScript",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      src: "https://cdn.simpleicons.org/php/777BB4",
+      alt: "PHP",
+      title: "PHP",
+    },
+    
+    // Frameworks & Libraries
+    {
+      src: "https://cdn.simpleicons.org/react/61DAFB",
       alt: "React",
       title: "React",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      src: "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
       alt: "Next.js",
       title: "Next.js",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      src: "https://cdn.simpleicons.org/vuedotjs/4FC08D",
       alt: "Vue.js",
       title: "Vue.js",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+      src: "https://cdn.simpleicons.org/django/44B78B",
       alt: "Django",
       title: "Django",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      src: "https://cdn.simpleicons.org/nodedotjs/339933",
       alt: "Node.js",
       title: "Node.js",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      src: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+      alt: "Tailwind CSS",
+      title: "Tailwind CSS",
+    },
+    
+    // Databases
+    {
+      src: "https://cdn.simpleicons.org/postgresql/4169E1",
       alt: "PostgreSQL",
       title: "PostgreSQL",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      src: "https://cdn.simpleicons.org/mysql/4479A1",
+      alt: "MySQL",
+      title: "MySQL",
+    },
+    {
+      src: "https://cdn.simpleicons.org/mongodb/47A248",
       alt: "MongoDB",
       title: "MongoDB",
     },
+    
+    // DevOps & Infrastructure
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      src: "https://cdn.simpleicons.org/docker/2496ED",
       alt: "Docker",
       title: "Docker",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+      src: "https://cdn.simpleicons.org/nginx/009639",
       alt: "Nginx",
       title: "Nginx",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      src: "https://cdn.simpleicons.org/github/FFFFFF",
+      alt: "GitHub",
+      title: "GitHub",
+    },
+    {
+      src: "https://cdn.simpleicons.org/cloudflare/F38020",
+      alt: "Cloudflare",
+      title: "Cloudflare",
+    },
+    {
+      src: "https://cdn.simpleicons.org/tailscale/FFFFFF",
+      alt: "Tailscale",
+      title: "Tailscale",
+    },
+    {
+      src: "https://cdn.simpleicons.org/linux/FCC624",
+      alt: "Linux",
+      title: "Linux",
+    },
+    
+    // Mobile Development
+    {
+      src: "https://cdn.simpleicons.org/flutter/02569B",
       alt: "Flutter",
       title: "Flutter",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+      src: "https://cdn.simpleicons.org/android/3DDC84",
       alt: "Android",
       title: "Android",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-      alt: "Linux",
-      title: "Linux",
+      src: "https://cdn.simpleicons.org/ios/FFFFFF",
+      alt: "iOS",
+      title: "iOS",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
+      src: "https://cdn.simpleicons.org/androidstudio/3DDC84",
+      alt: "Android Studio",
+      title: "Android Studio",
+    },
+    {
+      src: "https://cdn.simpleicons.org/kotlin/7F52FF",
+      alt: "Kotlin",
+      title: "Kotlin",
+    },
+    {
+      src: "https://cdn.simpleicons.org/dart/0175C2",
+      alt: "Dart",
+      title: "Dart",
+    },
+    {
+      src: "https://cdn.simpleicons.org/swift/F05138",
+      alt: "Swift",
+      title: "Swift",
+    },
+    {
+      src: "https://cdn.simpleicons.org/firebase/FFCA28",
+      alt: "Firebase",
+      title: "Firebase",
+    },
+    
+    // Design & Creative Tools
+    {
+      src: "https://cdn.simpleicons.org/figma/F24E1E",
+      alt: "Figma",
+      title: "Figma",
+    },
+    {
+      src: "https://cdn.simpleicons.org/canva/00C4CC",
+      alt: "Canva",
+      title: "Canva",
+    },
+    
+    // Adobe Creative Suite
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg",
+      alt: "Creative Cloud",
+      title: "Adobe Creative Cloud",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
       alt: "Photoshop",
       title: "Adobe Photoshop",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg",
+      src: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg",
+      alt: "Illustrator",
+      title: "Adobe Illustrator",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg",
+      alt: "InDesign",
+      title: "Adobe InDesign",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg",
+      alt: "Lightroom",
+      title: "Adobe Lightroom",
+    },
+    
+    // Video & Audio Production
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
       alt: "Premiere Pro",
       title: "Adobe Premiere Pro",
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg",
+      src: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
       alt: "After Effects",
       title: "Adobe After Effects",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg",
+      alt: "Audition",
+      title: "Adobe Audition",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/9/90/DaVinci_Resolve_17_logo.svg",
+      alt: "DaVinci Resolve",
+      title: "DaVinci Resolve",
+    },
+    {
+      src: "https://cdn.simpleicons.org/obsstudio/FFFFFF",
+      alt: "OBS Studio",
+      title: "OBS Studio",
+    },
+    
+    // AV Equipment
+    {
+      src: "https://cdn.simpleicons.org/blackmagicdesign/FFFFFF",
+      alt: "ATEM",
+      title: "Blackmagic ATEM",
+    },
+    {
+      src: "https://wp.logos-download.com/wp-content/uploads/2024/05/Extron_Logo-3000x623.png",
+      alt: "Extron",
+      title: "Extron",
+    },
+    {
+      src: "https://images.seeklogo.com/logo-png/46/2/network-device-interface-logo-png_seeklogo-460004.png",
+      alt: "NDI",
+      title: "NDI (NewTek)",
+    },
+    
+    // Development Tools
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg",
+      alt: "VS Code",
+      title: "Visual Studio Code",
+    },
+    {
+      src: "https://cursor.com/assets/images/logo.svg",
+      alt: "Cursor",
+      title: "Cursor AI",
+    },
+    {
+      src: "https://exafunction.github.io/public/brand/windsurf-black-symbol.svg",
+      alt: "Windsurf",
+      title: "Windsurf (Codeium)",
+    },
+    
+    // AI Tools
+    {
+      src: "https://cdn.simpleicons.org/openai/412991",
+      alt: "ChatGPT",
+      title: "ChatGPT",
+    },
+    {
+      src: "https://cdn.simpleicons.org/anthropic/191919",
+      alt: "Claude",
+      title: "Claude AI",
+    },
+    {
+      src: "https://cdn.simpleicons.org/googlegemini/8E75B2",
+      alt: "Gemini",
+      title: "Google Gemini",
+    },
+    
+    // CMS
+    {
+      src: "https://cdn.simpleicons.org/wordpress/21759B",
+      alt: "WordPress",
+      title: "WordPress",
     },
   ]
 
   const skillCategories = [
     {
       category: "Programming",
-      skills: ["Python", "JavaScript", "TypeScript", "Dart", "PHP"],
+      skills: ["Python", "JavaScript", "TypeScript", "PHP", "Dart", "C++"],
     },
     {
-      category: "Frameworks",
-      skills: ["Django", "FastAPI", "Node.js", "Express", "Laravel", "React", "Next.js", "Vue.js", "Tailwind CSS"],
+      category: "Frameworks & Libraries",
+      skills: ["React", "Next.js", "Vue.js", "Django", "Node.js", "FastAPI", "Express", "Laravel", "Tailwind CSS"],
     },
     {
       category: "Databases",
       skills: ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "MinIO", "S3", "GCS"],
     },
     {
-      category: "DevOps",
-      skills: ["Docker", "GitHub Actions", "Nginx", "Prometheus", "Grafana", "Postman", "Celery"],
+      category: "DevOps & Infrastructure",
+      skills: ["Docker", "GitHub Actions", "Nginx", "Cloudflare", "Tailscale", "Twingate", "Linux", "Proxmox"],
     },
     {
-      category: "AI/Data",
-      skills: ["OpenAI", "LangChain", "Pinecone", "TensorFlow", "Pandas", "NumPy"],
+      category: "Mobile Development",
+      skills: ["Flutter", "Android", "iOS", "Kotlin", "Dart", "Swift", "Firebase", "React Native"],
     },
     {
-      category: "Mobile",
-      skills: ["Android Studio", "Flutter", "React Native", "Swift", "Kotlin"],
+      category: "Design Tools",
+      skills: ["Figma", "Canva", "Adobe XD", "Sketch"],
     },
     {
-      category: "IT/AV Systems",
-      skills: ["Windows/macOS/Linux", "Proxmox", "Cloudflare", "Home Assistant", "IoT", "IFTTT"],
+      category: "Adobe Creative Suite",
+      skills: ["Photoshop", "Illustrator", "InDesign", "Lightroom", "Creative Cloud"],
+    },
+    {
+      category: "Video & Audio Production",
+      skills: ["Premiere Pro", "After Effects", "Audition", "DaVinci Resolve", "Final Cut Pro", "OBS Studio"],
+    },
+    {
+      category: "AV & Event Systems",
+      skills: ["ATEM Switchers", "Blackmagic Design", "Extron", "NDI", "Live Streaming", "Event Production"],
+    },
+    {
+      category: "AI Tools",
+      skills: ["ChatGPT", "Claude AI", "Gemini", "Cursor AI", "Windsurf", "OpenAI API", "LangChain"],
+    },
+    {
+      category: "Development Tools",
+      skills: ["VS Code", "Cursor", "Windsurf", "Git", "GitHub", "Postman", "Docker Desktop"],
+    },
+    {
+      category: "CMS & Web",
+      skills: ["WordPress", "Elementor", "WooCommerce", "Webflow"],
     },
   ]
 

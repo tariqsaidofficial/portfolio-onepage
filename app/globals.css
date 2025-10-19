@@ -1024,6 +1024,11 @@ html {
   }
 }
 
+/* Logo Primary Color Filter */
+.logo-primary-filter {
+  filter: brightness(0) saturate(100%) invert(23%) sepia(89%) saturate(3207%) hue-rotate(333deg) brightness(95%) contrast(92%) !important;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .pc-card {

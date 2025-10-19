@@ -233,9 +233,9 @@ export function LogoLoop({
                     rel="noreferrer noopener"
                   >
                     <Image
-                      className={`block object-contain ${
+                      className={`logo-primary-filter block object-contain opacity-60 hover:opacity-100 transition-all ${
                         scaleOnHover
-                          ? "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
+                          ? "duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
                           : ""
                       }`}
                       src={item.src || "/placeholder.svg"}
@@ -244,14 +244,17 @@ export function LogoLoop({
                       alt={item.alt ?? ""}
                       title={item.title}
                       loading="lazy"
-                      style={{ height: `${logoHeight}px`, width: "auto" }}
+                      style={{ 
+                        height: `${logoHeight}px`, 
+                        width: "auto"
+                      }}
                     />
                   </a>
                 ) : (
                   <Image
-                    className={`block object-contain ${
+                    className={`logo-primary-filter block object-contain opacity-60 hover:opacity-100 transition-all ${
                       scaleOnHover
-                        ? "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
+                        ? "duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
                         : ""
                     }`}
                     src={item.src || "/placeholder.svg"}
@@ -260,7 +263,10 @@ export function LogoLoop({
                     alt={item.alt ?? ""}
                     title={item.title}
                     loading="lazy"
-                    style={{ height: `${logoHeight}px`, width: "auto" }}
+                    style={{ 
+                      height: `${logoHeight}px`, 
+                      width: "auto"
+                    }}
                   />
                 )}
               </li>
