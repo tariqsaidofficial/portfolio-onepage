@@ -161,17 +161,21 @@ export function SmartContactForm() {
           return
         }
         
-        const widgetId = (window as any).turnstile.render('#turnstile-container', {
-          sitekey: siteKey,
-          theme: 'dark',
-          callback: (token: string) => {
-            setTurnstileToken(token)
-          },
-          'error-callback': () => {
-            setTurnstileToken("")
-          },
-        })
-        setTurnstileWidgetId(widgetId)
+        try {
+          const widgetId = (window as any).turnstile.render('#turnstile-container', {
+            sitekey: siteKey,
+            theme: 'dark',
+            callback: (token: string) => {
+              setTurnstileToken(token)
+            },
+            'error-callback': () => {
+              setTurnstileToken("")
+            },
+          })
+          setTurnstileWidgetId(widgetId)
+        } catch (error) {
+          console.error('Turnstile render error:', error)
+        }
       }
     }
 
