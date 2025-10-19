@@ -33,14 +33,15 @@ export function About() {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              My journey spans multiple disciplines: from IT infrastructure to full-stack development, from event
-              technology direction to co-founding DXBMark. This multidisciplinary path has given me a unique perspective
-              on building systems that truly serve people.
+              I am a full-stack digital solutions engineer with 15+ years of experience in software development and
+              audiovisual systems. I specialize in transforming creative ideas into integrated technical solutions,
+              from IT infrastructure to advanced web and mobile applications.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I specialise in creating robust web applications, designing sophisticated AV systems, and directing
-              large-scale events. My work bridges the gap between software engineering and media artistry, delivering
-              solutions that are both technically excellent and creatively compelling.
+              As a certified expert in audiovisual systems (Crestron & Extron) and professional software developer,
+              I design smart solutions that combine technical precision with innovation. Whether building integrated
+              digital platforms or managing AV systems for major events, my goal is one: to deliver exceptional digital
+              experiences that inspire audiences and meet client needs.
             </p>
           </div>
 
