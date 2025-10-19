@@ -122,7 +122,6 @@ export function SmartContactForm() {
   const [smartHints, setSmartHints] = useState<string[]>([])
   const [turnstileToken, setTurnstileToken] = useState<string>("")
   const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null)
-  const [turnstileError, setTurnstileError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string>("")
@@ -150,55 +149,38 @@ export function SmartContactForm() {
     }
   }, [formData.projectType])
 
-  // Render Turnstile widget
+  // Render Turnstile widget using explicit rendering
   useEffect(() => {
     const renderTurnstile = () => {
-      if (typeof window === 'undefined') return
-      
-      const container = document.getElementById('turnstile-container')
-      if (!container) return
-      
-      // Check if already rendered
-      if (container.children.length > 0) return
-      
-      if ((window as any).turnstile && !turnstileWidgetId) {
+      if (typeof window !== 'undefined' && (window as any).turnstile && !turnstileWidgetId) {
         const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+        
+        // Validate site key is configured
         if (!siteKey) {
-          console.warn('Turnstile site key not configured')
+          console.error('NEXT_PUBLIC_TURNSTILE_SITE_KEY is not configured')
           return
         }
         
-        try {
-          const widgetId = (window as any).turnstile.render('#turnstile-container', {
-            sitekey: siteKey,
-            theme: 'dark',
-            callback: (token: string) => {
-              console.log('Turnstile token received')
-              setTurnstileToken(token)
-            },
-            'error-callback': () => {
-              console.error('Turnstile error')
-              setTurnstileToken("")
-            },
-            'expired-callback': () => {
-              console.warn('Turnstile expired')
-              setTurnstileToken("")
-            },
-          })
-          setTurnstileWidgetId(widgetId)
-        } catch (error) {
-          console.error('Turnstile render error:', error)
-        }
+        const widgetId = (window as any).turnstile.render('#turnstile-container', {
+          sitekey: siteKey,
+          theme: 'dark',
+          callback: (token: string) => {
+            setTurnstileToken(token)
+          },
+          'error-callback': () => {
+            setTurnstileToken("")
+          },
+        })
+        setTurnstileWidgetId(widgetId)
       }
     }
 
-    // Wait for DOM and Turnstile to be ready
+    // Wait for turnstile to be available
     if (typeof window !== 'undefined') {
       if ((window as any).turnstile) {
-        // Delay to ensure DOM is ready
-        setTimeout(renderTurnstile, 100)
+        renderTurnstile()
       } else {
-        // Poll for Turnstile availability
+        // Poll for turnstile availability
         const interval = setInterval(() => {
           if ((window as any).turnstile) {
             renderTurnstile()
@@ -206,17 +188,7 @@ export function SmartContactForm() {
           }
         }, 100)
         
-        // Cleanup after 10 seconds
-        const timeout = setTimeout(() => {
-          clearInterval(interval)
-          console.error('Turnstile script failed to load')
-          setTurnstileError(true)
-        }, 10000)
-        
-        return () => {
-          clearInterval(interval)
-          clearTimeout(timeout)
-        }
+        return () => clearInterval(interval)
       }
     }
   }, [turnstileWidgetId])
@@ -245,8 +217,8 @@ export function SmartContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Skip Turnstile check if there's an error loading it
-    if (!turnstileToken && !turnstileError) {
+    // Validate Turnstile
+    if (!turnstileToken) {
       setSubmitStatus("error")
       setErrorMessage("Please complete the security verification")
       return
@@ -264,7 +236,7 @@ export function SmartContactForm() {
       submitData.append("category", formData.category)
       submitData.append("projectType", formData.projectType)
       submitData.append("message", formData.message)
-      submitData.append("turnstileToken", turnstileToken || "bypass-on-error")
+      submitData.append("turnstileToken", turnstileToken)
       
       if (formData.cvFile) {
         submitData.append("cvFile", formData.cvFile)
@@ -494,27 +466,17 @@ export function SmartContactForm() {
             )}
 
             {/* Turnstile */}
-            {!turnstileError && (
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <span>Security verification required</span>
-                </div>
-                <div className="flex justify-center p-4 glass rounded-lg border border-border/50">
-                  <div id="turnstile-container"></div>
-                </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span>Security verification required</span>
               </div>
-            )}
-            
-            {turnstileError && (
-              <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                <p className="text-sm text-yellow-500">
-                  Security verification temporarily unavailable. You can still submit the form.
-                </p>
+              <div className="flex justify-center p-4 glass rounded-lg border border-border/50">
+                <div id="turnstile-container"></div>
               </div>
-            )}
+            </div>
 
             {/* Status Messages */}
             {submitStatus === "success" && (
@@ -534,7 +496,7 @@ export function SmartContactForm() {
             <Button 
               type="submit" 
               className="contact-submit-btn w-full bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={isLoading || (!turnstileToken && !turnstileError)}
+              disabled={isLoading || !turnstileToken}
             >
               {isLoading ? (
                 <span className="flex items-center gap-2">
