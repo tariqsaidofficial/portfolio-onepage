@@ -87,7 +87,7 @@ const categories = [
   { id: "Full-Stack Development", name: "Full-Stack" },
   { id: "IT Infrastructure", name: "IT Infra" },
   { id: "AV & Event Management", name: "AV & Events" },
-  { id: "Media Production", name: "Media" },
+  { id: "Media Production", name: "Media & Film" },
 ]
 
 export function Projects() {

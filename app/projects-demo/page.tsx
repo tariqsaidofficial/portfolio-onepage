@@ -89,7 +89,7 @@ const categories = [
   { id: "Full-Stack Development", name: "Full-Stack", icon: "💻", IconComponent: Code2 },
   { id: "IT Infrastructure", name: "IT Infra", icon: "🖥️", IconComponent: Server },
   { id: "AV & Event Management", name: "AV & Events", icon: "🎬", IconComponent: Mic2 },
-  { id: "Media Production", name: "Media", icon: "🎥", IconComponent: Video },
+  { id: "Media Production", name: "Media & Film", icon: "🎥", IconComponent: Video },
 ]
 
 export default function ProjectsDemoPage() {
