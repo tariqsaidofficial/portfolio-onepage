@@ -12,11 +12,6 @@ export function Skills() {
       title: "Windows",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg",
-      alt: "Windows Server",
-      title: "Windows Server",
-    },
-    {
       src: "https://cdn.simpleicons.org/apple/FFFFFF",
       alt: "macOS",
       title: "macOS",
@@ -431,7 +426,7 @@ export function Skills() {
     {
       category: "IT & System Administration",
       skills: [
-        "Windows Server", "Linux", "Ubuntu Server",
+        "Linux", "Ubuntu Server",
         "Proxmox VE", "VMware", "VirtualBox",
         "Grafana", "Prometheus", "Synology NAS",
         "Cisco", "pfSense", "UniFi",
