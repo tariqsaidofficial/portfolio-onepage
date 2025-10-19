@@ -7,12 +7,12 @@ export function Skills() {
   const itLogos = [
     // Operating Systems
     {
-      src: "https://cdn.simpleicons.org/windows/0078D6",
+      src: "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg",
       alt: "Windows",
       title: "Windows",
     },
     {
-      src: "https://cdn.simpleicons.org/windows11/0078D6",
+      src: "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg",
       alt: "Windows Server",
       title: "Windows Server",
     },
@@ -47,11 +47,6 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/virtualbox/183A61",
       alt: "VirtualBox",
       title: "VirtualBox",
-    },
-    {
-      src: "https://cdn.simpleicons.org/microsoft/5E5E5E",
-      alt: "Hyper-V",
-      title: "Hyper-V",
     },
     
     // Monitoring
@@ -117,17 +112,17 @@ export function Skills() {
       title: "OpenVPN",
     },
     {
-      src: "https://cdn.simpleicons.org/certbot/FF9900",
+      src: "https://www.svgrepo.com/show/353542/certbot.svg",
       alt: "Certbot",
       title: "Certbot",
     },
     {
-      src: "https://cdn.simpleicons.org/bitwarden/175DDC",
+      src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Bitwarden_logo.svg",
       alt: "Bitwarden",
       title: "Bitwarden",
     },
     {
-      src: "https://cdn.simpleicons.org/openldap/6AA84F",
+      src: "https://i0.wp.com/ldap.com/wp-content/uploads/2018/04/ldapdotcom-transparent-background-without-text-768x768.png",
       alt: "LDAP",
       title: "LDAP",
     },
@@ -356,6 +351,7 @@ export function Skills() {
       src: "https://wp.logos-download.com/wp-content/uploads/2024/05/Extron_Logo-3000x623.png",
       alt: "Extron",
       title: "Extron",
+      width: 80,
     },
     {
       src: "https://images.seeklogo.com/logo-png/46/2/network-device-interface-logo-png_seeklogo-460004.png",
@@ -427,7 +423,7 @@ export function Skills() {
       category: "IT & System Administration",
       skills: [
         "Windows Server", "Linux", "Ubuntu Server",
-        "Proxmox VE", "VMware", "Hyper-V",
+        "Proxmox VE", "VMware", "VirtualBox",
         "Grafana", "Prometheus", "Synology NAS",
         "Cisco", "pfSense", "UniFi",
         "WireGuard VPN", "Let's Encrypt", "Bitwarden"
