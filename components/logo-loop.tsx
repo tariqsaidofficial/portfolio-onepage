@@ -12,6 +12,7 @@ export type LogoItemImage = {
   title?: string
   width?: number
   height?: number
+  className?: string
 }
 
 export type LogoItem = LogoItemImage
@@ -237,15 +238,15 @@ export function LogoLoop({
                         scaleOnHover
                           ? "duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
                           : ""
-                      }`}
+                      } ${item.className || ""}`}
                       src={item.src || "/placeholder.svg"}
                       width={item.width || logoHeight}
-                      height={logoHeight}
+                      height={item.height || logoHeight}
                       alt={item.alt ?? ""}
                       title={item.title}
                       loading="lazy"
                       style={{ 
-                        height: `${logoHeight}px`, 
+                        height: `${item.height || logoHeight}px`, 
                         width: "auto"
                       }}
                     />
@@ -256,15 +257,15 @@ export function LogoLoop({
                       scaleOnHover
                         ? "duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
                         : ""
-                    }`}
+                    } ${item.className || ""}`}
                     src={item.src || "/placeholder.svg"}
                     width={item.width || logoHeight}
-                    height={logoHeight}
+                    height={item.height || logoHeight}
                     alt={item.alt ?? ""}
                     title={item.title}
                     loading="lazy"
                     style={{ 
-                      height: `${logoHeight}px`, 
+                      height: `${item.height || logoHeight}px`, 
                       width: "auto"
                     }}
                   />

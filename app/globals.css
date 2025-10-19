@@ -1026,13 +1026,30 @@ html {
 
 /* Logo Filter - Original colors with slight adjustments */
 .logo-primary-filter {
-  filter: brightness(0.95) contrast(1.05) opacity(0.85) !important;
+  filter: brightness(0.95) contrast(1.05) opacity(0.85);
   transition: all 0.3s ease;
 }
 
 .logo-primary-filter:hover {
-  filter: brightness(1) contrast(1) opacity(1) !important;
+  filter: brightness(1) contrast(1) opacity(1);
   transform: scale(1.05);
+}
+
+/* Override for logos with custom filters */
+.logo-primary-filter.brightness-\[3\] {
+  filter: brightness(3) !important;
+}
+
+.logo-primary-filter.brightness-\[3\]:hover {
+  filter: brightness(3.2) !important;
+}
+
+.logo-primary-filter.invert {
+  filter: invert(1) brightness(1.2) !important;
+}
+
+.logo-primary-filter.invert:hover {
+  filter: invert(1) brightness(1.4) !important;
 }
 
 /* Responsive Styles */

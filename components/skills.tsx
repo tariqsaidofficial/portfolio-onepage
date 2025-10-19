@@ -355,12 +355,16 @@ export function Skills() {
       src: "https://wp.logos-download.com/wp-content/uploads/2024/05/Extron_Logo-3000x623.png",
       alt: "Extron",
       title: "Extron",
-      width: 80,
+      width: 50,
+      height: 36,
     },
     {
       src: "https://images.seeklogo.com/logo-png/46/2/network-device-interface-logo-png_seeklogo-460004.png",
       alt: "NDI",
       title: "NDI (NewTek)",
+      width: 70,
+      height: 70,
+      className: "brightness-[3]",
     },
     
     
