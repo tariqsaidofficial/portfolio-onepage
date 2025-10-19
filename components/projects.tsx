@@ -16,7 +16,7 @@ const projects = [
     year: "2025",
     role: "Lead Developer",
     metrics: { users: "1K+", security: "AES-256" },
-    image: "/projects/nfc-manager.png",
+    image: "/projects/nfc-manager.webp",
     video: "/projects/nfcManager_PhoneGrid.mp4",
     github: "https://github.com/tariqsaidofficial/nfcManager",
   },
@@ -29,7 +29,7 @@ const projects = [
     year: "2024",
     role: "Co-Founder & Lead Developer",
     metrics: { users: "3K+", uptime: "98%" },
-    image: "/projects/dxbmark.png",
+    image: "/projects/dxbmark.webp",
     liveUrl: "https://dxbmark.com",
   },
   {
@@ -41,7 +41,7 @@ const projects = [
     year: "2025",
     role: "Infrastructure Architect",
     metrics: { content: "500+", years: "1953-2025", trial: "90 days" },
-    image: "/projects/media-server.png",
+    image: "/projects/media-server.webp",
     liveUrl: "https://media.dxbmark.com",
   },
   {
@@ -53,7 +53,7 @@ const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     metrics: { users: "10K+", listings: "500+" },
-    image: "/projects/northern-estates.png",
+    image: "/projects/northern-estates.webp",
     liveUrl: "https://northernestates.ae",
   },
   {
@@ -65,7 +65,7 @@ const projects = [
     year: "2025",
     role: "Full-Stack Developer",
     metrics: { bookings: "2K+", rating: "4.8/5" },
-    image: "/projects/travelify.png",
+    image: "/projects/travelify.webp",
     github: "https://github.com/tariqsaidofficial/travelify",
   },
   {
@@ -77,7 +77,7 @@ const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     metrics: { tools: "1500+", users: "Active" },
-    image: "/projects/online-web-tools.png",
+    image: "/projects/online-web-tools.webp",
     liveUrl: "https://tools.dxbmark.com",
   },
 ]

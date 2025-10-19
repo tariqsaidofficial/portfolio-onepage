@@ -32,7 +32,7 @@ export function AnimatedBackground() {
 
       {/* Layer 1: DarkVeil Background with Gold hue - 50% opacity */}
       <div 
-        className="fixed inset-0" 
+        className="fixed inset-0 pointer-events-none" 
         style={{ 
           zIndex: 1,
           opacity: 0.50  // 50% to show DarkNavy underneath
