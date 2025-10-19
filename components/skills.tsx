@@ -17,7 +17,7 @@ export function Skills() {
       title: "Windows Server",
     },
     {
-      src: "https://cdn.simpleicons.org/apple/000000",
+      src: "https://cdn.simpleicons.org/apple/FFFFFF",
       alt: "macOS",
       title: "macOS",
     },
@@ -42,6 +42,7 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/vmware/607078",
       alt: "VMware",
       title: "VMware",
+      width: 80,
     },
     {
       src: "https://cdn.simpleicons.org/virtualbox/183A61",
@@ -66,11 +67,13 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/synology/B5B5B6",
       alt: "Synology",
       title: "Synology NAS",
+      width: 80,
     },
     {
       src: "https://cdn.simpleicons.org/qnap/00A1E0",
       alt: "QNAP",
       title: "QNAP NAS",
+      width: 80,
     },
     
     // Networking
@@ -115,6 +118,7 @@ export function Skills() {
       src: "https://www.svgrepo.com/show/353542/certbot.svg",
       alt: "Certbot",
       title: "Certbot",
+      width: 80,
     },
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Bitwarden_logo.svg",
@@ -125,6 +129,11 @@ export function Skills() {
       src: "https://i0.wp.com/ldap.com/wp-content/uploads/2018/04/ldapdotcom-transparent-background-without-text-768x768.png",
       alt: "LDAP",
       title: "LDAP",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/4/4c/AdGuard.svg",
+      alt: "AdGuard",
+      title: "AdGuard",
     },
   ]
 
@@ -426,7 +435,7 @@ export function Skills() {
         "Proxmox VE", "VMware", "VirtualBox",
         "Grafana", "Prometheus", "Synology NAS",
         "Cisco", "pfSense", "UniFi",
-        "WireGuard VPN", "Let's Encrypt", "Bitwarden"
+        "WireGuard VPN", "Let's Encrypt", "Bitwarden", "AdGuard"
       ],
     },
     {

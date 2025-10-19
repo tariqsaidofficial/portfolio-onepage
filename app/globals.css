@@ -1024,13 +1024,15 @@ html {
   }
 }
 
-/* Logo Filter - Grayscale with slight brightness */
+/* Logo Filter - Original colors with slight adjustments */
 .logo-primary-filter {
-  filter: grayscale(100%) brightness(1.2) contrast(0.9) opacity(0.8) !important;
+  filter: brightness(0.95) contrast(1.05) opacity(0.85) !important;
+  transition: all 0.3s ease;
 }
 
 .logo-primary-filter:hover {
-  filter: grayscale(0%) brightness(1) contrast(1) opacity(1) !important;
+  filter: brightness(1) contrast(1) opacity(1) !important;
+  transform: scale(1.05);
 }
 
 /* Responsive Styles */
