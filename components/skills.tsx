@@ -232,6 +232,133 @@ export function Skills() {
       title: "NDI (NewTek)",
     },
     
+    // IT & System Administration - Operating Systems
+    {
+      src: "https://cdn.simpleicons.org/windows/0078D6",
+      alt: "Windows",
+      title: "Windows",
+    },
+    {
+      src: "https://cdn.simpleicons.org/windows11/0078D6",
+      alt: "Windows Server",
+      title: "Windows Server",
+    },
+    {
+      src: "https://cdn.simpleicons.org/apple/000000",
+      alt: "macOS",
+      title: "macOS",
+    },
+    {
+      src: "https://cdn.simpleicons.org/linux/FCC624",
+      alt: "Linux",
+      title: "Linux",
+    },
+    {
+      src: "https://cdn.simpleicons.org/ubuntu/E95420",
+      alt: "Ubuntu Server",
+      title: "Ubuntu Server",
+    },
+    
+    // IT & System Administration - Virtualization
+    {
+      src: "https://cdn.simpleicons.org/proxmox/E57000",
+      alt: "Proxmox",
+      title: "Proxmox VE",
+    },
+    {
+      src: "https://cdn.simpleicons.org/vmware/607078",
+      alt: "VMware",
+      title: "VMware",
+    },
+    {
+      src: "https://cdn.simpleicons.org/virtualbox/183A61",
+      alt: "VirtualBox",
+      title: "VirtualBox",
+    },
+    {
+      src: "https://cdn.simpleicons.org/microsoft/5E5E5E",
+      alt: "Hyper-V",
+      title: "Hyper-V",
+    },
+    
+    // IT & System Administration - Monitoring
+    {
+      src: "https://cdn.simpleicons.org/grafana/F46800",
+      alt: "Grafana",
+      title: "Grafana",
+    },
+    {
+      src: "https://cdn.simpleicons.org/prometheus/E6522C",
+      alt: "Prometheus",
+      title: "Prometheus",
+    },
+    
+    // IT & System Administration - Storage (NAS)
+    {
+      src: "https://cdn.simpleicons.org/synology/B5B5B6",
+      alt: "Synology",
+      title: "Synology NAS",
+    },
+    {
+      src: "https://cdn.simpleicons.org/qnap/00A1E0",
+      alt: "QNAP",
+      title: "QNAP NAS",
+    },
+    
+    // IT & System Administration - Networking
+    {
+      src: "https://cdn.simpleicons.org/cisco/1BA0D7",
+      alt: "Cisco",
+      title: "Cisco",
+    },
+    {
+      src: "https://cdn.simpleicons.org/mikrotik/293239",
+      alt: "MikroTik",
+      title: "MikroTik",
+    },
+    {
+      src: "https://cdn.simpleicons.org/pfsense/212121",
+      alt: "pfSense",
+      title: "pfSense",
+    },
+    {
+      src: "https://cdn.simpleicons.org/ubiquiti/0559C9",
+      alt: "UniFi",
+      title: "Ubiquiti UniFi",
+    },
+    
+    // IT & System Administration - Security & VPN
+    {
+      src: "https://cdn.simpleicons.org/letsencrypt/003A70",
+      alt: "Let's Encrypt",
+      title: "Let's Encrypt",
+    },
+    {
+      src: "https://cdn.simpleicons.org/wireguard/88171A",
+      alt: "WireGuard",
+      title: "WireGuard VPN",
+    },
+    {
+      src: "https://cdn.simpleicons.org/openvpn/EA7E20",
+      alt: "OpenVPN",
+      title: "OpenVPN",
+    },
+    {
+      src: "https://cdn.simpleicons.org/certbot/FF9900",
+      alt: "Certbot",
+      title: "Certbot",
+    },
+    {
+      src: "https://cdn.simpleicons.org/bitwarden/175DDC",
+      alt: "Bitwarden",
+      title: "Bitwarden",
+    },
+    {
+      src: "https://cdn.simpleicons.org/openldap/6AA84F",
+      alt: "LDAP",
+      title: "LDAP",
+    },
+    
     // Development Tools
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg",
@@ -289,7 +416,18 @@ export function Skills() {
     },
     {
       category: "DevOps & Infrastructure",
-      skills: ["Docker", "GitHub Actions", "Nginx", "Cloudflare", "Tailscale", "Twingate", "Linux", "Proxmox"],
+      skills: ["Docker", "GitHub Actions", "Nginx", "Cloudflare", "Tailscale", "Twingate"],
+    },
+    {
+      category: "IT & System Administration",
+      skills: [
+        "Windows", "Windows Server", "macOS", "Linux", "Ubuntu Server",
+        "Proxmox VE", "VMware", "VirtualBox", "Hyper-V",
+        "Grafana", "Prometheus",
+        "Synology NAS", "QNAP",
+        "Cisco", "MikroTik", "pfSense", "UniFi",
+        "Let's Encrypt", "WireGuard VPN", "OpenVPN", "Certbot", "Bitwarden", "LDAP"
+      ],
     },
     {
       category: "Mobile Development",

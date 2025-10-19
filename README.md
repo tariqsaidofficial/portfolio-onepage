@@ -24,12 +24,14 @@ Built with performance in mind • Optimized for Google PageSpeed • Production
 ## 🪄 Overview
 
 A production-ready, high-performance portfolio template featuring:
-- ⚡ **94% image size reduction** through WebP optimization
+- ⚡ **90% image size reduction** through WebP optimization (8.4MB → 793KB)
 - 🚀 **Sub-3s LCP** (Largest Contentful Paint)
-- 🎨 **Modern animations** with Framer Motion
+- 🎨 **Modern animations** with Framer Motion & GSAP
 - 📧 **Integrated contact form** with email notifications
 - 🔍 **Complete SEO setup** with structured data
 - 📱 **Fully responsive** design for all devices
+- 🎯 **56+ technology icons** with primary color overlay
+- 🔐 **Cloudflare Turnstile** security integration
 
 ---
 
@@ -45,10 +47,11 @@ A production-ready, high-performance portfolio template featuring:
 
 ### 🚀 Performance Optimizations
 - 📦 **Dynamic Imports** - Lazy loading for heavy components
-- 🖼️ **WebP Images** - 94% size reduction (4MB → 250KB)
+- 🖼️ **WebP Images** - 90% size reduction (8.4MB → 793KB)
 - 🔤 **Font Optimization** - `display: swap` with fallbacks
 - ⚡ **Code Splitting** - Optimized bundle sizes
 - 🎯 **Priority Loading** - Critical resources loaded first
+- 🎨 **CSS Filter Overlay** - Primary color branding for all icons
 
 ### 🔍 SEO & Metadata
 - 📊 **Structured Data** - JSON-LD for rich results
@@ -58,11 +61,13 @@ A production-ready, high-performance portfolio template featuring:
 - 📱 **Social Media Integration** - Optimized sharing
 
 ### 🎨 Design Features
-- 🌈 **Custom Color Palette** - Consistent brand colors
-- ✨ **Smooth Animations** - Scroll-triggered effects
+- 🌈 **Custom Color Palette** - DarkNavy + Rose Red theme
+- ✨ **Smooth Animations** - Scroll-triggered effects with Framer Motion
 - 🎭 **Interactive Components** - Hover states and transitions
 - 📱 **Mobile-First** - Responsive on all devices
-- 🌙 **Glass Morphism** - Modern UI effects
+- 🌙 **Glass Morphism** - Modern UI effects with backdrop blur
+- 🎨 **3D Holographic Card** - Interactive profile card with tilt effects
+- 🎪 **Curved Text Marquee** - Infinite scrolling text animation
 
 ---
 
@@ -82,11 +87,12 @@ A production-ready, high-performance portfolio template featuring:
 |-----------|--------|
 | **Framework** | Next.js 15 (App Router, RSC) |
 | **Styling** | Tailwind CSS 4 + ShadCN UI |
-| **Animations** | Framer Motion |
-| **Icons** | Lucide React |
-| **Email** | Resend API |
+| **Animations** | Framer Motion + GSAP |
+| **Icons** | Lucide React + Simple Icons (56+) |
+| **Email** | Resend API + Nodemailer |
 | **Deployment** | Cloudflare Pages + GitHub Actions |
 | **Forms** | React Hook Form + Zod |
+| **Security** | Cloudflare Turnstile |
 | **Analytics** | Vercel Analytics |
 | **Version Control** | Git & GitHub |
 
@@ -143,8 +149,9 @@ A production-ready, high-performance portfolio template featuring:
 ### 🚀 Optimization Techniques Applied
 
 #### 1. **Image Optimization**
-- ✅ Converted all images to WebP format
-- ✅ Reduced total image size by **94%** (4MB → 250KB)
+- ✅ Converted all project images to WebP format
+- ✅ Reduced total image size by **90%** (8.4MB → 793KB)
+- ✅ media-server.png: 6.2MB → 534KB (91% reduction)
 - ✅ Implemented lazy loading for below-the-fold images
 - ✅ Used `next/image` for automatic optimization
 
@@ -250,6 +257,9 @@ The contact form sends **two beautifully designed emails**:
 - ✅ Inline CSS for compatibility
 - ✅ Modern gradients and shadows
 - ✅ Brand-consistent design
+- ✅ Dynamic category-based auto-replies
+- ✅ File attachment support (CV/Resume)
+- ✅ Cloudflare Turnstile spam protection
 
 ---
 
@@ -376,6 +386,59 @@ export default {
    - Push to `main` branch
    - GitHub Actions will auto-deploy
    - Check deployment status in Actions tab
+
+---
+
+## 📦 Latest Updates (Version 6.0)
+
+### 🎯 Version 6.0 - Skills & Performance Overhaul (2025-01-19)
+
+#### **🎨 Skills & Technologies Section**
+- ✅ Added **56+ technology icons** with categorization
+- ✅ Implemented **primary color filter overlay** (#e11d48) for brand consistency
+- ✅ New categories:
+  - IT & System Administration (Grafana, Prometheus, Proxmox)
+  - Security (OpenSource): Let's Encrypt, WireGuard, OpenVPN, pfSense, Fail2Ban
+  - Mobile Development: iOS, Kotlin, Dart, Swift, Firebase
+  - AV Equipment: ATEM, Extron, NDI
+  - AI Tools: ChatGPT, Claude, Gemini, Cursor, Windsurf
+- ✅ Fixed dark icons (iOS, OBS, ATEM, GitHub, Tailscale)
+- ✅ Updated icon sources for better reliability
+
+#### **⚡ Performance Improvements**
+- ✅ **90% image size reduction**: 8.4MB → 793KB
+- ✅ Converted all PNG to WebP format
+- ✅ Optimized media-server image: 6.2MB → 534KB
+- ✅ Added projects demo page with enhanced UI
+- ✅ Improved animated background with `pointer-events-none`
+
+#### **🎭 UI/UX Enhancements**
+- ✅ 3D Holographic ProfileCard with DarkNavy+Gold+Red theme
+- ✅ Curved text marquee component with glassmorphism
+- ✅ Floating WhatsApp & Back to Top buttons
+- ✅ Enhanced glassmorphism scrollbar
+- ✅ Logo loop with primary color overlay
+
+#### **📧 Email & Contact Form**
+- ✅ Dynamic auto-reply messages based on category
+- ✅ Cloudflare Turnstile security integration
+- ✅ File upload support (CV/Resume)
+- ✅ Professional email templates with CDN images
+- ✅ WhatsApp integration in contact info
+
+#### **🔐 Security & Infrastructure**
+- ✅ Cloudflare Turnstile implementation
+- ✅ Global error handling system
+- ✅ Security headers configuration
+- ✅ Blocked access to sensitive files (index.txt)
+- ✅ Removed test keys and fallbacks
+
+### 📊 Previous Versions
+
+**Version 5.2** - Cloudflare Turnstile & Email Fixes  
+**Version 5.1** - File Upload Support  
+**Version 5.0** - Dynamic Contact Form  
+**Version 4.0** - Enhanced Email Templates
 
 ---
 
