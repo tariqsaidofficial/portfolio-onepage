@@ -19,7 +19,7 @@ const Services = dynamic(() => import('@/components/services').then(mod => ({ de
 const Testimonials = dynamic(() => import('@/components/testimonials').then(mod => ({ default: mod.Testimonials })), {
   loading: () => <div className="min-h-screen" />
 })
-const Contact = dynamic(() => import('@/components/contact').then(mod => ({ default: mod.Contact })), {
+const Contact = dynamic(() => import('@/components/smart-contact').then(mod => ({ default: mod.SmartContact })), {
   loading: () => <div className="min-h-screen" />
 })
 

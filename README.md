@@ -32,6 +32,7 @@ A production-ready, high-performance portfolio template featuring:
 - 📱 **Fully responsive** design for all devices
 - 🎯 **56+ technology icons** with primary color overlay
 - 🔐 **Cloudflare Turnstile** security integration
+- ✨ **NEW: Engagement Layer** - Smart contact form & live GitHub integration ([Demo](http://localhost:3000/engagement-demo))
 
 ---
 
