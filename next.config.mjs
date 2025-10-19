@@ -7,6 +7,10 @@ const nextConfig = {
     unoptimized: true, // Required for static export
   },
   // trailingSlash: false, // Removed to fix logo link issue
+  
+  env: {
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+  },
 
   webpack(config) {
     // إزالة sourcemaps والملفات الكبيرة
