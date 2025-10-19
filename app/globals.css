@@ -1024,9 +1024,13 @@ html {
   }
 }
 
-/* Logo Primary Color Filter */
+/* Logo Filter - Grayscale with slight brightness */
 .logo-primary-filter {
-  filter: brightness(0) saturate(100%) invert(23%) sepia(89%) saturate(3207%) hue-rotate(333deg) brightness(95%) contrast(92%) !important;
+  filter: grayscale(100%) brightness(1.2) contrast(0.9) opacity(0.8) !important;
+}
+
+.logo-primary-filter:hover {
+  filter: grayscale(0%) brightness(1) contrast(1) opacity(1) !important;
 }
 
 /* Responsive Styles */
