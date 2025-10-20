@@ -9,7 +9,6 @@ export async function onRequestPost(context) {
     const email = formData.get('email');
     const phone = formData.get('phone');
     const category = formData.get('category');
-    const subcategory = formData.get('subcategory');
     const projectType = formData.get('projectType');
     const message = formData.get('message');
     const cvFile = formData.get('cvFile');
@@ -60,9 +59,9 @@ export async function onRequestPost(context) {
       });
     }
     
-    // Subcategory is not required for General Inquiries
-    if (category !== "general" && !subcategory) {
-      return new Response(JSON.stringify({ error: "Subcategory is required" }), {
+    // Project type is required for project requests
+    if (category === "project" && !projectType) {
+      return new Response(JSON.stringify({ error: "Project type is mandatory" }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -135,7 +134,7 @@ This is an automatic confirmation of receipt. No commitments are made until furt
       body: JSON.stringify({
         from: 'Tariq Said <info@dxbmark.com>',
         to: ['info@dxbmark.com', 'tariq.yousef@outlook.com'],
-        subject: subcategory ? `${subcategory} from ${name}` : `${categoryLabel} from ${name}`,
+        subject: projectType ? `${projectType} from ${name}` : `${categoryLabel} from ${name}`,
         reply_to: email,
         ...(cvAttachment && { attachments: [cvAttachment] }),
         html: `
@@ -156,7 +155,7 @@ This is an automatic confirmation of receipt. No commitments are made until furt
           <tr>
             <td style="background: #0a122c; padding: 30px 20px; text-align: center;">
               <img src="https://portfolio.dxbmark.com/TariqSaid-logo.webp" alt="Tariq Said" style="height: 50px; display: block; margin: 0 auto 15px auto;" />
-              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${subcategory || categoryLabel}</h1>
+              <h1 style="color: #e11d48; margin: 0; font-size: 24px; font-weight: normal;">${projectType || categoryLabel}</h1>
             </td>
           </tr>
           
@@ -168,10 +167,6 @@ This is an automatic confirmation of receipt. No commitments are made until furt
                 ${categoryLabel}
               </p>
               
-              ${subcategory ? `<p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
-                <strong style="color: #0a122c;">Subtype:</strong><br/>
-                ${subcategory}
-              </p>` : ''}
               
               <p style="margin: 0 0 15px 0; color: #333; font-size: 15px;">
                 <strong style="color: #0a122c;">Name:</strong><br/>
@@ -280,7 +275,6 @@ This is an automatic confirmation of receipt. No commitments are made until furt
               <div style="background: #f5f5f5; border-left: 4px solid #e11d48; padding: 15px; margin: 20px 0; border-radius: 4px;">
                 <p style="margin: 0 0 10px 0; color: #0a122c; font-size: 14px; font-weight: bold;">Submission Details:</p>
                 <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Category:</strong> ${categoryLabel}</p>
-                ${subcategory ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Type:</strong> ${subcategory}</p>` : ''}
                 ${projectType ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>Project Type:</strong> ${projectType}</p>` : ''}
                 ${cvFile ? `<p style="margin: 0 0 5px 0; color: #666; font-size: 14px;"><strong>CV:</strong> <span style="color: #e11d48;">✓ Attached</span></p>` : ''}
               </div>
