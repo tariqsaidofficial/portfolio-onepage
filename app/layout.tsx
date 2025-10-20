@@ -405,7 +405,16 @@ export default function RootLayout({
         
         {/* Cookie Script - GDPR Compliance */}
         <Script
+          type="text/javascript"
           src="//cdn.cookie-script.com/s/7fa260f868618f7e849c683cbef1949c.js"
+          strategy="afterInteractive"
+        />
+        
+        {/* Cookie Script Report - Analytics */}
+        <Script
+          type="text/javascript"
+          data-cookiescriptreport="report"
+          src="//report.cookie-script.com/r/7fa260f868618f7e849c683cbef1949c.js"
           strategy="afterInteractive"
         />
         
@@ -422,6 +431,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('set', 'developer_id.dY2E1Nz', true);
               gtag('config', 'G-P6EHS0QWTZ', {
                 'anonymize_ip': true,
                 'cookie_flags': 'SameSite=None;Secure'
