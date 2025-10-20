@@ -266,8 +266,24 @@ html {
   
   body {
     @apply text-foreground;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* Hide Cookie Script Report elements that shouldn't be visible */
+  ._CookieScriptReportPageCheckboxes,
+  ._CookieScriptReportPageTable,
+  ._CookieScriptReportPageConsentKey,
+  [data-csr-checkboxes],
+  [data-csr-checkbox],
+  [data-csr-button],
+  [data-csr-consent-key-box] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
   
   /* Root container with background overlay */

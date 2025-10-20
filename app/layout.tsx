@@ -410,18 +410,10 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         
-        {/* Cookie Script Report - Analytics */}
-        <Script
-          type="text/javascript"
-          data-cookiescriptreport="report"
-          src="//report.cookie-script.com/r/7fa260f868618f7e849c683cbef1949c.js"
-          strategy="afterInteractive"
-        />
-        
         {/* Google Analytics - Lazy loaded for better performance */}
         <Script
           strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-P6EHS0QWTZ"
+          src="https://www.googletagmanager.com/gtag/js?id=G-SNY82JTB4Z"
         />
         <Script
           id="google-analytics"
@@ -432,7 +424,7 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('set', 'developer_id.dY2E1Nz', true);
-              gtag('config', 'G-P6EHS0QWTZ', {
+              gtag('config', 'G-SNY82JTB4Z', {
                 'anonymize_ip': true,
                 'cookie_flags': 'SameSite=None;Secure'
               });
