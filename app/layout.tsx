@@ -533,7 +533,12 @@ export default function RootLayout({
                 "@type": "ImageObject",
                 "contentUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Portrait_of_Tariq_Said.jpg",
                 "description": "Official portrait of Tariq Said hosted on Wikimedia Commons",
-                "license": "https://creativecommons.org/licenses/by/4.0/"
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "creator": {
+                  "@type": "Person",
+                  "name": "Tariq Said"
+                },
+                "copyrightNotice": "© 2025 Tariq Said, licensed under CC BY 4.0"
               },
               "url": "http://portfolio.dxbmark.com/",
               "sameAs": [
