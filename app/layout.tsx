@@ -372,13 +372,24 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               
-              // Set default consent for EEA, UK, and other privacy-regulated regions
+              // Set default consent for EEA, UK, GCC, Middle East, and other privacy-regulated regions
               gtag('consent', 'default', {
                 'ad_storage': 'denied',
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
                 'analytics_storage': 'denied',
-                'regions': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH', 'NO', 'IS', 'LI', 'CA-QC', 'BR', 'ZA']
+                'regions': [
+                  // EEA (European Economic Area)
+                  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+                  // UK & EFTA
+                  'GB', 'CH', 'NO', 'IS', 'LI',
+                  // GCC (Gulf Cooperation Council)
+                  'SA', 'AE', 'KW', 'OM', 'QA', 'BH',
+                  // Middle East & North Africa
+                  'EG', 'JO', 'LB', 'IQ', 'SY', 'YE', 'PS', 'TR', 'IR',
+                  // Other Privacy-Regulated Regions
+                  'CA-QC', 'BR', 'ZA'
+                ]
               });
               
               // Set default consent for all other regions
