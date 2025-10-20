@@ -1044,6 +1044,22 @@ html {
   filter: brightness(3.2) !important;
 }
 
+.logo-primary-filter.brightness-\[1\.5\] {
+  filter: brightness(1.5) !important;
+}
+
+.logo-primary-filter.brightness-\[1\.5\]:hover {
+  filter: brightness(1.7) !important;
+}
+
+.logo-primary-filter.brightness-\[1\.3\] {
+  filter: brightness(1.3) !important;
+}
+
+.logo-primary-filter.brightness-\[1\.3\]:hover {
+  filter: brightness(1.5) !important;
+}
+
 .logo-primary-filter.invert {
   filter: invert(1) brightness(1.2) !important;
 }

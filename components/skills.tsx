@@ -178,6 +178,13 @@ export function Skills() {
       title: "Django",
     },
     {
+      src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/FastAPI_logo.svg",
+      alt: "FastAPI",
+      title: "FastAPI",
+      width: 50,
+      height: 50,
+    },
+    {
       src: "https://cdn.simpleicons.org/nodedotjs/339933",
       alt: "Node.js",
       title: "Node.js",
@@ -204,8 +211,38 @@ export function Skills() {
       alt: "MongoDB",
       title: "MongoDB",
     },
+    {
+      src: "https://cdn.simpleicons.org/redis/DC382D",
+      alt: "Redis",
+      title: "Redis",
+    },
+    {
+      src: "https://cdn.simpleicons.org/sqlite/003B57",
+      alt: "SQLite",
+      title: "SQLite",
+    },
+    {
+      src: "https://cdn.simpleicons.org/supabase/3FCF8E",
+      alt: "Supabase",
+      title: "Supabase",
+    },
+    {
+      src: "https://cdn.simpleicons.org/minio/C72E49",
+      alt: "MinIO",
+      title: "MinIO",
+    },
     
     // DevOps & Infrastructure
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg",
+      alt: "Git",
+      title: "Git",
+    },
+    {
+      src: "https://cdn.simpleicons.org/github/FFFFFF",
+      alt: "GitHub",
+      title: "GitHub",
+    },
     {
       src: "https://cdn.simpleicons.org/docker/2496ED",
       alt: "Docker",
@@ -215,11 +252,6 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/nginx/009639",
       alt: "Nginx",
       title: "Nginx",
-    },
-    {
-      src: "https://cdn.simpleicons.org/github/FFFFFF",
-      alt: "GitHub",
-      title: "GitHub",
     },
     {
       src: "https://cdn.simpleicons.org/cloudflare/F38020",
@@ -235,6 +267,67 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/linux/FCC624",
       alt: "Linux",
       title: "Linux",
+    },
+    {
+      src: "https://icon.icepanel.io/Technology/svg/Swagger.svg",
+      alt: "Swagger",
+      title: "Swagger",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/b/b2/OpenAPI_Specification_Logo_Pantone.svg",
+      alt: "OpenAPI",
+      title: "OpenAPI",
+      width: 70,
+      height: 70,
+    },
+    
+    // Package Managers & Build Tools
+    {
+      src: "https://cdn.simpleicons.org/npm/CB3837",
+      alt: "npm",
+      title: "npm",
+    },
+    {
+      src: "https://cdn.simpleicons.org/pnpm/F69220",
+      alt: "pnpm",
+      title: "pnpm",
+    },
+    {
+      src: "https://cdn.simpleicons.org/yarn/2C8EBB",
+      alt: "Yarn",
+      title: "Yarn",
+    },
+    {
+      src: "https://cdn.simpleicons.org/vite/646CFF",
+      alt: "Vite",
+      title: "Vite",
+    },
+    {
+      src: "https://cdn.simpleicons.org/webpack/8DD6F9",
+      alt: "Webpack",
+      title: "Webpack",
+    },
+    
+    // Cloud Platforms
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+      alt: "AWS",
+      title: "Amazon Web Services",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+      alt: "Google Cloud",
+      title: "Google Cloud Platform",
+    },
+    {
+      src: "https://cdn.simpleicons.org/vercel/FFFFFF",
+      alt: "Vercel",
+      title: "Vercel",
+    },
+    {
+      src: "https://cdn.simpleicons.org/netlify/00C7B7",
+      alt: "Netlify",
+      title: "Netlify",
     },
     
     // Mobile Development
@@ -257,6 +350,11 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/androidstudio/3DDC84",
       alt: "Android Studio",
       title: "Android Studio",
+    },
+    {
+      src: "https://cdn.simpleicons.org/xcode/147EFB",
+      alt: "Xcode",
+      title: "Xcode",
     },
     {
       src: "https://cdn.simpleicons.org/kotlin/7F52FF",
@@ -289,6 +387,11 @@ export function Skills() {
       src: "https://cdn.simpleicons.org/canva/00C4CC",
       alt: "Canva",
       title: "Canva",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Cinema_4D_Logo.svg",
+      alt: "Cinema 4D",
+      title: "Cinema 4D",
     },
     
     // Adobe Creative Suite
@@ -330,6 +433,11 @@ export function Skills() {
       title: "Adobe After Effects",
     },
     {
+      src: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Adobe_Media_Encoder_Icon.svg",
+      alt: "Media Encoder",
+      title: "Adobe Media Encoder",
+    },
+    {
       src: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg",
       alt: "Audition",
       title: "Adobe Audition",
@@ -340,9 +448,29 @@ export function Skills() {
       title: "DaVinci Resolve",
     },
     {
+      src: "https://upload.wikimedia.org/wikipedia/en/9/9f/2015_Final_Cut_Pro_Logo.png",
+      alt: "Final Cut Pro",
+      title: "Final Cut Pro",
+    },
+    {
       src: "https://cdn.simpleicons.org/obsstudio/FFFFFF",
       alt: "OBS Studio",
       title: "OBS Studio",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Audacity_Logo.svg",
+      alt: "Audacity",
+      title: "Audacity",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/d/d9/HandBrake_Icon.png",
+      alt: "HandBrake",
+      title: "HandBrake",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/5/5f/FFmpeg_Logo_new.svg",
+      alt: "FFmpeg",
+      title: "FFmpeg",
     },
     
     // AV Equipment
@@ -401,12 +529,74 @@ export function Skills() {
       alt: "Gemini",
       title: "Google Gemini",
     },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/GitHub_Copilot_logo.svg/1024px-GitHub_Copilot_logo.svg.png",
+      alt: "GitHub Copilot",
+      title: "GitHub Copilot",
+      className: "brightness-[1.5]",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Perplexity_AI_logo.svg/640px-Perplexity_AI_logo.svg.png",
+      alt: "Perplexity",
+      title: "Perplexity AI",
+    },
     
-    // CMS
+    // CMS & Platforms
     {
       src: "https://cdn.simpleicons.org/wordpress/21759B",
       alt: "WordPress",
       title: "WordPress",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+      alt: "Shopify",
+      title: "Shopify",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg",
+      alt: "Wix",
+      title: "Wix.com",
+      className: "brightness-[1.3]",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/5/51/Webflow_logo_2023.svg",
+      alt: "Webflow",
+      title: "Webflow",
+      className: "brightness-[1.3]",
+    },
+    
+    // Communication & Productivity
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
+      alt: "Slack",
+      title: "Slack",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Google_Meet_icon_%282020%29.svg",
+      alt: "Google Meet",
+      title: "Google Meet",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Zoom_Communications_Logo.svg",
+      alt: "Zoom",
+      title: "Zoom",
+      width: 50,
+      height: 50,
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/en/8/8c/Trello_logo.svg",
+      alt: "Trello",
+      title: "Trello",
+    },
+    {
+      src: "https://cdn.simpleicons.org/notion/FFFFFF",
+      alt: "Notion",
+      title: "Notion",
+    },
+    {
+      src: "https://cdn.simpleicons.org/markdown/FFFFFF",
+      alt: "Markdown",
+      title: "Markdown",
     },
   ]
 

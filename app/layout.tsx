@@ -362,6 +362,12 @@ export default function RootLayout({
           defer
         />
         
+        {/* Cookie Script - GDPR Compliance */}
+        <Script
+          src="//cdn.cookie-script.com/s/7fa260f868618f7e849c683cbef1949c.js"
+          strategy="afterInteractive"
+        />
+        
         {/* Google Analytics - Lazy loaded for better performance */}
         <Script
           strategy="lazyOnload"
