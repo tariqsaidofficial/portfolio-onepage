@@ -490,6 +490,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "@id": "https://www.wikidata.org/wiki/Q136538198",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://portfolio.dxbmark.com/"
+              },
               "name": "Tariq Said",
               "alternateName": [
                 "Tariq M. Said",
@@ -519,6 +523,12 @@ export default function RootLayout({
                 }
               ],
               "image": "https://upload.wikimedia.org/wikipedia/commons/6/65/Portrait_of_Tariq_Said.jpg",
+              "associatedMedia": {
+                "@type": "ImageObject",
+                "contentUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Portrait_of_Tariq_Said.jpg",
+                "description": "Official portrait of Tariq Said hosted on Wikimedia Commons",
+                "license": "https://creativecommons.org/licenses/by/4.0/"
+              },
               "url": "http://portfolio.dxbmark.com/",
               "sameAs": [
                 "https://www.wikidata.org/wiki/Q136538198",

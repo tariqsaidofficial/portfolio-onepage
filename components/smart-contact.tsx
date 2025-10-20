@@ -132,24 +132,6 @@ export function SmartContact() {
                     </a>
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-3 p-3 glass rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-200 group">
-                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <Image className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Wikimedia Commons</p>
-                    <a 
-                      href="https://commons.wikimedia.org/wiki/File:Portrait_of_Tariq_Said.jpg" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
-                      aria-label="View Tariq Said's official portrait on Wikimedia Commons"
-                    >
-                      Portrait of Tariq Said
-                    </a>
-                  </div>
-                </div>
               </CardContent>
             </Card>
 
