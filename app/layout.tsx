@@ -378,6 +378,7 @@ export default function RootLayout({
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
                 'analytics_storage': 'denied',
+                'wait_for_update': 500,
                 'regions': [
                   // EEA (European Economic Area)
                   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
@@ -397,7 +398,8 @@ export default function RootLayout({
                 'ad_storage': 'denied',
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
-                'analytics_storage': 'denied'
+                'analytics_storage': 'denied',
+                'wait_for_update': 500
               });
             `,
           }}
@@ -410,10 +412,42 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         
+        {/* Cookie Script Consent Update Handler */}
+        <Script
+          id="cookie-consent-handler"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Listen for Cookie Script consent changes
+              document.addEventListener('CookieScriptAccept', function() {
+                if (typeof gtag === 'function') {
+                  gtag('consent', 'update', {
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'ad_storage': 'granted',
+                    'analytics_storage': 'granted'
+                  });
+                }
+              });
+              
+              document.addEventListener('CookieScriptAcceptAll', function() {
+                if (typeof gtag === 'function') {
+                  gtag('consent', 'update', {
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'ad_storage': 'granted',
+                    'analytics_storage': 'granted'
+                  });
+                }
+              });
+            `,
+          }}
+        />
+        
         {/* Google Analytics - Lazy loaded for better performance */}
         <Script
           strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-SNY82JTB4Z"
+          src="https://www.googletagmanager.com/gtag/js?id=G-P6EHS0QWTZ"
         />
         <Script
           id="google-analytics"
@@ -424,7 +458,7 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('set', 'developer_id.dY2E1Nz', true);
-              gtag('config', 'G-SNY82JTB4Z', {
+              gtag('config', 'G-P6EHS0QWTZ', {
                 'anonymize_ip': true,
                 'cookie_flags': 'SameSite=None;Secure'
               });
