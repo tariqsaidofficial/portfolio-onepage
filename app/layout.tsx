@@ -362,6 +362,36 @@ export default function RootLayout({
           defer
         />
         
+        {/* Google Consent Mode v2 - Must load BEFORE Google Analytics */}
+        <Script
+          id="google-consent-mode"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Define dataLayer and the gtag function.
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              
+              // Set default consent for EEA, UK, and other privacy-regulated regions
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'regions': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH', 'NO', 'IS', 'LI', 'CA-QC', 'BR', 'ZA']
+              });
+              
+              // Set default consent for all other regions
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+              });
+            `,
+          }}
+        />
+        
         {/* Cookie Script - GDPR Compliance */}
         <Script
           src="//cdn.cookie-script.com/s/7fa260f868618f7e849c683cbef1949c.js"
@@ -381,7 +411,10 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-P6EHS0QWTZ');
+              gtag('config', 'G-P6EHS0QWTZ', {
+                'anonymize_ip': true,
+                'cookie_flags': 'SameSite=None;Secure'
+              });
             `,
           }}
         />
