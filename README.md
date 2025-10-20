@@ -527,3 +527,15 @@ export default {
 ## 🪪 License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it.
+
+---
+
+## 📚 Official Documentation & Links
+
+© 2025 Tariq Said — [Portfolio](https://portfolio.dxbmark.com) · [Wikidata](https://www.wikidata.org/wiki/Q136538198) · [LinkedIn](https://www.linkedin.com/in/tariqsaidofficial/) · [GitHub](https://github.com/tariqsaidofficial)
+
+### 🔗 Official Links
+- **🌐 Official Website:** [https://portfolio.dxbmark.com](https://portfolio.dxbmark.com)
+- **📘 Official Wikidata Entry:** [Q136538198](https://www.wikidata.org/wiki/Q136538198)
+- **💼 LinkedIn:** [tariqsaidofficial](https://www.linkedin.com/in/tariqsaidofficial/)
+- **🐙 GitHub:** [tariqsaidofficial](https://github.com/tariqsaidofficial)
