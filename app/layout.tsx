@@ -431,6 +431,89 @@ export default function RootLayout({
             `,
           }}
         />
+        
+        {/* JSON-LD Structured Data for Google Knowledge Panel */}
+        <Script
+          id="json-ld-person"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": "https://www.wikidata.org/wiki/Q136538198",
+              "name": "Tariq Said",
+              "alternateName": [
+                "Tariq M. Said",
+                "Tariq Moh. Said",
+                "Tariq Mohamed Yousef Mohamed Said",
+                "طارق سعيد"
+              ],
+              "description": "Egyptian AV/IT Integration Specialist, ICT teacher, software engineer, and theatre actor based in Dubai.",
+              "jobTitle": "AV/IT Integration Specialist, ICT Teacher, and Software Engineer",
+              "nationality": {
+                "@type": "Country",
+                "name": "Egypt"
+              },
+              "homeLocation": {
+                "@type": "Place",
+                "name": "Dubai, United Arab Emirates"
+              },
+              "gender": "Male",
+              "alumniOf": [
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "The Higher Institute of Tourism, Hotels & Computer (H.I.T.H.C.)"
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "Faculty of Education, Alexandria University"
+                }
+              ],
+              "image": "https://upload.wikimedia.org/wikipedia/commons/6/65/Portrait_of_Tariq_Said.jpg",
+              "url": "http://portfolio.dxbmark.com/",
+              "sameAs": [
+                "https://www.wikidata.org/wiki/Q136538198",
+                "https://commons.wikimedia.org/wiki/File:Portrait_of_Tariq_Said.jpg",
+                "https://www.linkedin.com/in/tariqsaidofficial/",
+                "https://github.com/tariqsaidofficial",
+                "https://www.instagram.com/tariqsaidofficial/"
+              ],
+              "affiliation": {
+                "@type": "Organization",
+                "name": "Sunmarke School"
+              },
+              "knowsLanguage": ["English", "Arabic"],
+              "interactionStatistic": {
+                "@type": "InteractionCounter",
+                "interactionType": "https://schema.org/FollowAction",
+                "userInteractionCount": 502,
+                "description": "Combined followers across LinkedIn, Instagram, and GitHub as of 2025"
+              },
+              "hasOccupation": [
+                {
+                  "@type": "Occupation",
+                  "name": "AV/IT Integration Specialist",
+                  "occupationalCategory": "Information Technology"
+                },
+                {
+                  "@type": "Occupation",
+                  "name": "ICT Teacher",
+                  "occupationalCategory": "Education"
+                },
+                {
+                  "@type": "Occupation",
+                  "name": "Software Engineer",
+                  "occupationalCategory": "Technology"
+                },
+                {
+                  "@type": "Occupation",
+                  "name": "Theatre Actor",
+                  "occupationalCategory": "Performing Arts"
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body id="root" className={`${poppins.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         {/* Skip to main content link for accessibility */}
