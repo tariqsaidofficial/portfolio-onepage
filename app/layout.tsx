@@ -490,10 +490,16 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "@id": "https://www.wikidata.org/wiki/Q136538198",
-              "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "https://portfolio.dxbmark.com/"
-              },
+              "mainEntityOfPage": [
+                {
+                  "@type": "WebPage",
+                  "@id": "https://portfolio.dxbmark.com/"
+                },
+                {
+                  "@type": "CreativeWork",
+                  "@id": "https://www.wikidata.org/wiki/Q136538198"
+                }
+              ],
               "name": "Tariq Said",
               "alternateName": [
                 "Tariq M. Said",
