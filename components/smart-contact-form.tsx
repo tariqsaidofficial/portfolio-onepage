@@ -104,16 +104,17 @@ const PROJECT_SUGGESTIONS = {
     questions: ["Current infrastructure?", "Team size?", "Budget?", "Timeline?"],
   },
 }
-
 export function SmartContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    company: "",
     category: "",
     projectType: "",
     message: "",
     cvFile: null as File | null,
+    agreeToPrivacy: false,
   })
 
   const [showSuggestions, setShowSuggestions] = useState(false)
@@ -257,10 +258,12 @@ export function SmartContactForm() {
           name: "", 
           email: "", 
           phone: "", 
+          company: "",
           category: "",
           projectType: "",
           message: "",
-          cvFile: null
+          cvFile: null,
+          agreeToPrivacy: false,
         })
         setTurnstileToken("")
         if (typeof window !== 'undefined' && (window as any).turnstile && turnstileWidgetId) {
@@ -482,6 +485,30 @@ export function SmartContactForm() {
               </div>
             </div>
 
+            {/* Privacy Policy Checkbox */}
+            <div className="flex items-start gap-3 p-4 glass rounded-lg border border-border/50">
+              <input
+                type="checkbox"
+                id="agreeToPrivacy"
+                checked={formData.agreeToPrivacy}
+                onChange={(e) => setFormData({ ...formData, agreeToPrivacy: e.target.checked })}
+                className="mt-1 w-4 h-4 text-primary bg-background border-border rounded focus:ring-primary focus:ring-2 cursor-pointer"
+                required
+              />
+              <label htmlFor="agreeToPrivacy" className="text-sm text-muted-foreground cursor-pointer">
+                I agree to the{" "}
+                <a 
+                  href="/privacy-policy" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium"
+                >
+                  Privacy Policy
+                </a>
+                {" "}and consent to the collection and use of my personal information as described. <span className="text-red-500">*</span>
+              </label>
+            </div>
+
             {/* Status Messages */}
             {submitStatus === "success" && (
               <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
@@ -500,7 +527,7 @@ export function SmartContactForm() {
             <Button 
               type="submit" 
               className="contact-submit-btn w-full bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={isLoading || !turnstileToken}
+              disabled={isLoading || !turnstileToken || !formData.agreeToPrivacy}
             >
               {isLoading ? (
                 <span className="flex items-center gap-2">

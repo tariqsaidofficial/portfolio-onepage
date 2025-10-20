@@ -1,4 +1,8 @@
 import type { Metadata } from "next"
+import Link from "next/link"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { ArrowLeft } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Tariq Said - Full-Stack Developer",
@@ -11,9 +15,20 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen py-20 px-4 relative z-10">
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="glass p-8 md:p-12 rounded-2xl relative z-10">
+    <>
+      <Header />
+      <div className="min-h-screen py-20 px-4 relative z-10">
+        <div className="container mx-auto max-w-4xl relative z-10">
+          {/* Back to Home Button */}
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 mb-8 text-muted-foreground hover:text-primary transition-colors group"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span>Back to Home</span>
+          </Link>
+
+          <div className="glass p-8 md:p-12 rounded-2xl relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Privacy Policy
           </h1>
@@ -234,7 +249,9 @@ export default function PrivacyPolicy() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
