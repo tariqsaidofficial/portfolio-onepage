@@ -234,6 +234,11 @@ export function Skills() {
     
     // DevOps & Infrastructure
     {
+      src: "https://cdn.worldvectorlogo.com/logos/devops-2.svg",
+      alt: "DevOps",
+      title: "DevOps",
+    },
+    {
       src: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg",
       alt: "Git",
       title: "Git",

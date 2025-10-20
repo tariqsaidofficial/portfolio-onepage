@@ -9,16 +9,22 @@ export default function EmailDemo() {
   const message = "I would like to request a quotation for a corporate event video production. The event will be held in Dubai and requires full AV coverage including cameras, sound, and post-production editing."
 
   return (
-    <div style={{ padding: '40px 20px', background: '#f5f5f5', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '40px', color: '#0a122c' }}>📧 Email Templates Preview</h1>
+    <>
+      {/* Fixed background layer */}
+      <div className="fixed inset-0" style={{ zIndex: 0, backgroundColor: '#0a122c' }}></div>
+      
+      <div className="min-h-screen py-20 px-4 relative">
+        <div className="container mx-auto max-w-7xl relative z-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          📧 Email Templates Preview
+        </h1>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(550px, 1fr))', gap: '30px' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
           
           {/* Admin Notification Email */}
-          <div>
-            <h2 style={{ color: '#e11d48', marginBottom: '20px' }}>Admin Notification</h2>
-            <div style={{ background: '#ffffff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Admin Notification</h2>
+            <div className="glass p-6 rounded-xl relative z-10" style={{ background: '#ffffff', overflow: 'hidden' }}>
               <table role="presentation" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   {/* Header */}
@@ -94,9 +100,9 @@ export default function EmailDemo() {
           </div>
 
           {/* Client Confirmation Email */}
-          <div>
-            <h2 style={{ color: '#e11d48', marginBottom: '20px' }}>Client Confirmation</h2>
-            <div style={{ background: '#ffffff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Client Confirmation</h2>
+            <div className="glass p-6 rounded-xl relative z-10" style={{ background: '#ffffff', overflow: 'hidden' }}>
               <table role="presentation" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   {/* Header */}
@@ -260,7 +266,8 @@ export default function EmailDemo() {
             ← Back to Home
           </a>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-background py-20 px-4">
-      <div className="container mx-auto max-w-4xl">
-        <div className="glass p-8 md:p-12 rounded-2xl">
+    <div className="min-h-screen py-20 px-4 relative z-10">
+      <div className="container mx-auto max-w-4xl relative z-10">
+        <div className="glass p-8 md:p-12 rounded-2xl relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Privacy Policy
           </h1>
@@ -153,7 +153,7 @@ export default function PrivacyPolicy() {
                 <li><strong>Withdraw Consent:</strong> Withdraw consent for data processing at any time</li>
               </ul>
               <p className="mt-4">
-                To exercise these rights, please contact us at: <a href="mailto:contact@tariqsaid.com" className="text-primary hover:underline">contact@tariqsaid.com</a>
+                To exercise these rights, please contact us at: <a href="mailto:info@dxbmark.com" className="text-primary hover:underline">info@dxbmark.com</a>
               </p>
             </section>
 
@@ -184,8 +184,8 @@ export default function PrivacyPolicy() {
                 If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="ml-4 space-y-2">
-                <p><strong>Email:</strong> <a href="mailto:contact@tariqsaid.com" className="text-primary hover:underline">contact@tariqsaid.com</a></p>
-                <p><strong>Website:</strong> <a href="https://tariqsaid.com" className="text-primary hover:underline">https://tariqsaid.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@dxbmark.com" className="text-primary hover:underline">info@dxbmark.com</a></p>
+                <p><strong>Website:</strong> <a href="https://portfolio.dxbmark.com" className="text-primary hover:underline">https://portfolio.dxbmark.com</a></p>
                 <p><strong>Response Time:</strong> We aim to respond to all inquiries within 48 hours</p>
               </div>
             </section>
