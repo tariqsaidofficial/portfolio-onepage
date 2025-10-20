@@ -362,6 +362,21 @@ export default function RootLayout({
           defer
         />
         
+        {/* Google Tag Manager - Load as high as possible */}
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-58VTPGXL');
+            `,
+          }}
+        />
+        
         {/* Google Consent Mode v2 - Must load BEFORE Google Analytics */}
         <Script
           id="google-consent-mode"
@@ -550,6 +565,16 @@ export default function RootLayout({
         />
       </head>
       <body id="root" className={`${poppins.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-58VTPGXL"
+            height="0" 
+            width="0" 
+            style={{display: 'none', visibility: 'hidden'}}
+          />
+        </noscript>
+        
         {/* Skip to main content link for accessibility */}
         <a 
           href="#main-content" 
