@@ -448,12 +448,12 @@ export default {
 <!--AUTO-README:START-->
 ### 🔴 Live
 - **Production:** https://portfolio-1yp.pages.dev/
-- **Last update:** 2025-10-19T01:15:15.097Z
+- **Last update:** 2025-10-21T01:09:49.008Z
 
 ### 📊 Repo stats
 - **Stars:** 1
 - **Forks:** 0
-- **Last commit:** `a4afeb7` — feat: Update ProfileCard to DarkNavy+Gold+Red theme with enhanced effects - Change color scheme from Purple/Cyan to DarkNavy/Gold/Red * Spotlight: Dark gray gradients * Top accent: Gold (#fbbf24) * Center glow: Red (#e11d48) * Base gradient: DarkNavy to Gold conic gradient * Inner background: DarkNavy (#0a122c) * Name text: White to Gold gradient * Title text: White to Red gradient - Add missing holographic effects from original Vue code: * Grain texture overlay (::before) with rainbow gradient * Alternative shine pattern (::after) with difference blend * Background animations (glow-bg 12s, holo-bg 18s) * Dynamic filters that change on hover - Enhance iconpattern visibility: * Default: brightness(0.85) contrast(1.8) opacity(0.75) * Hover: brightness(1) contrast(2) opacity(0.9) - Update default assets: * iconUrl: /assets/iconpattern.png * grainUrl: /assets/grain.webp (added) - Add grain.webp and iconpattern.png to public/assets (2025-10-19T03:41:16+04:00)
+- **Last commit:** `6b2b4e1` — Fix: Replace subcategory with projectType validation in contact form API (2025-10-20T21:43:19+04:00)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/tariqsaidofficial/portfolio-onepage?style=flat)&nbsp;![GitHub forks](https://img.shields.io/github/forks/tariqsaidofficial/portfolio-onepage?style=flat)
 <!--AUTO-README:END-->
