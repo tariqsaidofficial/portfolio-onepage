@@ -202,12 +202,31 @@ export function SmartContactForm() {
     setFormData({ ...formData, category: value, projectType: "", message: "" })
     setShowSuggestions(true)
     setSelectedTemplate(null)
+    
+    // Track category selection in GTM
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'contact_form_category_select',
+        'category': value,
+        'form_name': 'contact_form'
+      })
+    }
   }
 
   const handleTemplateSelect = (template: string) => {
     setFormData({ ...formData, message: template })
     setSelectedTemplate(template)
     setShowSuggestions(false)
+    
+    // Track template selection in GTM
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'contact_form_template_select',
+        'template_text': template.substring(0, 50) + '...',
+        'category': formData.category,
+        'form_name': 'contact_form'
+      })
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -222,10 +241,29 @@ export function SmartContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Track form submission start in GTM
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'contact_form_submit_start',
+        'form_name': 'contact_form',
+        'category': formData.category,
+        'project_type': formData.projectType || 'N/A'
+      })
+    }
+    
     // Validate Turnstile
     if (!turnstileToken) {
       setSubmitStatus("error")
       setErrorMessage("Please complete the security verification")
+      
+      // Track validation error
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          'event': 'contact_form_error',
+          'error_type': 'turnstile_validation',
+          'form_name': 'contact_form'
+        })
+      }
       return
     }
     
@@ -254,6 +292,18 @@ export function SmartContactForm() {
 
       if (response.ok) {
         setSubmitStatus("success")
+        
+        // Track successful form submission in GTM
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            'event': 'contact_form_submit_success',
+            'form_name': 'contact_form',
+            'category': formData.category,
+            'project_type': formData.projectType || 'N/A',
+            'has_cv': formData.cvFile ? 'yes' : 'no'
+          })
+        }
+        
         setFormData({ 
           name: "", 
           email: "", 
@@ -273,10 +323,29 @@ export function SmartContactForm() {
         const errorData = await response.json().catch(() => ({ error: "Failed to send message" }))
         setSubmitStatus("error")
         setErrorMessage(errorData.error || "Failed to send message. Please try again.")
+        
+        // Track form submission error in GTM
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            'event': 'contact_form_error',
+            'error_type': 'submission_failed',
+            'error_message': errorData.error || 'Failed to send message',
+            'form_name': 'contact_form'
+          })
+        }
       }
     } catch (error) {
       setSubmitStatus("error")
       setErrorMessage("Network error. Please check your connection and try again.")
+      
+      // Track network error in GTM
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          'event': 'contact_form_error',
+          'error_type': 'network_error',
+          'form_name': 'contact_form'
+        })
+      }
     } finally {
       setIsLoading(false)
     }

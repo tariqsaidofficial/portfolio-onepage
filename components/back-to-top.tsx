@@ -27,6 +27,15 @@ export function BackToTop() {
   }, [])
 
   const scrollToTop = () => {
+    // Track back to top click in GTM
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'back_to_top_click',
+        'scroll_depth': Math.round(window.scrollY),
+        'button_location': 'floating_button'
+      })
+    }
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth",

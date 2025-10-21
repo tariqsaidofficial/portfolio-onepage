@@ -6,6 +6,7 @@ import "./globals.css"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
 import { BackToTop } from "@/components/back-to-top"
 import { AnimatedBackground } from "@/components/animated-background"
+import { projects } from "@/data/projects"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -351,6 +352,38 @@ export default function RootLayout({
                 "https://www.linkedin.com/in/tariqsaidofficial/",
                 "https://www.behance.net/tariqsaidofficial"
               ]
+            })
+          }}
+        />
+        
+        {/* Structured Data - Portfolio ItemList with Projects (Dynamic from data/projects.ts) */}
+        <Script
+          id="structured-data-portfolio"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "name": "Tariq Said Portfolio Projects",
+              "description": "Collection of web development, mobile apps, IT infrastructure, AV systems, and media production projects by Tariq Said",
+              "numberOfItems": projects.length,
+              "itemListElement": projects.map((project, index) => ({
+                "@type": "CreativeWork",
+                "position": index + 1,
+                "name": project.name,
+                "description": project.description.replace(/\*\*/g, ''), // Remove markdown
+                "image": `https://portfolio.dxbmark.com${project.image}`,
+                "author": {
+                  "@type": "Person",
+                  "name": "Tariq Said",
+                  "url": "https://portfolio.dxbmark.com"
+                },
+                "dateCreated": project.dateCreated,
+                "keywords": project.techStack,
+                "url": project.liveUrl || "https://portfolio.dxbmark.com/#projects",
+                "genre": project.genre || project.category,
+                "inLanguage": "en"
+              }))
             })
           }}
         />

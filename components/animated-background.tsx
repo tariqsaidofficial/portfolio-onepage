@@ -8,8 +8,13 @@ import DarkVeil from "./DarkVeil"
  * Layer Structure (z-index):
  * - z-0: DarkNavy base (#0a122c)
  * - z-1: DarkVeil Gold (hueShift: 120, opacity: 50%)
- * - z-2: Blur layer (12px)
- * - z-3+: Content
+ * - z-2: Blur layer (12px) - BACKGROUND ONLY
+ * - z-10+: Content (ALL pages must use z-index: 10 or higher)
+ * 
+ * CRITICAL RULE:
+ * - Any new page MUST have z-index: 10+ on its main container
+ * - This ensures content appears ABOVE the blur layer
+ * - Example: <div className="relative" style={{ zIndex: 10 }}>
  * 
  * IMPORTANT: 
  * - DarkVeil hueShift = 120 produces Gold/Yellow color (calibrated with HSL color space)
@@ -49,7 +54,8 @@ export function AnimatedBackground() {
         />
       </div>
 
-      {/* Blur Layer - 12px */}
+      {/* Layer 2: Blur Layer - Sits BELOW content (z-index: 2) */}
+      {/* Content must have z-index: 10+ to appear above this layer */}
       <div 
         className="fixed inset-0 pointer-events-none"
         style={{ 

@@ -13,6 +13,15 @@ export function FloatingWhatsApp() {
   const message = "Hi Tariq! I'd like to discuss a project with you."
 
   const handleClick = () => {
+    // Track WhatsApp click in GTM
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        'event': 'whatsapp_click',
+        'button_location': 'floating_button',
+        'destination': 'whatsapp_chat'
+      })
+    }
+    
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }

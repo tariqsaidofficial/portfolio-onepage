@@ -4,26 +4,26 @@ import Link from "next/link"
 import { FuzzyText } from "@/components/fuzzy-text"
 import { Home, ArrowLeft } from "lucide-react"
 
-export default function NotFound() {
+export default function Error500() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden" style={{ zIndex: 10 }}>
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-destructive/5" />
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-destructive/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-destructive/5 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="relative z-10 text-center max-w-2xl mx-auto">
-        {/* FuzzyText 404 */}
+        {/* FuzzyText 500 */}
         <div className="mb-8 flex justify-center">
           <FuzzyText
-            text="404"
+            text="500"
             fontSize={140}
             fontWeight={900}
-            color="#e11d48"
+            color="#dc2626"
             enableHover={true}
             baseIntensity={0.18}
             hoverIntensity={0.5}
@@ -32,12 +32,12 @@ export default function NotFound() {
 
         {/* Error message */}
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-          Page Not Found
+          Internal Server Error
         </h1>
         <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Oops! The page you're looking for seems to have wandered off into the digital void.
+          Oops! Something went wrong on our end. Our servers are having a moment.
           <br />
-          Don't worry, even the best explorers get lost sometimes.
+          Please try refreshing the page or come back in a few minutes.
         </p>
 
         {/* Action buttons */}
@@ -58,28 +58,15 @@ export default function NotFound() {
           </button>
         </div>
 
-        {/* Helpful links */}
+        {/* Help text - No helpful links for 500 (server is down) */}
         <div className="mt-12 pt-8 border-t border-border/50">
-          <p className="text-sm text-muted-foreground mb-4">
-            Looking for something specific? Try these:
+          <p className="text-sm text-muted-foreground">
+            If this problem persists, please{" "}
+            <Link href="/#contact" className="text-primary hover:underline">
+              contact me
+            </Link>{" "}
+            and I'll look into it.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/#about" className="text-sm text-primary hover:underline">
-              About
-            </Link>
-            <span className="text-muted-foreground">•</span>
-            <Link href="/#projects" className="text-sm text-primary hover:underline">
-              Projects
-            </Link>
-            <span className="text-muted-foreground">•</span>
-            <Link href="/#skills" className="text-sm text-primary hover:underline">
-              Skills
-            </Link>
-            <span className="text-muted-foreground">•</span>
-            <Link href="/#contact" className="text-sm text-primary hover:underline">
-              Contact
-            </Link>
-          </div>
         </div>
       </div>
     </div>

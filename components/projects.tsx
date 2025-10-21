@@ -2,93 +2,9 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Github, Calendar, Users, TrendingUp, Play } from "lucide-react"
+import { ExternalLink, Github, Play, TrendingUp, Users } from "lucide-react"
 import Image from "next/image"
-
-const projects = [
-  {
-    id: 1,
-    name: "NFC Manager",
-    description: "Android application for secure NFC tag management with advanced encryption and user-friendly interface.",
-    category: "Full-Stack Development",
-    techStack: ["Android", "Kotlin", "NFC", "Encryption", "SQLite"],
-    year: "2025",
-    role: "Lead Developer",
-    metrics: { users: "1K+", security: "AES-256" },
-    image: "/projects/nfc-manager.webp",
-    video: "/projects/nfcManager_PhoneGrid.mp4",
-    github: "https://github.com/tariqsaidofficial/nfcManager",
-  },
-  {
-    id: 2,
-    name: "DXBMark",
-    description: "Co-founded and led development of comprehensive platform serving 3,000+ users with 98% uptime.",
-    category: "Full-Stack Development",
-    techStack: ["React", "Node.js", "PostgreSQL", "Docker", "Redis"],
-    year: "2024",
-    role: "Co-Founder & Lead Developer",
-    metrics: { users: "3K+", uptime: "98%" },
-    image: "/projects/dxbmark.webp",
-    liveUrl: "https://dxbmark.com",
-  },
-  {
-    id: 3,
-    name: "Media Server-as-a-Service",
-    description: "Built scalable streaming solution with 500+ movies & series (1953-2025). Featuring Plex integration and NAS storage. Get your free 90-day access!",
-    category: "Media Production",
-    techStack: ["Plex", "NAS Storage", "Streaming", "CDN", "MinIO"],
-    year: "2025",
-    role: "Infrastructure Architect",
-    metrics: { content: "500+", years: "1953-2025", trial: "90 days" },
-    image: "/projects/media-server.webp",
-    liveUrl: "https://media.dxbmark.com",
-  },
-  {
-    id: 4,
-    name: "Northern Estates",
-    description: "Real-estate platform with 10,000+ users and 500+ property listings, featuring advanced search and filtering. **Hosted on our server**. Need hosting + free domain? Contact us!",
-    category: "Full-Stack Development",
-    techStack: ["WordPress", "Elementor", "PHP", "MySQL", "Apache"],
-    year: "2024",
-    role: "Full-Stack Developer",
-    metrics: { users: "10K+", listings: "500+" },
-    image: "/projects/northern-estates.webp",
-    liveUrl: "https://northernestates.ae",
-  },
-  {
-    id: 5,
-    name: "Travelify",
-    description: "Integrated travel application combining hotels, e-commerce, and digital services in one seamless platform. **(Under Progress)**",
-    category: "Full-Stack Development",
-    techStack: ["Flutter", "Android", "iOS", "Django REST", "PostgreSQL"],
-    year: "2025",
-    role: "Full-Stack Developer",
-    metrics: { bookings: "2K+", rating: "4.8/5" },
-    image: "/projects/travelify.webp",
-    github: "https://github.com/tariqsaidofficial/travelify",
-  },
-  {
-    id: 6,
-    name: "Online Web Tools",
-    description: "Get things done, quickly. Use any of our 1500+ web tools and get instant results.",
-    category: "Full-Stack Development",
-    techStack: ["Next.js", "React", "TypeScript", "API Integration", "SEO"],
-    year: "2024",
-    role: "Full-Stack Developer",
-    metrics: { tools: "1500+", users: "Active" },
-    image: "/projects/online-web-tools.webp",
-    liveUrl: "https://tools.dxbmark.com",
-  },
-]
-
-const categories = [
-  { id: "all", name: "All Projects" },
-  { id: "Full-Stack Development", name: "Full-Stack" },
-  { id: "IT Infrastructure", name: "IT Infra" },
-  { id: "AV & Event Management", name: "AV & Events" },
-  { id: "Media Production", name: "Media & Film" },
-]
+import { projects, categories } from "@/data/projects"
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState("all")
@@ -97,215 +13,272 @@ export function Projects() {
     (project) => activeFilter === "all" || project.category === activeFilter
   )
 
-  return (
-    <section id="projects" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Projects & Achievements</h2>
+  // Get category color based on type
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      "Full-Stack Development": {
+        bg: "from-blue-500/80 to-blue-600/60",
+        border: "border-blue-500/20",
+        glow: "shadow-blue-500/30",
+        text: "text-blue-100",
+        badge: "bg-blue-500/10 border-blue-500/30 text-blue-200"
+      },
+      "IT Infrastructure": {
+        bg: "from-purple-500/80 to-purple-600/60",
+        border: "border-purple-500/20",
+        glow: "shadow-purple-500/30",
+        text: "text-purple-100",
+        badge: "bg-purple-500/10 border-purple-500/30 text-purple-200"
+      },
+      "AV & Event Management": {
+        bg: "from-amber-500/80 to-amber-600/60",
+        border: "border-amber-500/20",
+        glow: "shadow-amber-500/30",
+        text: "text-amber-100",
+        badge: "bg-amber-500/10 border-amber-500/30 text-amber-200"
+      },
+      "Media Production": {
+        bg: "from-rose-500/80 to-rose-600/60",
+        border: "border-rose-500/20",
+        glow: "shadow-rose-500/30",
+        text: "text-rose-100",
+        badge: "bg-rose-500/10 border-rose-500/30 text-rose-200"
+      }
+    }
+    return colors[category as keyof typeof colors] || colors["Full-Stack Development"]
+  }
 
-        {/* Segmented Control Filter */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-card/50 rounded-full p-1 gap-1 border border-border">
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`px-6 py-2 rounded-full font-medium transition-all relative ${
-                  activeFilter === category.id
-                    ? "text-primary-foreground"
-                    : "text-foreground hover:text-primary"
+  // Truncate description to consistent length
+  const truncateDescription = (text: string, maxLength: number = 120) => {
+    const cleaned = text.replace(/\*\*/g, '').replace(/\(.*?\)/g, '').trim()
+    if (cleaned.length <= maxLength) return cleaned
+    return cleaned.substring(0, maxLength).trim() + '...'
+  }
+
+  return (
+    <section id="projects" className="relative py-20 px-4" style={{ zIndex: 10 }}>
+      <div className="container mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            Projects & Achievements
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            Explore a portfolio of innovative web applications, AudioVisual/Event solutions, IT infrastructure, and professional video productions
+          </p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => {
+            // Get color for each category
+            const categoryColors = {
+              "all": "bg-primary text-primary-foreground shadow-primary/30",
+              "Full-Stack Development": "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-blue-500/30",
+              "IT Infrastructure": "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-purple-500/30",
+              "AV & Event Management": "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-amber-500/30",
+              "Media Production": "bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-rose-500/30"
+            }
+            
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveFilter(cat.id)}
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                  activeFilter === cat.id
+                    ? `${categoryColors[cat.id as keyof typeof categoryColors] || categoryColors["all"]} shadow-lg scale-105`
+                    : "bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground border border-border/50"
                 }`}
-                whileTap={{ scale: 0.95 }}
               >
-                {activeFilter === category.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-primary rounded-full"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                <span className="relative z-10 text-sm">{category.name}</span>
-              </motion.button>
-            ))}
-          </div>
+                {cat.name}
+              </button>
+            )
+          })}
         </div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="relative bg-card/50 backdrop-blur-sm border-border/40 group cursor-pointer hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 hover:backdrop-blur-none transition-all h-full overflow-hidden">
-                  {/* Background Image with Fade Effect */}
-                  <div className="absolute inset-0 z-0">
-                    <motion.div
-                      initial={{ x: -100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 0.15 }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="relative w-full h-full group-hover:opacity-100 transition-opacity duration-500"
-                    >
+            {filteredProjects.map((project, index) => {
+              const colors = getCategoryColor(project.category)
+              
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="group cursor-pointer"
+                >
+                  <div 
+                    className="relative h-full rounded-2xl border border-border/50 overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      backdropFilter: 'blur(10px)',
+                      WebkitBackdropFilter: 'blur(10px)',
+                    }}
+                  >
+                    
+                    {/* Gradient Border Glow on Hover */}
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/20 rounded-2xl" />
+                    </div>
+
+                    {/* Image Section */}
+                    <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+                      
+                      {/* Project Image with Vignette + Desaturation */}
                       <Image
                         src={project.image}
                         alt={project.name}
                         fill
-                        className="object-cover object-right group-hover:scale-110 transition-transform duration-700"
-                        style={{
-                          maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
-                          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)'
-                        }}
-                        unoptimized
+                        className="object-cover project-image-desaturated"
                       />
-                    </motion.div>
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-card via-card/95 to-card/80 group-hover:from-transparent group-hover:via-transparent group-hover:to-transparent transition-all duration-500" />
-                  </div>
-
-                  {/* Action Icons - Always visible on top */}
-                  <div className="absolute top-4 right-4 z-20 flex gap-2">
-                    {project.video && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const video = document.createElement('video');
-                          video.src = project.video;
-                          video.controls = true;
-                          video.autoplay = true;
-                          video.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90vw;max-height:90vh;z-index:9999;border-radius:12px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5)';
-                          const overlay = document.createElement('div');
-                          overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9998;backdrop-filter:blur(4px)';
-                          overlay.onclick = () => { overlay.remove(); video.remove(); };
-                          document.body.appendChild(overlay);
-                          document.body.appendChild(video);
+                      
+                      {/* Vignette Effect - Reduces on hover (not hidden) */}
+                      <div 
+                        className="absolute inset-0 pointer-events-none z-[5] transition-opacity duration-700 ease-in-out"
+                        style={{
+                          background: 'radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.7) 100%)',
+                          opacity: 1
                         }}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        title="Play Demo Video"
-                      >
-                        <Play className="w-5 h-5" />
-                      </button>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-primary hover:scale-110 transition-transform"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
+                      />
 
-                  <CardHeader className="relative z-10">
-                    {/* Title - Always visible with hover effect */}
-                    <div className="mb-3">
-                      {(project.liveUrl || project.github) ? (
-                        <a
-                          href={project.liveUrl || project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block"
+                      {/* Category Badge - Top Left */}
+                      <div className="absolute top-4 left-4 z-20">
+                        <span className={`px-3 py-1.5 text-xs font-bold rounded-full border ${colors.border} ${colors.text} bg-gradient-to-r ${colors.bg} shadow-lg ${colors.glow}`}>
+                          {project.category.split(' ')[0]}
+                        </span>
+                      </div>
+
+                      {/* Video Play Button - Center (if video exists) */}
+                      {project.video && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const video = document.createElement('video');
+                            video.src = project.video || '';
+                            video.controls = true;
+                            video.autoplay = true;
+                            video.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90vw;max-height:90vh;z-index:9999;border-radius:12px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5)';
+                            const overlay = document.createElement('div');
+                            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9998;backdrop-filter:blur(4px)';
+                            overlay.onclick = () => { overlay.remove(); video.remove(); };
+                            document.body.appendChild(overlay);
+                            document.body.appendChild(video);
+                          }}
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-black/60 text-white hover:bg-primary hover:scale-110 transition-all duration-300"
+                          title="Play Demo Video"
                         >
-                          <CardTitle className="text-xl text-foreground hover:text-primary transition-colors cursor-pointer">
-                            {project.name}
-                          </CardTitle>
-                        </a>
-                      ) : (
-                        <CardTitle className="text-xl text-foreground">
-                          {project.name}
-                        </CardTitle>
+                          <Play className="w-6 h-6" fill="currentColor" />
+                        </button>
                       )}
+
+                      {/* Decorative Dot - Top Right */}
+                      <div className={`absolute top-6 right-6 w-2 h-2 rounded-full bg-gradient-to-r ${colors.bg} opacity-60 z-10`} />
                     </div>
 
-                    {/* Content that fades on hover */}
-                    <div className="transition-opacity duration-500 group-hover:opacity-10">
-                      <CardDescription className="text-muted-foreground leading-relaxed mb-4">
-                        {project.description.split('**').map((part, index) => 
-                          index % 2 === 1 ? (
-                            <strong key={index} className="text-primary font-semibold">{part}</strong>
-                          ) : (
-                            part
-                          )
-                        )}
-                      </CardDescription>
+                    {/* Content Section */}
+                    <div className="relative p-6 z-10 flex flex-col flex-grow">
+                      {/* Title */}
+                      <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                        {project.name}
+                      </h3>
 
-                      {/* Tech Stack Tags */}
+                      {/* Description - Fixed 2 lines */}
+                      <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-2 min-h-[3rem]">
+                        {truncateDescription(project.description, 100)}
+                      </p>
+
+                      {/* Tech Stack - Max 2 rows */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.techStack.map((tech) => (
+                        {project.techStack.slice(0, 6).map((tech, i) => (
                           <span
-                            key={tech}
-                            className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-primary/10 text-primary border-primary/20"
+                            key={i}
+                            className={`px-3 py-1 text-xs rounded-full border ${colors.badge} transition-all duration-300`}
                           >
                             {tech}
                           </span>
                         ))}
+                        {project.techStack.length > 6 && (
+                          <span className="px-3 py-1 text-xs bg-muted/50 text-muted-foreground rounded-full border border-border/50">
+                            +{project.techStack.length - 6}
+                          </span>
+                        )}
                       </div>
-                    </div>
-                  </CardHeader>
 
-                  <CardContent className="relative z-10">
-                    <div className="transition-opacity duration-500 group-hover:opacity-10">
-                    {/* Project Metrics */}
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span className="text-muted-foreground">{project.year}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Users className="w-4 h-4 text-primary" />
-                        <span className="text-muted-foreground text-xs">{project.role}</span>
-                      </div>
-                    </div>
-
-                      {/* Key Metrics */}
-                      <div className="flex flex-wrap gap-3">
-                        {Object.entries(project.metrics).map(([key, value]) => (
-                          <div
-                            key={key}
-                            className="flex items-center gap-1 text-xs bg-card border border-border px-3 py-1 rounded-full"
-                          >
-                            <TrendingUp className="w-3 h-3 text-primary" />
-                            <span className="font-semibold text-primary">{value}</span>
-                            <span className="text-muted-foreground">{key}</span>
+                      {/* Metrics with Icons */}
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                        {Object.entries(project.metrics).slice(0, 2).map(([key, value]) => (
+                          <div key={key} className="flex items-center gap-2">
+                            {key.includes('user') && <Users className="w-4 h-4 text-primary" />}
+                            {(key.includes('uptime') || key.includes('rating')) && <TrendingUp className="w-4 h-4 text-primary" />}
+                            {!key.includes('user') && !key.includes('uptime') && !key.includes('rating') && (
+                              <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${colors.bg}`} />
+                            )}
+                            <span className="font-medium text-foreground">{value}</span>
+                            <span className="text-xs">• {key}</span>
                           </div>
                         ))}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
 
-        {/* No Results */}
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20"
-          >
-            <p className="text-muted-foreground text-lg">No projects found in this category.</p>
-          </motion.div>
-        )}
+                      {/* Action Buttons - Bottom Right inside card (Outlined, no background) */}
+                      <div className="mt-auto flex justify-end gap-3">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                            title="View on GitHub"
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                        )}
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                            title="View Live"
+                          >
+                            <ExternalLink className="w-5 h-5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Radial Glow on Hover */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+                      style={{
+                        background: 'radial-gradient(circle at center, rgba(225, 29, 72, 0.1) 0%, transparent 70%)'
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
+        </div>
       </div>
+
+      {/* Custom CSS for hover effect on image */}
+      <style jsx>{`
+        .group:hover .project-image-desaturated {
+          filter: saturate(0.9) brightness(1) !important;
+        }
+        .group:hover .z-\\[5\\] {
+          opacity: 0.3 !important;
+        }
+      `}</style>
     </section>
   )
 }

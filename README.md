@@ -69,6 +69,35 @@ A production-ready, high-performance portfolio template featuring:
 - 🌙 **Glass Morphism** - Modern UI effects with backdrop blur
 - 🎨 **3D Holographic Card** - Interactive profile card with tilt effects
 - 🎪 **Curved Text Marquee** - Infinite scrolling text animation
+- 🖼️ **Vignette Effect** - Elliptical image vignette with soft feather
+- 🎨 **Smart Desaturation** - Images desaturate to 30%, restore to 90% on hover
+- 🏷️ **Category-Colored Badges** - Dynamic color-coded tech stack badges
+- ⚡ **Smooth Ease-In Transitions** - Professional hover animations (0.7s ease-in)
+
+### 🎨 Design System & Z-Index Architecture
+
+**Layer Structure (Critical for all pages):**
+```
+z-10+  → Content Layer (All pages MUST use this)
+z-2    → Blur Layer (12px backdrop-filter)
+z-1    → DarkVeil Effect (Gold gradient overlay)
+z-0    → DarkNavy Base (#0a122c)
+```
+
+**⚠️ CRITICAL RULE:**
+- **Every new page MUST have `z-index: 10+` on its main container**
+- This ensures content appears above the global blur layer
+- Example: `<div className="relative" style={{ zIndex: 10 }}>`
+
+**Global Styles (`app/globals.css`):**
+- **AnimatedBackground Component** handles layers 0-2 automatically
+- Blur layer is applied globally via `AnimatedBackground` in `layout.tsx`
+- Content must always be positioned above z-index: 2
+
+**Why this matters:**
+- Prevents blur layer from affecting page content
+- Maintains consistent visual hierarchy across all pages
+- Avoids z-index conflicts and rendering issues
 
 ---
 
