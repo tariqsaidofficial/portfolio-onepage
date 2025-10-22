@@ -1,118 +1,60 @@
-# 🔐 GitHub Token Setup Guide
+# 🔐 GitHub Release Integration Guide
 
-هذا الدليل يشرح كيفية إعداد GitHub Token للحصول على آخر إصدار APK تلقائياً من مستودع NFC Manager.
+هذا الدليل يشرح كيفية عمل نظام جلب آخر إصدار APK تلقائياً من مستودع NFC Manager.
 
 ## 📋 المتطلبات
 
 - **Repository:** `tariqsaidofficial/nfcManager`
-- **API Endpoint:** `/api/github-release?repo=tariqsaidofficial/nfcManager`
-- **Environment Variable:** `GITHUB_TOKEN`
+- **API:** GitHub REST API (يُستدعى مباشرة من المتصفح)
+- **Rate Limit:** 60 طلب/ساعة للمستخدم الواحد
 
 ---
 
-## 🔑 الحقول المطلوبة
+## 🔑 كيف يعمل النظام؟
 
-### 1. **GITHUB_TOKEN** (اختياري لكن موصى به)
+النظام يستخدم **Client-Side API Call** مباشرة إلى GitHub:
 
-| الحقل | القيمة | الوصف |
-|------|--------|-------|
-| **اسم المتغير** | `GITHUB_TOKEN` | متغير البيئة في Cloudflare Pages |
-| **النوع** | Personal Access Token (Classic) | توكن GitHub |
-| **الصلاحيات المطلوبة** | `public_repo` أو `repo` | للوصول إلى Releases |
-| **Rate Limit بدون Token** | 60 طلب/ساعة | محدود جداً |
-| **Rate Limit مع Token** | 5,000 طلب/ساعة | كافي للإنتاج |
-
----
-
-## 📝 الخطوات التفصيلية
-
-### الخطوة 1️⃣: إنشاء GitHub Personal Access Token
-
-1. **اذهب إلى GitHub Settings:**
-   ```
-   https://github.com/settings/tokens
-   ```
-
-2. **اضغط على "Generate new token" → "Generate new token (classic)"**
-
-3. **املأ البيانات:**
-   - **Note:** `Portfolio NFC Manager API`
-   - **Expiration:** `No expiration` (أو حسب رغبتك)
-   - **Select scopes:**
-     - ✅ `public_repo` (للمستودعات العامة فقط)
-     - أو ✅ `repo` (إذا كان المستودع خاص)
-
-4. **اضغط "Generate token"**
-
-5. **انسخ التوكن فوراً** (لن تستطيع رؤيته مرة أخرى!)
-   ```
-   ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   ```
-
----
-
-### الخطوة 2️⃣: إضافة Token في Cloudflare Pages
-
-#### طريقة 1: من Dashboard
-
-1. **اذهب إلى Cloudflare Dashboard:**
-   ```
-   https://dash.cloudflare.com/
-   ```
-
-2. **اختر "Workers & Pages" → اختر مشروعك**
-
-3. **اذهب إلى "Settings" → "Environment variables"**
-
-4. **اضغط "Add variable":**
-   - **Variable name:** `GITHUB_TOKEN`
-   - **Value:** الصق التوكن الذي نسخته
-   - **Environment:** اختر `Production` و `Preview`
-
-5. **اضغط "Save"**
-
-6. **أعد نشر الموقع** (Redeploy) لتطبيق التغييرات
-
-#### طريقة 2: من Wrangler CLI
-
-```bash
-# تسجيل الدخول
-npx wrangler login
-
-# إضافة المتغير
-npx wrangler pages secret put GITHUB_TOKEN
-# ثم الصق التوكن عند الطلب
-
-# التحقق
-npx wrangler pages secret list
+```typescript
+// في components/projects.tsx
+fetch('https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest')
 ```
 
+### ✅ المزايا:
+- لا يحتاج API route في Next.js
+- يعمل مع Static Export (Cloudflare Pages)
+- لا يحتاج Environment Variables
+- تحديث تلقائي عند كل زيارة
+
+### ⚠️ القيود:
+- **Rate Limit:** 60 طلب/ساعة لكل IP
+- يكفي للاستخدام العادي (الزوار المختلفون لهم rate limits منفصلة)
+
 ---
 
-### الخطوة 3️⃣: إضافة Token محلياً (للتطوير)
+## 📝 إنشاء Release في GitHub
 
-1. **أنشئ ملف `.env.local` في جذر المشروع:**
-   ```bash
-   touch .env.local
+### الخطوة الوحيدة المطلوبة
+
+1. **اذهب إلى مستودع NFC Manager:**
+
+   ```text
+   https://github.com/tariqsaidofficial/nfcManager/releases
    ```
 
-2. **أضف التوكن:**
-   ```env
-   GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   ```
+2. **اضغط "Create a new release"**
 
-3. **تأكد أن `.env.local` موجود في `.gitignore`:**
-   ```bash
-   # في ملف .gitignore
-   .env*.local
-   ```
+3. **املأ البيانات:**
+   - **Tag:** `v1.0.0` (أو أي رقم إصدار)
+   - **Title:** `NFC Manager v1.0.0`
+   - **Description:** وصف التحديثات
 
-4. **أعد تشغيل السيرفر:**
-   ```bash
-   npm run dev
-   # أو
-   pnpm dev
-   ```
+4. **ارفع ملف APK:**
+   - اسحب ملف `.apk` إلى منطقة الـ Assets
+   - أو اضغط "Attach binaries" واختر الملف
+
+5. **اضغط "Publish release"**
+
+✅ **انتهى!** الموقع سيجلب آخر إصدار تلقائياً
 
 ---
 

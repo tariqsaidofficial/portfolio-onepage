@@ -22,14 +22,31 @@ export function Projects() {
       for (const project of projectsWithApk) {
         try {
           const repoPath = project.github!.replace('https://github.com/', '')
-          const response = await fetch(`/api/github-release?repo=${repoPath}`)
+          
+          // Call GitHub API directly from client
+          const response = await fetch(
+            `https://api.github.com/repos/${repoPath}/releases/latest`,
+            {
+              headers: {
+                'Accept': 'application/vnd.github.v3+json',
+              },
+            }
+          )
           
           if (response.ok) {
-            const data = await response.json()
-            setApkUrls(prev => ({
-              ...prev,
-              [project.id]: data.apk.url
-            }))
+            const release = await response.json()
+            
+            // Find APK file in assets
+            const apkAsset = release.assets?.find((asset: any) => 
+              asset.name.toLowerCase().endsWith('.apk')
+            )
+            
+            if (apkAsset) {
+              setApkUrls(prev => ({
+                ...prev,
+                [project.id]: apkAsset.browser_download_url
+              }))
+            }
           }
         } catch (error) {
           console.error(`Failed to fetch APK for ${project.name}:`, error)
