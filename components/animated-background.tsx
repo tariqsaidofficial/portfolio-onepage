@@ -54,16 +54,8 @@ export function AnimatedBackground() {
         />
       </div>
 
-      {/* Layer 2: Blur Layer - Sits BELOW content (z-index: 2) */}
-      {/* Content must have z-index: 10+ to appear above this layer */}
-      <div 
-        className="fixed inset-0 pointer-events-none"
-        style={{ 
-          zIndex: 2,
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-        }}
-      />
+      {/* Layer 2: Blur Layer - REMOVED */}
+      {/* Blur removed to prevent blur effect on background */}
     </>
   )
 }

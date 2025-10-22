@@ -17,6 +17,7 @@ export interface Project {
   liveUrl?: string
   apkUrl?: string // For Android APK downloads
   genre?: string // For Schema.org
+  isComingSoon?: boolean // For "Coming Soon" placeholder cards
 }
 
 export const projects: Project[] = [
@@ -106,19 +107,20 @@ export const projects: Project[] = [
     liveUrl: "https://tools.dxbmark.com",
     genre: "Web Application",
   },
-  // AV & Event Management (Demo Project)
+  // AV & Event Management - Coming Soon
   {
     id: 7,
     name: "AV & Event Solutions",
-    description: "Professional audiovisual systems and event management solutions. From corporate conferences to live streaming platforms with cutting-edge technology.",
+    description: "We're currently documenting and adding more audiovisual and event management projects. Stay tuned for updates on conference systems, live streaming setups, and large-scale event productions.",
     category: "AV & Event Management",
-    techStack: ["Dante Audio", "NDI Video", "vMix", "OBS Studio", "Crestron Control", "QSC Audio"],
-    year: "2024",
-    dateCreated: "2024-06-01",
+    techStack: ["Coming Soon"],
+    year: "2025",
+    dateCreated: "2025-01-01",
     role: "AV Systems Engineer",
-    metrics: { events: "50+", attendees: "10K+", uptime: "99.9%" },
+    metrics: { status: "In Progress", eta: "Q1 2025" },
     image: "/placeholder.svg",
     genre: "Event Technology",
+    isComingSoon: true,
   },
   // IT Infrastructure (Demo Project)
   {
@@ -147,6 +149,21 @@ export const projects: Project[] = [
     metrics: { projects: "100+", clients: "50+", resolution: "4K/8K" },
     image: "/placeholder.svg",
     genre: "Video Production",
+  },
+  // Coming Soon - Media Production
+  {
+    id: 10,
+    name: "Media Production Projects",
+    description: "We're actively adding more media production projects including documentaries, corporate videos, and post-production work. Check back soon for detailed case studies and showreels.",
+    category: "Media Production",
+    techStack: ["Coming Soon"],
+    year: "2025",
+    dateCreated: "2025-01-01",
+    role: "Video Producer & Editor",
+    metrics: { status: "In Progress", eta: "Q1 2025" },
+    image: "/placeholder.svg",
+    genre: "Video Production",
+    isComingSoon: true,
   },
 ]
 

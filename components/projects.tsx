@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, Github, Play, TrendingUp, Users } from "lucide-react"
+import { ExternalLink, Github, Play, TrendingUp, Users, Clock, Package } from "lucide-react"
 import Image from "next/image"
 import { projects, categories } from "@/data/projects"
 
@@ -14,47 +14,49 @@ export function Projects() {
     (project) => activeFilter === "all" || project.category === activeFilter
   )
 
-  // Fetch APK URLs for projects with dynamic APK links
+  // Fetch APK URLs for projects with dynamic APK links (lazy load)
   useEffect(() => {
-    const fetchApkUrls = async () => {
-      const projectsWithApk = projects.filter(p => p.apkUrl === "dynamic" && p.github)
-      
-      for (const project of projectsWithApk) {
-        try {
-          const repoPath = project.github!.replace('https://github.com/', '')
-          
-          // Call GitHub API directly from client
-          const response = await fetch(
-            `https://api.github.com/repos/${repoPath}/releases/latest`,
-            {
-              headers: {
-                'Accept': 'application/vnd.github.v3+json',
-              },
-            }
-          )
-          
-          if (response.ok) {
-            const release = await response.json()
+    // Delay API calls to not block initial render
+    const timer = setTimeout(() => {
+      const fetchApkUrls = async () => {
+        const projectsWithApk = projects.filter(p => p.apkUrl === "dynamic" && p.github)
+        
+        for (const project of projectsWithApk) {
+          try {
+            const repoPath = project.github!.replace('https://github.com/', '')
             
-            // Find APK file in assets
-            const apkAsset = release.assets?.find((asset: any) => 
-              asset.name.toLowerCase().endsWith('.apk')
+            const response = await fetch(
+              `https://api.github.com/repos/${repoPath}/releases/latest`,
+              {
+                headers: {
+                  'Accept': 'application/vnd.github.v3+json',
+                },
+              }
             )
             
-            if (apkAsset) {
-              setApkUrls(prev => ({
-                ...prev,
-                [project.id]: apkAsset.browser_download_url
-              }))
+            if (response.ok) {
+              const release = await response.json()
+              const apkAsset = release.assets?.find((asset: any) => 
+                asset.name.toLowerCase().endsWith('.apk')
+              )
+              
+              if (apkAsset) {
+                setApkUrls(prev => ({
+                  ...prev,
+                  [project.id]: apkAsset.browser_download_url
+                }))
+              }
             }
+          } catch (error) {
+            console.error(`Failed to fetch APK for ${project.name}:`, error)
           }
-        } catch (error) {
-          console.error(`Failed to fetch APK for ${project.name}:`, error)
         }
       }
-    }
 
-    fetchApkUrls()
+      fetchApkUrls()
+    }, 1000) // Wait 1 second after page load
+
+    return () => clearTimeout(timer)
   }, [])
 
   // Android Icon Component
@@ -154,20 +156,17 @@ export function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => {
-              const colors = getCategoryColor(project.category)
-              
-              return (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="group cursor-pointer"
-                >
+          {filteredProjects.map((project, index) => {
+            const colors = getCategoryColor(project.category)
+            
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="group cursor-pointer"
+              >
                   <div 
                     className="relative h-full rounded-2xl border border-border/50 overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col"
                     style={{
@@ -187,13 +186,26 @@ export function Projects() {
                       {/* Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                       
-                      {/* Project Image with Vignette + Desaturation */}
-                      <Image
-                        src={project.image}
-                        alt={project.name}
-                        fill
-                        className="object-cover project-image-desaturated"
-                      />
+                      {/* Project Image with Vignette + Desaturation OR Skeleton */}
+                      {project.isComingSoon ? (
+                        // Skeleton loader for image
+                        <div className="absolute inset-0 bg-gradient-to-br from-muted/40 via-muted/20 to-muted/40 animate-pulse">
+                          <div className="absolute inset-0 flex items-center justify-center z-20">
+                            <div className="text-center space-y-3">
+                              <Package className="w-12 h-12 mx-auto text-muted-foreground/30" />
+                              <div className="h-3 w-32 bg-muted/40 rounded-full mx-auto" />
+                              <div className="h-2 w-24 bg-muted/30 rounded-full mx-auto" />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt={project.name}
+                          fill
+                          className="object-cover project-image-desaturated"
+                        />
+                      )}
                       
                       {/* Vignette Effect - Reduces on hover (not hidden) */}
                       <div 
@@ -241,29 +253,57 @@ export function Projects() {
                     {/* Content Section */}
                     <div className="relative p-6 z-10 flex flex-col flex-grow">
                       {/* Title */}
-                      <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                      <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${
+                        project.isComingSoon 
+                          ? 'text-muted-foreground' 
+                          : 'text-foreground group-hover:text-primary'
+                      }`}>
                         {project.name}
                       </h3>
 
                       {/* Description - Fixed 2 lines */}
-                      <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-2 min-h-[3rem]">
+                      <p className={`mb-4 leading-relaxed line-clamp-2 min-h-[3rem] ${
+                        project.isComingSoon ? 'text-muted-foreground/70 italic' : 'text-muted-foreground'
+                      }`}>
                         {truncateDescription(project.description, 100)}
                       </p>
+                      
+                      {/* Coming Soon Badge - Below Description */}
+                      {project.isComingSoon && (
+                        <div className="mb-4">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-200">
+                            <Clock className="w-3.5 h-3.5" />
+                            Coming Soon
+                          </span>
+                        </div>
+                      )}
 
-                      {/* Tech Stack - Max 2 rows */}
+                      {/* Tech Stack - Max 2 rows OR Skeleton Loader */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.techStack.slice(0, 6).map((tech, i) => (
-                          <span
-                            key={i}
-                            className={`px-3 py-1 text-xs rounded-full border ${colors.badge} transition-all duration-300`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.techStack.length > 6 && (
-                          <span className="px-3 py-1 text-xs bg-muted/50 text-muted-foreground rounded-full border border-border/50">
-                            +{project.techStack.length - 6}
-                          </span>
+                        {project.isComingSoon ? (
+                          // Skeleton loader for coming soon projects
+                          <>
+                            <div className="h-6 w-20 bg-muted/30 rounded-full animate-pulse" />
+                            <div className="h-6 w-24 bg-muted/30 rounded-full animate-pulse" />
+                            <div className="h-6 w-16 bg-muted/30 rounded-full animate-pulse" />
+                            <div className="h-6 w-28 bg-muted/30 rounded-full animate-pulse" />
+                          </>
+                        ) : (
+                          <>
+                            {project.techStack.slice(0, 6).map((tech, i) => (
+                              <span
+                                key={i}
+                                className={`px-3 py-1 text-xs rounded-full border ${colors.badge} transition-all duration-300`}
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                            {project.techStack.length > 6 && (
+                              <span className="px-3 py-1 text-xs bg-muted/50 text-muted-foreground rounded-full border border-border/50">
+                                +{project.techStack.length - 6}
+                              </span>
+                            )}
+                          </>
                         )}
                       </div>
 
@@ -334,7 +374,6 @@ export function Projects() {
                 </motion.div>
               )
             })}
-          </AnimatePresence>
         </div>
       </div>
 

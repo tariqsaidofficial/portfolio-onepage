@@ -43,6 +43,19 @@ export function About() {
               digital platforms or managing AV systems for major events, my goal is one: to deliver exceptional digital
               experiences that inspire audiences and meet client needs.
             </p>
+
+            {/* Expertise Badges */}
+            <div className="flex flex-wrap gap-2 pt-4 items-center">
+              <span className="text-sm text-primary/90">Certification 1</span>
+              <span className="text-xs text-muted-foreground">•</span>
+              <span className="text-sm text-primary/90">Certification 2</span>
+              <span className="text-xs text-muted-foreground">•</span>
+              <span className="text-sm text-primary/90">Certification 3</span>
+              <span className="text-xs text-muted-foreground">•</span>
+              <span className="text-sm text-primary/90">Certification 4</span>
+              <span className="text-xs text-muted-foreground">•</span>
+              <span className="text-sm text-primary/90">Certification 5</span>
+            </div>
           </div>
 
           <div className="flex justify-center items-center">
