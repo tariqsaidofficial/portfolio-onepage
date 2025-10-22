@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, Play, TrendingUp, Users } from "lucide-react"
 import Image from "next/image"
@@ -8,9 +8,48 @@ import { projects, categories } from "@/data/projects"
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState("all")
+  const [apkUrls, setApkUrls] = useState<Record<number, string>>({})
 
   const filteredProjects = projects.filter(
     (project) => activeFilter === "all" || project.category === activeFilter
+  )
+
+  // Fetch APK URLs for projects with dynamic APK links
+  useEffect(() => {
+    const fetchApkUrls = async () => {
+      const projectsWithApk = projects.filter(p => p.apkUrl === "dynamic" && p.github)
+      
+      for (const project of projectsWithApk) {
+        try {
+          const repoPath = project.github!.replace('https://github.com/', '')
+          const response = await fetch(`/api/github-release?repo=${repoPath}`)
+          
+          if (response.ok) {
+            const data = await response.json()
+            setApkUrls(prev => ({
+              ...prev,
+              [project.id]: data.apk.url
+            }))
+          }
+        } catch (error) {
+          console.error(`Failed to fetch APK for ${project.name}:`, error)
+        }
+      }
+    }
+
+    fetchApkUrls()
+  }, [])
+
+  // Android Icon Component
+  const AndroidIcon = ({ className }: { className?: string }) => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.81 10.81 0 0 0 1 18h22a10.81 10.81 0 0 0-5.4-8.52M7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5m10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5" />
+    </svg>
   )
 
   // Get category color based on type
@@ -228,6 +267,18 @@ export function Projects() {
 
                       {/* Action Buttons - Bottom Right inside card (Outlined, no background) */}
                       <div className="mt-auto flex justify-end gap-3">
+                        {(project.apkUrl || apkUrls[project.id]) && (
+                          <a
+                            href={project.apkUrl === "dynamic" ? apkUrls[project.id] : project.apkUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-muted-foreground hover:text-green-500 transition-colors duration-300"
+                            title="Download APK (Latest Version)"
+                          >
+                            <AndroidIcon className="w-5 h-5" />
+                          </a>
+                        )}
                         {project.github && (
                           <a
                             href={project.github}

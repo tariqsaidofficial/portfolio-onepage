@@ -15,6 +15,7 @@ export interface Project {
   video?: string
   github?: string
   liveUrl?: string
+  apkUrl?: string // For Android APK downloads
   genre?: string // For Schema.org
 }
 
@@ -32,6 +33,7 @@ export const projects: Project[] = [
     image: "/projects/nfc-manager.webp",
     video: "/projects/nfcManager_PhoneGrid.mp4",
     github: "https://github.com/tariqsaidofficial/nfcManager",
+    apkUrl: "dynamic", // Will be fetched from GitHub releases API
     genre: "Mobile Application",
   },
   {

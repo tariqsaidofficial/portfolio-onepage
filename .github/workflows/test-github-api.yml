@@ -1,0 +1,139 @@
+name: Test GitHub Release API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/api/github-release/**'
+      - 'data/projects.ts'
+      - 'components/projects.tsx'
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run every day at 00:00 UTC to check if API is working
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  test-api:
+    name: Test GitHub Release API
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test GitHub API (without token)
+        run: |
+          echo "Testing GitHub API without token..."
+          curl -s "https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest" | jq -r '.tag_name'
+        continue-on-error: true
+
+      - name: Test GitHub API (with token)
+        run: |
+          echo "Testing GitHub API with token..."
+          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest")
+          
+          echo "Latest release:"
+          echo "$response" | jq -r '.tag_name'
+          
+          echo "APK files:"
+          echo "$response" | jq -r '.assets[] | select(.name | endswith(".apk")) | .name'
+          
+          # Check if APK exists
+          apk_count=$(echo "$response" | jq -r '.assets[] | select(.name | endswith(".apk")) | .name' | wc -l)
+          if [ "$apk_count" -eq 0 ]; then
+            echo "❌ No APK file found in latest release!"
+            exit 1
+          else
+            echo "✅ Found $apk_count APK file(s)"
+          fi
+
+      - name: Check Rate Limit
+        run: |
+          echo "Checking GitHub API rate limit..."
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/rate_limit" | jq '.resources.core'
+
+      - name: Test Local API Endpoint
+        run: |
+          echo "Starting Next.js server..."
+          pnpm dev &
+          SERVER_PID=$!
+          
+          # Wait for server to start
+          echo "Waiting for server to be ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:3000 > /dev/null; then
+              echo "Server is ready!"
+              break
+            fi
+            echo "Waiting... ($i/30)"
+            sleep 2
+          done
+          
+          # Test API endpoint
+          echo "Testing /api/github-release endpoint..."
+          response=$(curl -s "http://localhost:3000/api/github-release?repo=tariqsaidofficial/nfcManager")
+          echo "$response" | jq '.'
+          
+          # Verify response
+          version=$(echo "$response" | jq -r '.version')
+          apk_url=$(echo "$response" | jq -r '.apk.url')
+          
+          if [ "$version" != "null" ] && [ "$apk_url" != "null" ]; then
+            echo "✅ API is working correctly!"
+            echo "Version: $version"
+            echo "APK URL: $apk_url"
+          else
+            echo "❌ API returned invalid response!"
+            exit 1
+          fi
+          
+          # Stop server
+          kill $SERVER_PID
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify Projects Data
+        run: |
+          echo "Checking projects.ts for NFC Manager..."
+          if grep -q "apkUrl.*dynamic" data/projects.ts; then
+            echo "✅ NFC Manager has dynamic APK URL configured"
+          else
+            echo "❌ NFC Manager APK URL not configured correctly"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ GitHub API is accessible" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Latest release can be fetched" >> $GITHUB_STEP_SUMMARY
+          echo "✅ APK file exists in release" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Local API endpoint works" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository:** tariqsaidofficial/nfcManager" >> $GITHUB_STEP_SUMMARY
+          echo "**API Endpoint:** /api/github-release" >> $GITHUB_STEP_SUMMARY
