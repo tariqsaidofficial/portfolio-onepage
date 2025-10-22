@@ -419,7 +419,40 @@ export default {
 
 ---
 
-## 📦 Latest Updates (Version 6.0)
+## 📦 Latest Updates (Version 6.1)
+
+### 🎯 Version 6.1 - Major UI/UX & Infrastructure Update (2025-10-22)
+
+#### **🚀 Performance & Infrastructure**
+- ✅ Simplified GitHub Actions workflow
+- ✅ Migrated to client-side GitHub API calls
+- ✅ Optimized Cloudflare deployment
+- ✅ Fixed Next.js 15.2.4 static export build error
+
+#### **🎨 UI/UX Improvements**
+- ✅ Redesigned Projects section with modern layout
+- ✅ Enhanced animations and transitions
+- ✅ Improved error pages
+- ✅ Updated Header and Hero section with better spacing
+- ✅ Changed "Resume" text to English for consistency
+
+#### **🔒 Security & Compliance**
+- ✅ Added Google Consent Mode v2 for GDPR compliance
+- ✅ Implemented Cloudflare Turnstile for form security
+- ✅ Updated Privacy Policy with comprehensive details
+- ✅ Added Privacy Policy checkbox to contact form
+
+#### **📱 New Features**
+- ✅ Dynamic Android APK download via GitHub API
+- ✅ Smart Contact Form with Engagement Layer
+- ✅ Wikidata and Wikimedia Commons integration
+- ✅ Google Tag Manager (GTM-58VTPGXL) integration
+
+#### **⚙️ Technical Updates**
+- ✅ Added JSON-LD structured data for Google Knowledge Panel
+- ✅ Updated robots.txt according to Google Search Central guidelines
+- ✅ Optimized image loading and performance
+- ✅ Improved form validation and error handling
 
 ### 🎯 Version 6.0 - Skills & Performance Overhaul (2025-01-19)
 
