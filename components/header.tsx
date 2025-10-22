@@ -81,7 +81,7 @@ export function Header() {
             >
               <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-primary/50 transition-all duration-200 relative z-10">
                 <Download className="w-4 h-4 mr-2" />
-                Download Résumé
+                Download Resume
               </Button>
             </Link>
           </nav>
@@ -124,7 +124,7 @@ export function Header() {
             >
               <Button size="sm" className="bg-primary hover:bg-primary/90 w-full shadow-lg hover:shadow-primary/50 transition-all duration-200 relative z-10">
                 <Download className="w-4 h-4 mr-2" />
-                Download Résumé
+                Download Resume
               </Button>
             </Link>
           </nav>
