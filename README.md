@@ -510,12 +510,12 @@ export default {
 <!--AUTO-README:START-->
 ### 🔴 Live
 - **Production:** https://portfolio-1yp.pages.dev/
-- **Last update:** 2025-10-21T01:09:49.008Z
+- **Last update:** 2025-10-23T01:08:49.184Z
 
 ### 📊 Repo stats
 - **Stars:** 1
 - **Forks:** 0
-- **Last commit:** `6b2b4e1` — Fix: Replace subcategory with projectType validation in contact form API (2025-10-20T21:43:19+04:00)
+- **Last commit:** `00e3abe` — docs: update README with version 6.1 changes and improvements (2025-10-22T23:19:09+04:00)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/tariqsaidofficial/portfolio-onepage?style=flat)&nbsp;![GitHub forks](https://img.shields.io/github/forks/tariqsaidofficial/portfolio-onepage?style=flat)
 <!--AUTO-README:END-->
