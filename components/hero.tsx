@@ -3,7 +3,24 @@ import { ArrowRight, Download } from "lucide-react"
 import Link from "next/link"
 import { CurvedLoop } from "@/components/curved-loop"
 import { RotatingText } from "@/components/rotating-text"
+import { CalendlyButton } from "@/components/calendly-button"
 
+/**
+ * Hero Component - Landing section with animated text and 3D robot
+ * 
+ * Features:
+ * - Rotating text animation showcasing expertise
+ * - Interactive 3D Spline robot
+ * - Curved text loop decoration
+ * - Statistics display
+ * - CTA buttons for hiring and resume download
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <Hero />
+ * ```
+ */
 export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 pt-20 relative">
@@ -71,12 +88,11 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
-              <a href="#contact" aria-label="Navigate to contact section">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
-                  Hire Me
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </a>
+              <CalendlyButton
+                text="Hire Me - Book Meeting"
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-lg px-8"
+              />
               <Link href="/TariqResume-Oct2025-final.pdf" download prefetch={false}>
                 <Button size="lg" variant="outline" className="text-lg px-8 glass bg-transparent">
                   <Download className="w-5 h-5 mr-2" />

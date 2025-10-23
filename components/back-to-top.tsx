@@ -1,6 +1,7 @@
 "use client"
 
-import { motion, useScroll, useSpring } from "framer-motion"
+import { motion } from "framer-motion"
+import { useScroll, useSpring } from "framer-motion"
 import { ArrowUp } from "lucide-react"
 import { useEffect, useState } from "react"
 

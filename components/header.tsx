@@ -1,12 +1,28 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Download } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useToast } from "@/components/ui/use-toast"
+import { useState, useEffect } from 'react'
+import ThemeToggle from '@/components/theme-toggle'
 
+/**
+ * Header Component - Main navigation bar with responsive design
+ * 
+ * Features:
+{{ ... }}
+ * - Responsive mobile menu
+ * - Resume download with toast notification
+ * - Smooth navigation to sections
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <Header />
+ * ```
+ */
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -84,6 +100,8 @@ export function Header() {
                 Download Resume
               </Button>
             </Link>
+
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -114,6 +132,10 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+
+            <div className="flex items-center justify-center py-2">
+              <ThemeToggle />
+            </div>
 
             <Link
               href="/TariqResume-Oct2025-final.pdf"

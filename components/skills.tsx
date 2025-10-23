@@ -38,6 +38,7 @@ export function Skills() {
       alt: "VMware",
       title: "VMware",
       width: 80,
+      height: 80,
     },
     {
       src: "https://cdn.simpleicons.org/virtualbox/183A61",
@@ -63,12 +64,14 @@ export function Skills() {
       alt: "Synology",
       title: "Synology NAS",
       width: 80,
+      height: 80,
     },
     {
       src: "https://cdn.simpleicons.org/qnap/00A1E0",
       alt: "QNAP",
       title: "QNAP NAS",
       width: 80,
+      height: 80,
     },
     
     // Networking
@@ -114,11 +117,14 @@ export function Skills() {
       alt: "Certbot",
       title: "Certbot",
       width: 80,
+      height: 80,
     },
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Bitwarden_logo.svg",
       alt: "Bitwarden",
       title: "Bitwarden",
+      width: 80,
+      height: 80,
     },
     {
       src: "https://i0.wp.com/ldap.com/wp-content/uploads/2018/04/ldapdotcom-transparent-background-without-text-768x768.png",
@@ -237,11 +243,15 @@ export function Skills() {
       src: "https://cdn.worldvectorlogo.com/logos/devops-2.svg",
       alt: "DevOps",
       title: "DevOps",
+      width: 80,
+      height: 80,
     },
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg",
       alt: "Git",
       title: "Git",
+      width: 80,
+      height: 80,
     },
     {
       src: "https://cdn.simpleicons.org/github/FFFFFF",

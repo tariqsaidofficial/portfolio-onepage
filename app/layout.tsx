@@ -6,6 +6,8 @@ import "./globals.css"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
 import { BackToTop } from "@/components/back-to-top"
 import { AnimatedBackground } from "@/components/animated-background"
+import { ShareButton } from "@/components/share-button"
+import { Toaster } from "sonner"
 import { projects } from "@/data/projects"
 
 const poppins = Poppins({
@@ -158,7 +160,7 @@ export default function RootLayout({
         <meta name="copyright" content="© 2025 Tariq Said" />
         <meta name="application-name" content="Tariq Said Portfolio" />
         
-        {/* Structured Data - ProfilePage (Better for Rich Results) */}
+        {/* Structured Data - ProfilePage with Person (Consolidated) */}
         <Script
           id="structured-data-profilepage"
           type="application/ld+json"
@@ -201,50 +203,6 @@ export default function RootLayout({
                 },
                 "email": "mailto:info@dxbmark.com"
               }
-            })
-          }}
-        />
-        
-        {/* Structured Data - Person (Additional) */}
-        <Script
-          id="structured-data-person"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Tariq Said",
-              "url": "https://portfolio.dxbmark.com",
-              "image": "https://portfolio.dxbmark.com/professional-developer-portrait.webp",
-              "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "DXBMark",
-                "url": "https://dxbmark.com"
-              },
-              "description": "Full-stack developer and audio-visual specialist with 15+ years of experience. Specializing in web development, event technology, and AV systems.",
-              "knowsAbout": [
-                "Web Development",
-                "Full-Stack Development",
-                "Audio-Visual Systems",
-                "Event Technology",
-                "React",
-                "Next.js",
-                "Node.js",
-                "IT Infrastructure"
-              ],
-              "sameAs": [
-                "https://github.com/tariqsaidofficial",
-                "https://www.linkedin.com/in/tariqsaidofficial/",
-                "https://www.behance.net/tariqsaidofficial"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "AE",
-                "addressLocality": "Dubai",
-                "addressRegion": "Dubai"
-              },
-              "email": "mailto:info@dxbmark.com"
             })
           }}
         />
@@ -567,6 +525,8 @@ export default function RootLayout({
                 "contentUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Portrait_of_Tariq_Said.jpg",
                 "description": "Official portrait of Tariq Said hosted on Wikimedia Commons",
                 "license": "https://creativecommons.org/licenses/by/4.0/",
+                "acquireLicensePage": "https://creativecommons.org/licenses/by/4.0/",
+                "creditText": "Photo by Tariq Said, licensed under CC BY 4.0",
                 "creator": {
                   "@type": "Person",
                   "name": "Tariq Said"
@@ -643,8 +603,12 @@ export default function RootLayout({
         {children}
         
         {/* Floating Action Buttons */}
+        <ShareButton variant="floating" />
         <FloatingWhatsApp />
         <BackToTop />
+        
+        {/* Toast Notifications */}
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   )

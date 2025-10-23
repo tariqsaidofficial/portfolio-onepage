@@ -244,7 +244,10 @@ export function LogoLoop({
                       height={item.height || logoHeight}
                       alt={item.alt ?? ""}
                       title={item.title}
-                      loading="lazy"
+                      priority
+                      loading="eager"
+                      unoptimized
+                      onLoad={updateDimensions}
                       style={{ 
                         height: `${item.height || logoHeight}px`, 
                         width: "auto"
@@ -263,7 +266,10 @@ export function LogoLoop({
                     height={item.height || logoHeight}
                     alt={item.alt ?? ""}
                     title={item.title}
-                    loading="lazy"
+                    priority
+                    loading="eager"
+                    unoptimized
+                    onLoad={updateDimensions}
                     style={{ 
                       height: `${item.height || logoHeight}px`, 
                       width: "auto"

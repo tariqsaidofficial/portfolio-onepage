@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, MessageSquare, Github, Linkedin, Globe, Image } from "lucide-react"
+import { Mail, MessageSquare, Github, Linkedin, Globe, Image, Share2 } from "lucide-react"
 import { SmartContactForm } from "@/components/smart-contact-form"
+import { CalendlyButton } from "@/components/calendly-button"
+import { ShareButton } from "@/components/share-button"
 
 export function SmartContact() {
   return (
@@ -11,9 +13,18 @@ export function SmartContact() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             Have a project in mind or just want to say hello? I'd love to hear from you!
           </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <CalendlyButton
+              text="Schedule a Meeting"
+              variant="default"
+              size="lg"
+              className="bg-primary hover:bg-primary/90"
+            />
+            <p className="text-sm text-muted-foreground self-center">or fill out the form below</p>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -64,7 +75,7 @@ export function SmartContact() {
                 <CardTitle className="text-primary">Connect</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-4">
+                <div className="flex gap-4 mb-4">
                   <a
                     href="https://github.com/tariqsaidofficial"
                     target="_blank"
@@ -104,6 +115,18 @@ export function SmartContact() {
                     </svg>
                   </a>
                 </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-border">
+              <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                  <Share2 className="w-5 h-5" />
+                  Share Portfolio
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ShareButton variant="inline" />
               </CardContent>
             </Card>
 

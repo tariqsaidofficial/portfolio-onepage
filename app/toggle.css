@@ -1,0 +1,734 @@
+/* Variables */
+:root {
+  --toggle-step: 0.5s;
+  --toggle-ease: linear(
+    0 0%,
+    0.2342 12.49%,
+    0.4374 24.99%,
+    0.6093 37.49%,
+    0.6835 43.74%,
+    0.7499 49.99%,
+    0.8086 56.25%,
+    0.8593 62.5%,
+    0.9023 68.75%,
+    0.9375 75%,
+    0.9648 81.25%,
+    0.9844 87.5%,
+    0.9961 93.75%,
+    1 100%
+  );
+  --toggle-offset: calc(var(--toggle-step) * 0.5);
+  --toggle-bg-light: hsl(235 5% 85%);
+  --toggle-bg-dark: hsl(220 27% 6%);
+  --toggle-button-light: hsl(223 4% 73%);
+  --toggle-button-dark: hsl(220 27% 6%);
+  --toggle-glow: hsl(182 90% 92%);
+}
+
+/* Button Base */
+.theme-toggle {
+  background: transparent;
+  font-size: 10.67px;
+  height: 3em;
+  padding: 0;
+  border-radius: 3em;
+  border: 0;
+  aspect-ratio: 1.8 / 1;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+  transition: filter var(--toggle-step) var(--toggle-ease);
+}
+
+.theme-toggle :is(.toggle-socket, .toggle-face) {
+  position: absolute;
+  border-radius: 3em;
+}
+
+/* Socket */
+.toggle-socket {
+  box-shadow: -0.05em 0.1em 0.2em -0.2em white;
+  background: hsl(0 0% 90%);
+  position: relative;
+  inset: 0;
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.dark .toggle-socket,
+.theme-toggle[aria-pressed="true"] .toggle-socket {
+  background: hsl(0 0% 0%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-socket-shadow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: inherit;
+  box-shadow: 0em 0.075em 0.1em 0em white;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Face */
+.toggle-face {
+  inset: 0.15em;
+  scale: 1;
+  transition-property: scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-face-shadow,
+.toggle-face-shadow::after,
+.toggle-face-shadow::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.toggle-face-shadow::after,
+.toggle-face-shadow::before {
+  content: "";
+}
+
+.toggle-face-shadow::before {
+  background: black;
+  transition-property: opacity, translate, filter, scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-face-shadow::after {
+  background: white;
+  scale: 0.5;
+  opacity: 1;
+  transition-property: opacity, translate, filter, scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Face Plate */
+.toggle-face-plate {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: -0.05em 0.1em 0.2em -0.2em white inset;
+  background: 
+    conic-gradient(from 45deg, #0000, hsl(0 0% 100% / 0.05)),
+    linear-gradient(135deg, hsl(0 0% 95%) 0%, hsl(0 0% 75%) 100%);
+  transition-property: background-color;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.dark .toggle-face-plate,
+.theme-toggle[aria-pressed="true"] .toggle-face-plate {
+  background: conic-gradient(from 45deg, #0000, hsl(0 0% 100% / 0.05)), var(--toggle-button-dark);
+}
+
+/* Face Glowdrop */
+.toggle-face-glowdrop {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  scale: 1;  /* ظاهر في Light mode */
+  transition-property: scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-face-glowdrop::after,
+.toggle-face-glowdrop::before {
+  content: "";
+  height: 50%;
+  aspect-ratio: 1;
+  background: #fff;
+  filter: blur(6px);
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.toggle-face-glowdrop::before {
+  left: 4%;
+  width: 56%;
+  translate: 0 -25%;
+}
+
+.toggle-face-glowdrop::after {
+  bottom: 0;
+  right: 12%;
+  width: 34%;
+  translate: 0 20%;
+}
+
+/* Face Shine */
+.toggle-face-shine {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: 3em;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-face-shine-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  mask: conic-gradient(from 0deg, #fff 90deg, #0000 110deg 200deg, #fff 215deg 280deg, #0000 315deg);
+  box-shadow: 0.075em 0 0.025em -0.025em hsl(0 0% 0% / 0.5) inset, -0.075em -0.05em 0.025em -0.025em hsl(0 0% 0% / 0.5)
+    inset;
+}
+
+.toggle-face-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0.05em;
+  border-radius: 3em;
+  box-shadow: 0 -0.05em 0.025em -0.025em hsl(0 0% 50% / 0.5) inset, -0.025em 0.05em 0.025em -0.025em
+    hsl(0 0% 100% / 0.5) inset;
+}
+
+.toggle-face-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 45deg, #0000, hsl(0 0% 100% / 0.25));
+  border-radius: 3em;
+}
+
+/* Face Glows */
+.toggle-face-glows {
+  position: absolute;
+  inset: -0.075em;
+  opacity: 0;
+  border-radius: inherit;
+  mix-blend-mode: plus-lighter;
+  filter: blur(8px);
+  z-index: 20;
+  mask: conic-gradient(from 280deg, #0000, #fff 20deg 45deg, #0000 95deg),
+    conic-gradient(from 110deg, #0000, #fff 20deg, #0000 95deg);
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-face-glows div {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  filter: blur(4px);
+  border: 0.1em solid white;
+}
+
+/* SVG Styles */
+.toggle-face svg {
+  width: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -52% -48%;
+  overflow: visible !important;
+}
+
+.toggle-face svg path {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.toggle-glow {
+  z-index: 3;
+  filter: drop-shadow(0 0 0.2em var(--toggle-glow));
+  will-change: opacity;
+  opacity: 0;  /* مطفي في Light mode */
+  transition-property: opacity;
+  transition-duration: 1.25s;
+  transition-delay: var(--toggle-offset);
+  transition-timing-function: linear(
+    0 0%,
+    0.0039 6.25%,
+    0.0156 12.5%,
+    0.0352 18.75%,
+    0.0625 25%,
+    0.0977 31.25%,
+    0.1407 37.5%,
+    0.1914 43.74%,
+    0.2499 49.99%,
+    0.3164 56.25%,
+    0.3906 62.5%,
+    0.5625 75%,
+    0.7656 87.5%,
+    1 100%
+  );
+}
+
+.toggle-glow-path {
+  fill: var(--toggle-glow);
+  stroke: var(--toggle-glow);
+  opacity: 1;
+  stroke-width: 0px;
+}
+
+.toggle-trail-holder {
+  z-index: 2;
+}
+
+.toggle-trail-holder .toggle-trail {
+  stroke-width: 2;
+}
+
+.toggle-trail {
+  stroke-dasharray: 10 80;
+  stroke-dashoffset: 10;
+  opacity: 0;
+  transition-property: stroke-dashoffset, opacity;
+  transition-duration: calc(var(--toggle-step) * 3), calc(var(--toggle-step) * 0.5);
+  transition-delay: var(--toggle-offset), calc(var(--toggle-offset) + (var(--toggle-step) * 2.5));
+  transition-timing-function: var(--toggle-ease),
+    linear(
+      0 0%,
+      0.0039 6.25%,
+      0.0156 12.5%,
+      0.0352 18.75%,
+      0.0625 25%,
+      0.0977 31.25%,
+      0.1407 37.5%,
+      0.1914 43.74%,
+      0.2499 49.99%,
+      0.3164 56.25%,
+      0.3906 62.5%,
+      0.5625 75%,
+      0.7656 87.5%,
+      1 100%
+    );
+}
+
+.toggle-main {
+  z-index: 1;
+}
+
+.toggle-outline {
+  transition-property: stroke;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-inner-face {
+  fill: url(#moon-gradient);  /* Gradient للقمر */
+  transition-property: fill;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle-inner-bg {
+  fill: url(#moon-gradient);  /* نفس الـ gradient */
+  transition-property: fill;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Radial Glow Background - DISABLED */
+
+/* Active State */
+.theme-toggle:active .toggle-socket {
+  box-shadow: -0.045em 0.1em 0.2em -0.15em white;
+}
+
+.theme-toggle:active .toggle-face {
+  scale: 0.99;
+}
+
+/* Pressed State (Dark Mode) */
+.theme-toggle[aria-pressed="true"] .toggle-face {
+  scale: 1.12;
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-outline {
+  stroke: hsl(0 0% 30%);
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-inner-face {
+  fill: hsl(180 60% 85%);  /* أزرق فاتح سماوي */
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-inner-bg {
+  fill: hsl(180 50% 75%);  /* أزرق فاتح للخلفية */
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-socket {
+  box-shadow: -0.025em 0.08em 0.2em -0.1em white;
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-glow {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-delay: 0s;
+  transition-timing-function: var(--toggle-ease);
+}
+
+.theme-toggle[aria-pressed="true"] {
+  filter: none;  /* بدون أي glow خارجي */
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-face-glowdrop {
+  scale: 0;  /* مخفي - بدون هالة بيضاء */
+}
+
+
+.theme-toggle[aria-pressed="true"] .toggle-face-shadow::before {
+  translate: -15% 55%;
+  filter: blur(1em);
+  opacity: 0.35;
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-face-shadow::after {
+  filter: blur(0.5em);
+  scale: 1;
+  opacity: 0;  /* ✅ مخفي في Dark mode */
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-socket-shadow,
+.theme-toggle[aria-pressed="true"] .toggle-face-glows,
+.theme-toggle[aria-pressed="true"] .toggle-face-shine {
+  opacity: 0;  /* مخفي - بدون أي glow */
+}
+
+.theme-toggle[aria-pressed="true"] .toggle-trail {
+  transition: stroke-dashoffset 0s;
+  opacity: 1;
+  stroke-dashoffset: -70;
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+  .theme-toggle {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    font-size: 6px;
+  }
+}
+
+/* ========================================
+   Original Class Names Support (without toggle- prefix)
+   ======================================== */
+
+/* Button Base */
+.toggle {
+  background: transparent;
+  font-size: 10.67px;
+  height: 3em;
+  padding: 0;
+  border-radius: 3em;
+  border: 0;
+  aspect-ratio: 1.8 / 1;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+  transition: filter var(--toggle-step) var(--toggle-ease);
+}
+
+.toggle :is(.socket, .face) {
+  position: absolute;
+  border-radius: 3em;
+}
+
+/* Socket */
+.socket {
+  box-shadow: -0.05em 0.1em 0.2em -0.2em white;
+  background: hsl(0 0% 90%);
+  position: relative;
+  inset: 0;
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle[aria-pressed="true"] .socket {
+  background: hsl(0 0% 0%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.socket-shadow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: inherit;
+  box-shadow: 0em 0.075em 0.1em 0em white;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Face */
+.face {
+  inset: 0.15em;
+  scale: 1;
+  transition-property: scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.face-shadow,
+.face-shadow::after,
+.face-shadow::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.face-shadow::after,
+.face-shadow::before {
+  content: "";
+}
+
+.face-shadow::before {
+  background: black;
+  transition-property: opacity, translate, filter, scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+  opacity: 0;
+  translate: 0 0;
+  filter: blur(0);
+  scale: 1;
+}
+
+.face-shadow::after {
+  background: radial-gradient(circle at 50% 50%, transparent 50%, black 100%);
+  filter: blur(0);
+  scale: 0;
+  opacity: 1;
+  transition-property: filter, scale, opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Face Plate */
+.face-plate {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: 
+    conic-gradient(from 45deg, #0000, hsl(0 0% 100% / 0.05)),
+    linear-gradient(135deg, hsl(0 0% 95%) 0%, hsl(0 0% 75%) 100%);
+  transition-property: background;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.toggle[aria-pressed="true"] .face-plate {
+  background: hsl(0 0% 0%);
+}
+
+/* Face Glowdrop */
+.face-glowdrop {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  filter: blur(0.75em);
+  opacity: 1;
+  transition-property: filter, opacity, scale;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.face-glowdrop::after,
+.face-glowdrop::before {
+  content: "";
+  height: 50%;
+  aspect-ratio: 1;
+  position: absolute;
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsl(0 0% 100% / 0.8) 0%,
+    hsl(0 0% 100% / 0) 50%
+  );
+  border-radius: 50%;
+}
+
+.face-glowdrop::before {
+  left: 4%;
+  width: 56%;
+  translate: 0 -25%;
+}
+
+.face-glowdrop::after {
+  bottom: 0;
+  right: 12%;
+  width: 34%;
+  translate: 0 25%;
+}
+
+/* Face Shine */
+.face-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.face-shine-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 -0.5em 1em 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Face Glows */
+.face-glows {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.face-glows > div {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    hsl(0 0% 100% / 0.15) 10%,
+    transparent 20%,
+    transparent 80%,
+    hsl(0 0% 100% / 0.15) 90%,
+    transparent 100%
+  );
+}
+
+/* SVG Elements */
+.main,
+.glow,
+.trail-holder {
+  position: absolute;
+  inset: 0.15em;
+  width: calc(100% - 0.3em);
+  height: calc(100% - 0.3em);
+  pointer-events: none;
+}
+
+.glow {
+  fill: hsl(182 90% 92%);
+  filter: blur(1.5em);
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: var(--toggle-step);
+  transition-delay: var(--toggle-offset);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.trail {
+  stroke: #2CC6FE;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0;
+  transition-property: opacity, stroke-dashoffset;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.outline {
+  fill: hsl(0 0% 10%);
+  stroke: hsl(0 0% 10%);
+  stroke-width: 2;
+  transition-property: fill, stroke;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.inner-face {
+  fill: hsl(0 0% 10%);
+  transition-property: fill;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+.inner-bg {
+  fill: hsl(0 0% 60%);
+  transition-property: fill;
+  transition-duration: var(--toggle-step);
+  transition-timing-function: var(--toggle-ease);
+}
+
+/* Dark Mode (aria-pressed="true") */
+.toggle[aria-pressed="true"] {
+  filter: none;
+}
+
+.toggle[aria-pressed="true"] .glow {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.toggle[aria-pressed="true"] .face-glowdrop {
+  scale: 1;
+  filter: blur(1em);
+  opacity: 1;
+}
+
+.toggle[aria-pressed="true"] .socket-shadow,
+.toggle[aria-pressed="true"] .face-glows,
+.toggle[aria-pressed="true"] .face-shine {
+  opacity: 0;
+}
+
+.toggle[aria-pressed="true"] .face-shadow::before {
+  translate: -15% 55%;
+  filter: blur(1em);
+  opacity: 0.35;
+}
+
+.toggle[aria-pressed="true"] .face-shadow::after {
+  filter: blur(0.5em);
+  scale: 1;
+  opacity: 0;  /* ✅ مخفي في Dark mode */
+}
+
+.toggle[aria-pressed="true"] .trail {
+  opacity: 1;
+  stroke-dashoffset: -70;
+}
+
+.toggle[aria-pressed="true"] .outline {
+  fill: black;
+  stroke: black;
+}
+
+.toggle[aria-pressed="true"] .inner-face {
+  fill: hsl(180 50% 75%);
+}
+
+.toggle[aria-pressed="true"] .inner-bg {
+  fill: hsl(180 50% 75%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toggle {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toggle {
+    font-size: 6px;
+  }
+}

@@ -26,8 +26,8 @@ export function FuzzyText({
   className = "",
 }: FuzzyTextProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationFrameIdRef = useRef<number>()
-  const isCancelledRef = useRef(false)
+  const animationFrameIdRef = useRef<number | undefined>(undefined)
+  const isCancelledRef = useRef<boolean>(false)
   const cleanupRef = useRef<(() => void) | null>(null)
 
   const waitForFont = async (
@@ -246,7 +246,6 @@ export function FuzzyText({
         cleanupRef.current()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, fontSize, fontWeight, fontFamily, color, enableHover, baseIntensity, hoverIntensity])
 
   return <canvas ref={canvasRef} className={className} />
