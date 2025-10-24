@@ -42,7 +42,6 @@ export const metadata: Metadata = {
   },
   keywords: [
     "Full-Stack Developer",
-    "Audio-Visual Specialist",
     "Web Development Dubai",
     "Web Development Egypt",
     "Web Development Saudi Arabia",
@@ -173,7 +172,7 @@ export default function RootLayout({
                 "name": "Tariq Said",
                 "url": "https://portfolio.dxbmark.com",
                 "image": "https://portfolio.dxbmark.com/professional-developer-portrait.webp",
-                "jobTitle": "Full-Stack Developer & Audio-Visual Specialist",
+                "jobTitle": "Full-Stack Developer",
                 "worksFor": {
                   "@type": "Organization",
                   "name": "DXBMark",
@@ -217,7 +216,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "Tariq Said Portfolio",
               "url": "https://portfolio.dxbmark.com",
-              "description": "Professional portfolio of Tariq Said - Full-Stack Developer & Audio-Visual Specialist",
+              "description": "Professional portfolio of Tariq Said - Full-Stack Developer",
               "inLanguage": "en",
               "author": {
                 "@type": "Person",

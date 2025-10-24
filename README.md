@@ -10,6 +10,7 @@
 
 Built with performance in mind • Optimized for Google PageSpeed • Production-ready
 
+[![Version](https://img.shields.io/badge/version-6.2.0-blue?style=for-the-badge)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
 [![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare_Pages-orange?style=for-the-badge&logo=cloudflare)](https://portfolio.dxbmark.com/)
 [![Performance](https://img.shields.io/badge/PageSpeed-90%2B-success?style=for-the-badge&logo=lighthouse)](https://pagespeed.web.dev/)

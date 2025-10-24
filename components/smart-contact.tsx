@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, MessageSquare, Github, Linkedin, Globe, Image, Share2 } from "lucide-react"
+import { Mail, MessageSquare, Github, Linkedin, Share2 } from "lucide-react"
 import { SmartContactForm } from "@/components/smart-contact-form"
 import { CalendlyButton } from "@/components/calendly-button"
 import { ShareButton } from "@/components/share-button"
@@ -130,44 +129,6 @@ export function SmartContact() {
               </CardContent>
             </Card>
 
-            <Card className="glass border-border">
-              <CardHeader>
-                <CardTitle className="text-primary flex items-center gap-2">
-                  <Globe className="w-5 h-5" />
-                  Official Knowledge Base
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3 p-3 glass rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-200 group">
-                  <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <Globe className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Wikidata Entity</p>
-                    <a 
-                      href="https://www.wikidata.org/wiki/Q136538198" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
-                      aria-label="Visit Tariq Said's Wikidata entry"
-                    >
-                      Q136538198
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="glass border-primary/20">
-              <CardContent className="pt-6">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-foreground">Audio-Visual Specialist | Media Technician</span>
-                  <br />
-                  Freelance filmmaker and video editor based in Dubai. Directed major events including the Mediterranean
-                  Minimally Invasive Surgery Congress and Egyptian Congress of Pediatric Pulmonology.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
