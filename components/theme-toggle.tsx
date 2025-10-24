@@ -15,7 +15,12 @@ export default function ThemeToggle() {
   }
 
   return (
-    <button aria-pressed={isPressed} className="theme-toggle" onClick={handleToggle}>
+    <button 
+      aria-pressed={isPressed} 
+      className="theme-toggle" 
+      onClick={handleToggle}
+      title="Coming Soon - Theme switching feature"
+    >
       <div className="toggle-socket">
         <div className="toggle-socket-shadow"></div>
       </div>
