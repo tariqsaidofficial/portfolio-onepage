@@ -56,6 +56,15 @@ const Testimonials = dynamic(
   }
 )
 
+// Off the Grid section
+const OffTheGrid = dynamic(
+  () => import('@/components/off-the-grid').then(mod => ({ default: mod.OffTheGrid })), 
+  {
+    loading: () => <SectionLoadingSkeleton />,
+    ssr: true
+  }
+)
+
 // Contact form - heavy component with Turnstile and validation
 const Contact = dynamic(
   () => import('@/components/smart-contact').then(mod => ({ default: mod.SmartContact })), 
@@ -115,6 +124,7 @@ export default function Home() {
         <Projects />
         <Services />
         <Testimonials />
+        <OffTheGrid />
         <Contact />
         <Footer />
       </main>

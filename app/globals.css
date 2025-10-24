@@ -1228,7 +1228,7 @@ html {
 
 /* Make Github Developer Program badge larger */
 .certification-badge-img[alt="Github Developer Program"] {
-  width: 70px;
+  width: 70p;
   height: 70px;
 }
 
