@@ -464,7 +464,15 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('set', 'developer_id.dY2E1Nz', true);
+              
+              // Primary Analytics Property
               gtag('config', 'G-P6EHS0QWTZ', {
+                'anonymize_ip': true,
+                'cookie_flags': 'SameSite=None;Secure'
+              });
+              
+              // Secondary Analytics Property
+              gtag('config', 'G-SNY82JTB4Z', {
                 'anonymize_ip': true,
                 'cookie_flags': 'SameSite=None;Secure'
               });

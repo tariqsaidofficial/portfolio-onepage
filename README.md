@@ -337,4 +337,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 
 ---
 
-© 2025 [Tariq Said](https://portfolio.dxbmark.com) • [Wikidata](https://www.wikidata.org/wiki/Q136538198) • [LinkedIn](https://www.linkedin.com/in/tariqsaidofficial/) • [GitHub](https://github.com/tariqsaidofficial)
+© 2025 [Tariq Said](https://portfolio.dxbmark.com) • [LinkedIn](https://www.linkedin.com/in/tariqsaidofficial/) • [GitHub](https://github.com/tariqsaidofficial)
