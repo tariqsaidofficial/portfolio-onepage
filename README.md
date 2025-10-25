@@ -298,12 +298,12 @@ For detailed version history and complete changelog, see [CHANGELOG.md](./CHANGE
 <!--AUTO-README:START-->
 ### 🔴 Live
 - **Production:** https://portfolio-1yp.pages.dev/
-- **Last update:** 2025-10-23T01:08:49.184Z
+- **Last update:** 2025-10-25T01:06:42.549Z
 
 ### 📊 Repo stats
 - **Stars:** 1
 - **Forks:** 0
-- **Last commit:** `00e3abe` — docs: update README with version 6.1 changes and improvements (2025-10-22T23:19:09+04:00)
+- **Last commit:** `ea423ee` — feat: Add Off the Grid section with theatrical performance showcase - Add new Off the Grid section between Testimonials and Contact - Create theatrical performance card with detailed modal content - Include Stanislavski methodology and training history (2012-2017) - Add classical Greek tragedy influences with playwright profiles - Integrate mythological figures section - Add Home Automation and Video Games interest cards - Implement glassmorphic modal with backdrop blur - Add circular avatar images for Greek playwrights (Aeschylus, Sophocles, Euripides) - Include portrait images for Stanislavski and Evdokimos Tsolakidis - Create dynamic component with smooth animations - Optimize image scaling and positioning for better presentation (2025-10-24T23:27:02+04:00)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/tariqsaidofficial/portfolio-onepage?style=flat)&nbsp;![GitHub forks](https://img.shields.io/github/forks/tariqsaidofficial/portfolio-onepage?style=flat)
 <!--AUTO-README:END-->
