@@ -96,7 +96,7 @@ export function OffTheGrid() {
   const [selectedInterest, setSelectedInterest] = useState<typeof interests[0] | null>(null)
 
   return (
-    <section id="off-the-grid" className="py-20 relative">
+    <section id="off-the-grid" className="py-12 md:py-20 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -104,24 +104,24 @@ export function OffTheGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Beyond the Code</span>
+          <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 border border-primary/20">
+            <Sparkles className="w-3 md:w-4 h-3 md:h-4 text-primary" />
+            <span className="text-xs md:text-sm font-medium text-primary">Beyond the Code</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground">
             Off the Grid
           </h2>
           
-          <p className="text-xl text-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base lg:text-lg xl:text-xl text-foreground max-w-3xl mx-auto leading-relaxed px-4">
             When I'm not designing or building systems, I'm usually exploring how technology shapes our lives — whether through smart homes that respond to us, or virtual worlds that challenge how we think, play, and connect.
           </p>
         </motion.div>
 
         {/* Interest Cards */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
           {interests.map((interest, index) => {
             const Icon = interest.icon
             return (
@@ -135,35 +135,35 @@ export function OffTheGrid() {
               >
                 {/* Card */}
                 <div 
-                  className="glass border-border rounded-xl p-8 h-full cursor-pointer group"
+                  className="glass border-border rounded-xl p-6 md:p-8 h-full cursor-pointer group"
                   onClick={() => setSelectedInterest(interest)}
                 >
                   {/* Icon */}
                   <div className={`
                     inline-flex items-center justify-center
-                    w-16 h-16 mb-6 rounded-xl
+                    w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 rounded-xl
                     bg-primary/10
                     border border-primary/20
                     group-hover:scale-110 group-hover:rotate-3
                     transition-all duration-300
                   `}>
-                    <Icon className="w-8 h-8 text-primary" />
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
                     {interest.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-foreground leading-relaxed text-base mb-6">
+                  <p className="text-sm md:text-base text-foreground leading-relaxed mb-4 md:mb-6">
                     {interest.description}
                   </p>
 
                   {/* Hover Arrow */}
                   <div className="flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300">
-                    <span className="text-sm font-medium">Explore more</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span className="text-xs md:text-sm font-medium">Explore more</span>
+                    <ArrowRight className="w-3 md:w-4 h-3 md:h-4" />
                   </div>
                 </div>
               </motion.div>
@@ -177,10 +177,10 @@ export function OffTheGrid() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center"
+          className="text-center px-4"
         >
-          <div className="glass border-border rounded-xl p-8 inline-block">
-            <p className="text-lg text-foreground italic max-w-2xl">
+          <div className="glass border-border rounded-xl p-4 md:p-6 lg:p-8 inline-block">
+            <p className="text-sm md:text-base lg:text-lg text-foreground italic max-w-2xl">
               "The best technology doesn't just work — it understands, adapts, and becomes an invisible part of how we live and create."
             </p>
           </div>
@@ -211,7 +211,7 @@ export function OffTheGrid() {
             >
               <div className="glass border-border rounded-3xl h-full overflow-y-auto">
                 {/* Modal Header */}
-                <div className="sticky top-0 z-10 bg-card border-b border-border/40 p-6">
+                <div className="sticky top-0 z-10 glass-strong border-b border-border/40 p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h3 className="text-3xl font-bold text-foreground mb-2">

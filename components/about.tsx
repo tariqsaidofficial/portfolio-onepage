@@ -56,18 +56,18 @@ export function About() {
   }
 
   return (
-    <section id="about" className="py-20 px-4">
+    <section id="about" className="py-12 md:py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">About & Expertise</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12">About & Expertise</h2>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-6">
-            <p className="text-lg text-muted-foreground leading-relaxed">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-16">
+          <div className="space-y-4 md:space-y-6">
+            <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               I am a full-stack digital solutions engineer with 15+ years of experience in software development and
               audiovisual systems. I specialize in transforming creative ideas into integrated technical solutions,
               from IT infrastructure to advanced web and mobile applications.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               As a certified expert in audiovisual systems (Crestron & Extron) and professional software developer,
               I design smart solutions that combine technical precision with innovation. Whether building integrated
               digital platforms or managing AV systems for major events, my goal is one: to deliver exceptional digital
@@ -75,11 +75,11 @@ export function About() {
             </p>
 
             {/* Expertise Badges & Certifications */}
-            <div className="pt-6">
-              <h4 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">
+            <div className="pt-4 md:pt-6">
+              <h4 className="text-xs md:text-sm font-semibold text-muted-foreground mb-3 md:mb-4 uppercase tracking-wider">
                 Certifications & Badges
               </h4>
-              <div className="flex flex-wrap gap-3 items-center">
+              <div className="flex flex-wrap gap-2 md:gap-3 items-center">
                 {/* Extron AV Associate */}
                 <div className="certification-badge">
                   <a 
@@ -236,23 +236,23 @@ export function About() {
           </div>
         </div>
 
-        <div className="glass rounded-xl p-8">
-          <h3 className="text-2xl font-semibold mb-8 text-center">Career Timeline</h3>
-          <div className="grid md:grid-cols-4 gap-6">
+        <div className="glass rounded-xl p-4 md:p-6 lg:p-8">
+          <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8 text-center">Career Timeline</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {timeline.map((item, index) => (
               <div key={index} className="relative">
-                <div className="text-primary font-bold text-lg mb-2">{item.year}</div>
-                <div className="font-semibold mb-1">{item.title}</div>
-                <div className="text-sm text-muted-foreground leading-relaxed">{item.description}</div>
+                <div className="text-primary font-bold text-base md:text-lg mb-1 md:mb-2">{item.year}</div>
+                <div className="font-semibold mb-1 text-sm md:text-base">{item.title}</div>
+                <div className="text-xs md:text-sm text-muted-foreground leading-relaxed">{item.description}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Professional Memberships & Affiliations */}
-        <div className="glass rounded-xl p-8 mt-8">
-          <h3 className="text-2xl font-semibold mb-6 text-center">Professional Memberships & Affiliations</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+        <div className="glass rounded-xl p-4 md:p-6 lg:p-8 mt-6 md:mt-8">
+          <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-center">Professional Memberships & Affiliations</h3>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             {/* Google Cloud & NVIDIA Community Member */}
             <div className="certification-badge">
               <img

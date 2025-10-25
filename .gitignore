@@ -32,10 +32,14 @@ lerna-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+tsconfig.tsbuildinfo
 
 # testing
 /coverage
 /.nyc_output
+__tests__/
+jest.config.js
+jest.setup.js
 
 # misc
 .DS_Store
@@ -45,8 +49,17 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+Thumbs.db
 
 # local
 .cache/
 .temp/
 .tmp/
+
+# build artifacts (auto-generated)
+.swc/
+.turbo/
+
+# cloudflare
+.wrangler/
+wrangler.toml

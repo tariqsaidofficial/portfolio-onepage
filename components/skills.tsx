@@ -677,19 +677,19 @@ export function Skills() {
   ]
 
   return (
-    <section id="skills" className="py-20 px-4 bg-secondary/20">
+    <section id="skills" className="py-12 md:py-20 px-4 bg-secondary/20">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Skills & Technologies</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12">Skills & Technologies</h2>
 
         {/* Main Technology Stack */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-semibold text-center mb-6 text-muted-foreground">Development & Creative Tools</h3>
+        <div className="mb-8 md:mb-12">
+          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-center mb-4 md:mb-6 text-muted-foreground">Development & Creative Tools</h3>
           <LogoLoop
             logos={techLogos}
             speed={60}
             direction="left"
-            logoHeight={56}
-            gap={48}
+            logoHeight={40}
+            gap={32}
             pauseOnHover={true}
             scaleOnHover={true}
             fadeOut={true}
@@ -699,14 +699,14 @@ export function Skills() {
         </div>
 
         {/* IT & System Administration */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-6 text-muted-foreground">IT & System Administration</h3>
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-center mb-4 md:mb-6 text-muted-foreground">IT & System Administration</h3>
           <LogoLoop
             logos={itLogos}
             speed={50}
             direction="right"
-            logoHeight={56}
-            gap={48}
+            logoHeight={40}
+            gap={32}
             pauseOnHover={true}
             scaleOnHover={true}
             fadeOut={true}
@@ -715,13 +715,13 @@ export function Skills() {
           />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {skillCategories.map((category) => (
-            <div key={category.category} className="glass rounded-xl p-6 border border-border group cursor-default">
-              <h3 className="text-xl font-semibold mb-4 text-primary group-hover:scale-105 transition-transform inline-block">{category.category}</h3>
-              <div className="flex flex-wrap gap-2">
+            <div key={category.category} className="glass rounded-xl p-4 md:p-6 border border-border group cursor-default">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-primary group-hover:scale-105 transition-transform inline-block">{category.category}</h3>
+              <div className="flex flex-wrap gap-1.5 md:gap-2">
                 {category.skills.map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-secondary/50 rounded-full text-sm border border-border hover:border-primary/50 hover:bg-secondary/70 transition-all duration-200 cursor-pointer">
+                  <span key={skill} className="px-2 md:px-3 py-0.5 md:py-1 bg-secondary/50 rounded-full text-xs md:text-sm border border-border hover:border-primary/50 hover:bg-secondary/70 transition-all duration-200 cursor-pointer">
                     {skill}
                   </span>
                 ))}

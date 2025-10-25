@@ -56,20 +56,20 @@ export function Testimonials() {
     <motion.div
       whileHover={{ scale: 1.03, y: -4 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="glass border border-border rounded-xl p-6 min-w-[320px] md:min-w-[380px] mx-3 cursor-pointer"
+      className="glass border border-border rounded-lg md:rounded-xl p-4 md:p-6 min-w-[280px] md:min-w-[320px] lg:min-w-[380px] mx-2 md:mx-3 cursor-pointer"
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3 md:gap-4">
         <Image 
           src={avatar || "/placeholder.svg"} 
           alt={username || "User"} 
-          width={40} 
-          height={40} 
-          className="rounded-full object-cover border-2 border-primary/20" 
+          width={32} 
+          height={32} 
+          className="rounded-full object-cover border-2 border-primary/20 md:w-10 md:h-10" 
           loading="lazy"
         />
         <div className="flex-1">
-          <p className="text-primary font-semibold mb-2">{username}</p>
-          <p className="text-muted-foreground text-sm leading-relaxed">{feedback}</p>
+          <p className="text-primary font-semibold mb-1 md:mb-2 text-sm md:text-base">{username}</p>
+          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{feedback}</p>
         </div>
       </div>
     </motion.div>
@@ -79,14 +79,14 @@ export function Testimonials() {
     const duplicatedItems = [...items, ...items, ...items, ...items]
 
     return (
-      <div className="overflow-hidden py-4 relative">
+      <div className="overflow-hidden py-2 md:py-4 relative">
         <motion.div
           className="flex"
           animate={{
             x: direction === "left" ? ["0%", "-25%"] : ["-25%", "0%"],
           }}
           transition={{
-            duration: 30,
+            duration: 20,
             repeat: Infinity,
             ease: "linear",
             repeatType: "loop",
@@ -101,19 +101,19 @@ export function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-20 px-4 overflow-hidden">
+    <section id="testimonials" className="py-12 md:py-20 px-4 overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-12"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12"
         >
           What People Say
         </motion.h2>
 
-        <div className="space-y-4">
+        <div className="space-y-2 md:space-y-4">
           <MarqueeRow items={row1} direction="left" />
           <MarqueeRow items={row2} direction="right" />
           <MarqueeRow items={row3} direction="left" />
