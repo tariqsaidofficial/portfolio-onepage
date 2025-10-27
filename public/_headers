@@ -1,6 +1,12 @@
-# Block access to Next.js internal files
+# Allow access to ads.txt
+/ads.txt
+  X-Robots-Tag: all
+  Access-Control-Allow-Origin: *
+
+# Block access to other Next.js internal files
 /*.txt
   X-Robots-Tag: noindex
+  !ads.txt
 
 # Security headers for all pages
 /*
