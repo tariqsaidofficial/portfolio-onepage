@@ -159,6 +159,9 @@ export default function RootLayout({
         <meta name="copyright" content="© 2025 Tariq Said" />
         <meta name="application-name" content="Tariq Said Portfolio" />
         
+        {/* Google AdSense Account Verification */}
+        <meta name="google-adsense-account" content="ca-pub-4427962575983558" />
+        
         {/* Structured Data - ProfilePage with Person (Consolidated) */}
         <Script
           id="structured-data-profilepage"
