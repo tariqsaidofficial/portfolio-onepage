@@ -32,7 +32,7 @@ export const projects: Project[] = [
     role: "Lead Developer",
     metrics: { users: "1K+", security: "AES-256" },
     image: "/projects/nfc-manager.webp",
-    video: "/projects/nfcManager_PhoneGrid.mp4",
+    video: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_DrKAiMc1IlVzFU0n2o2YDWJUAdbL/pVe-HaFjfXlvfyylzbTc0Y/public/projects/nfcManager_PhoneGrid.mp4",
     github: "https://github.com/tariqsaidofficial/nfcManager",
     apkUrl: "dynamic", // Will be fetched from GitHub releases API
     genre: "Mobile Application",

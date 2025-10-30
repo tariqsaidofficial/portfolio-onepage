@@ -14,10 +14,10 @@
 
 النظام يستخدم **Client-Side API Call** مباشرة إلى GitHub:
 
-```typescript
+\`\`\`typescript
 // في components/projects.tsx
 fetch('https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest')
-```
+\`\`\`
 
 ### ✅ المزايا:
 - لا يحتاج API route في Next.js
@@ -37,9 +37,9 @@ fetch('https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest
 
 1. **اذهب إلى مستودع NFC Manager:**
 
-   ```text
+   \`\`\`text
    https://github.com/tariqsaidofficial/nfcManager/releases
-   ```
+   \`\`\`
 
 2. **اضغط "Create a new release"**
 
@@ -62,16 +62,16 @@ fetch('https://api.github.com/repos/tariqsaidofficial/nfcManager/releases/latest
 
 ### اختبار محلي:
 
-```bash
+\`\`\`bash
 # شغل السيرفر
 npm run dev
 
 # في متصفح آخر أو Postman
 curl http://localhost:3000/api/github-release?repo=tariqsaidofficial/nfcManager
-```
+\`\`\`
 
 **النتيجة المتوقعة:**
-```json
+\`\`\`json
 {
   "version": "v1.0.0",
   "name": "NFC Manager v1.0.0",
@@ -82,30 +82,30 @@ curl http://localhost:3000/api/github-release?repo=tariqsaidofficial/nfcManager
     "sizeFormatted": "5.00 MB"
   }
 }
-```
+\`\`\`
 
 ### اختبار على Production:
 
-```bash
+\`\`\`bash
 curl https://portfolio.dxbmark.com/api/github-release?repo=tariqsaidofficial/nfcManager
-```
+\`\`\`
 
 ---
 
 ## 🔍 التحقق من Rate Limit
 
 ### بدون Token:
-```bash
+\`\`\`bash
 curl -I https://api.github.com/rate_limit
-```
+\`\`\`
 
 ### مع Token:
-```bash
+\`\`\`bash
 curl -H "Authorization: Bearer YOUR_TOKEN" https://api.github.com/rate_limit
-```
+\`\`\`
 
 **النتيجة:**
-```json
+\`\`\`json
 {
   "resources": {
     "core": {
@@ -115,7 +115,7 @@ curl -H "Authorization: Bearer YOUR_TOKEN" https://api.github.com/rate_limit
     }
   }
 }
-```
+\`\`\`
 
 ---
 

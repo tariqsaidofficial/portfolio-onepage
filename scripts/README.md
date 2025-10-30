@@ -21,7 +21,7 @@ These scripts perform a complete cache cleanup for the Next.js project.
 
 #### 1️⃣ استخدام npm/pnpm (الطريقة الموصى بها)
 
-```bash
+\`\`\`bash
 # باستخدام pnpm
 pnpm clear-cache
 
@@ -31,22 +31,22 @@ npm run clear-cache
 # أو باستخدام الاختصار
 pnpm clean
 npm run clean
-```
+\`\`\`
 
 #### 2️⃣ استخدام Node.js مباشرة
 
-```bash
+\`\`\`bash
 node scripts/clear-cache.js
-```
+\`\`\`
 
 #### 3️⃣ استخدام Bash Script (Linux/Mac)
 
-```bash
+\`\`\`bash
 ./scripts/clear-cache.sh
 
 # أو
 bash scripts/clear-cache.sh
-```
+\`\`\`
 
 ---
 
@@ -56,7 +56,7 @@ bash scripts/clear-cache.sh
 
 After cleaning the cache, you'll need to reinstall packages:
 
-```bash
+\`\`\`bash
 # باستخدام pnpm
 pnpm install
 
@@ -65,7 +65,7 @@ npm install
 
 # أو باستخدام yarn
 yarn install
-```
+\`\`\`
 
 ---
 

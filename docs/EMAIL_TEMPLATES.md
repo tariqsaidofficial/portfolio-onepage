@@ -59,7 +59,7 @@ The contact form includes dynamic fields based on user selection:
 **Subject:** `New Contact Form Submission from {name}`
 
 #### Structure:
-```
+\`\`\`
 ┌─────────────────────────────────────┐
 │ Header (Dark Navy #0a122c)          │
 │ - Logo: TARIQSAID (centered)        │
@@ -89,7 +89,7 @@ The contact form includes dynamic fields based on user selection:
 │   • Link: portfolio.dxbmark.com     │
 │   • Color: #e11d48                  │
 └─────────────────────────────────────┘
-```
+\`\`\`
 
 #### Key Features:
 - ✅ Simple, clean design
@@ -114,7 +114,7 @@ The contact form includes dynamic fields based on user selection:
 **Subject:** `Thank you for contacting Tariq Said`
 
 #### Structure:
-```
+\`\`\`
 ┌─────────────────────────────────────┐
 │ Header (Dark Navy #0a122c)          │
 │ - Logo: TARIQSAID (centered)        │
@@ -173,7 +173,7 @@ The contact form includes dynamic fields based on user selection:
 │ - No-reply notice                   │
 │ - Support email (red link)          │
 └─────────────────────────────────────┘
-```
+\`\`\`
 
 #### Key Features:
 - ✅ Professional design with promotional section
@@ -196,7 +196,7 @@ The contact form includes dynamic fields based on user selection:
 
 ### Color Palette
 
-```css
+\`\`\`css
 /* Primary Colors */
 --primary: #e11d48;           /* Rose/Pink - Brand color */
 --dark-bg: #0a122c;           /* Dark navy - Main background */
@@ -215,11 +215,11 @@ The contact form includes dynamic fields based on user selection:
 /* Border Colors */
 --border-light: #e5e5e5;      /* Light border */
 --border-primary: rgba(225, 29, 72, 0.2);  /* Primary border with opacity */
-```
+\`\`\`
 
 ### Typography
 
-```css
+\`\`\`css
 /* Font Family */
 font-family: Arial, sans-serif;
 
@@ -231,11 +231,11 @@ font-family: Arial, sans-serif;
 --text-small: 14px;           /* Secondary text */
 --text-tiny: 12px;            /* Footer text */
 --text-micro: 11px;           /* Fine print */
-```
+\`\`\`
 
 ### Spacing
 
-```css
+\`\`\`css
 /* Padding */
 --padding-section: 30px 20px;
 --padding-box: 20px;
@@ -248,7 +248,7 @@ font-family: Arial, sans-serif;
 /* Border Radius */
 --radius-large: 8px;
 --radius-medium: 6px;
-```
+\`\`\`
 
 ### Components
 
@@ -292,76 +292,76 @@ font-family: Arial, sans-serif;
 `/app/api/send-email/route.tsx`
 
 ### Dependencies
-```json
+\`\`\`json
 {
   "resend": "^3.x.x"
 }
-```
+\`\`\`
 
 ### Environment Variables
-```bash
+\`\`\`bash
 RESEND_API_KEY=re_xxxxxxxxxxxxx
-```
+\`\`\`
 
 ### API Endpoint
-```
+\`\`\`
 POST /api/send-email
-```
+\`\`\`
 
 ### Request Body
-```json
+\`\`\`json
 {
   "name": "string",
   "email": "string",
   "phone": "string",
   "message": "string"
 }
-```
+\`\`\`
 
 ### Response
-```json
+\`\`\`json
 {
   "message": "Email sent successfully"
 }
-```
+\`\`\`
 
 ### Error Handling
-```json
+\`\`\`json
 {
   "error": "All fields are required"  // 400
 }
 {
   "error": "Failed to send email. Please try again later."  // 500
 }
-```
+\`\`\`
 
 ---
 
 ## Social Media Icons
 
 ### GitHub Icon
-```svg
+\`\`\`svg
 <svg viewBox="0 0 24 24" stroke="white" stroke-width="2">
   <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5..."/>
   <path d="M9 18c-4.51 2-5-2-7-2"/>
 </svg>
-```
+\`\`\`
 
 ### LinkedIn Icon
-```svg
+\`\`\`svg
 <svg viewBox="0 0 24 24" stroke="white" stroke-width="2">
   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2..."/>
   <rect width="4" height="12" x="2" y="9"/>
   <circle cx="4" cy="4" r="2"/>
 </svg>
-```
+\`\`\`
 
 ### Behance Icon
-```svg
+\`\`\`svg
 <svg viewBox="1 1 22 22" stroke="white" stroke-width="1.5">
   <path d="M20.3331 7.66665H14.4998V6H20.3331V7.66665Z..."/>
 </svg>
-```
+\`\`\`
 
 **Note:** Behance icon uses custom SVG path from official Behance branding guidelines.
 
@@ -381,7 +381,7 @@ A demo page was created at `/app/email-demo/page.tsx` to preview both email temp
 - Back to home button
 
 #### Demo Page Structure:
-```tsx
+\`\`\`tsx
 export default function EmailDemo() {
   const currentYear = new Date().getFullYear()
   const name = "John Doe"
@@ -401,7 +401,7 @@ export default function EmailDemo() {
     </div>
   )
 }
-```
+\`\`\`
 
 #### Why It Was Removed:
 - ✅ Templates are now stable and tested
@@ -422,13 +422,13 @@ export default function EmailDemo() {
 ## Testing Methods
 
 ### 1. Local Testing
-```bash
+\`\`\`bash
 # Start development server
 pnpm dev
 
 # Submit test form at http://localhost:3000
 # Check email inbox for both emails
-```
+\`\`\`
 
 ### 2. Resend Dashboard
 - View sent emails
@@ -447,13 +447,13 @@ Test emails in:
 ### 4. Automated Testing
 Use GitHub Actions workflow: `.github/workflows/check-resend.yml`
 
-```bash
+\`\`\`bash
 # Manual trigger
 gh workflow run check-resend.yml
 
 # Check results
 gh run list --workflow=check-resend.yml
-```
+\`\`\`
 
 ---
 

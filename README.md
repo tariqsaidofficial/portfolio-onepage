@@ -115,14 +115,14 @@ A production-ready, high-performance portfolio template featuring:
 
 ![PageSpeed Insights](./public/assets/Screenshot-PageSpeed.png)
 
-```text
+\`\`\`text
 🎯 Performance Score: 90+
 ⚡ LCP (Largest Contentful Paint): < 3s
 🎨 CLS (Cumulative Layout Shift): < 0.1
 ⏱️ FID (First Input Delay): < 100ms
 📦 Total Bundle Size: ~250KB (images)
 🧰 Best Practices: 96/100
-```
+\`\`\`
 
 ### 🚀 Optimization Techniques Applied
 
@@ -156,33 +156,33 @@ A production-ready, high-performance portfolio template featuring:
 
 ### Clone the Repository
 
-```bash
+\`\`\`bash
 git clone https://github.com/tariqsaidofficial/portfolio-onepage.git
-```
+\`\`\`
 
 ### Navigate to the Project Directory
 
-```bash
+\`\`\`bash
 cd portfolio-onepage
-```
+\`\`\`
 
 ### Install Dependencies
 
-```bash
+\`\`\`bash
 pnpm install
-```
+\`\`\`
 
 ### Run the Development Server
 
-```bash
+\`\`\`bash
 pnpm dev
-```
+\`\`\`
 
 ### Build for Production
 
-```bash
+\`\`\`bash
 pnpm build
-```
+\`\`\`
 
 ---
 
@@ -196,13 +196,13 @@ pnpm build
    - Update `components/contact.tsx` for contact details
 
 2. **Change Colors**
-   ```css
+   \`\`\`css
    /* In app/globals.css */
    :root {
      --primary: #e11d48;  /* Your brand color */
      --background: #0a122c; /* Your background */
    }
-   ```
+   \`\`\`
 
 3. **Update Images**
    - Replace images in `public/` folder
@@ -216,7 +216,7 @@ pnpm build
 
 ### 🎨 Theme Customization
 
-```typescript
+\`\`\`typescript
 // tailwind.config.ts
 export default {
   theme: {
@@ -232,7 +232,7 @@ export default {
     }
   }
 }
-```
+\`\`\`
 
 ### 📧 Email Configuration
 
@@ -254,10 +254,10 @@ export default {
 ### ☁️ Deployment on Cloudflare
 
 1. **Fork the Repository**
-   ```bash
+   \`\`\`bash
    # Click "Fork" on GitHub
    git clone https://github.com/YOUR_USERNAME/portfolio-onepage.git
-   ```
+   \`\`\`
 
 2. **Connect to Cloudflare Pages**
    - Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
