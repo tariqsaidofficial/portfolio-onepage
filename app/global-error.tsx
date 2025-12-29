@@ -1,6 +1,8 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
+import Link from "next/link"
+import { FuzzyText } from "@/components/fuzzy-text"
+import { Home, ArrowLeft, RefreshCw } from "lucide-react"
 
 export default function GlobalError({
   error,
@@ -9,107 +11,69 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    // Log critical error to error reporting service
-    console.error("Global error boundary caught:", error)
-  }, [error])
-
   return (
-    <html lang="en">
+    <html>
       <body>
-        <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-          <div className="text-center max-w-2xl mx-auto">
-            {/* Critical error icon */}
+        <div className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden bg-background" style={{ zIndex: 10 }}>
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-destructive/5" />
+          
+          {/* Animated background elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-destructive/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-destructive/5 rounded-full blur-3xl animate-pulse delay-1000" />
+          </div>
+
+          <div className="relative z-10 text-center max-w-2xl mx-auto">
+            {/* FuzzyText 500 */}
             <div className="mb-8 flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl animate-pulse" />
-                <div className="relative bg-red-500/10 p-6 rounded-full border-2 border-red-500/20">
-                  <svg
-                    className="w-16 h-16 text-red-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
-                  </svg>
-                </div>
-              </div>
+              <FuzzyText
+                text="500"
+                fontSize={140}
+                fontWeight={900}
+                color="#dc2626"
+                enableHover={true}
+                baseIntensity={0.18}
+                hoverIntensity={0.5}
+              />
             </div>
 
-            {/* Error title */}
-            <h1 className="text-4xl font-bold mb-4 text-white">
-              Critical Error
+            {/* Error message */}
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Something went wrong!
             </h1>
-            
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-              A critical error occurred. We're working to fix this issue.
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Oops! Something went wrong on our end. Our servers are having a moment.
+              <br />
+              Please try refreshing the page or come back in a few minutes.
             </p>
-
-            {/* Error details (only in development) */}
-            {process.env.NODE_ENV === "development" && (
-              <div className="mb-8 p-4 bg-slate-800/50 rounded-lg text-left max-w-xl mx-auto border border-red-500/20">
-                <p className="text-sm font-mono text-red-400 break-all">
-                  {error.message}
-                </p>
-                {error.digest && (
-                  <p className="text-xs text-slate-400 mt-2">
-                    Error ID: {error.digest}
-                  </p>
-                )}
-              </div>
-            )}
 
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={reset}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors"
+                onClick={() => reset()}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-200 text-lg"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
-                </svg>
+                <RefreshCw className="w-5 h-5" />
                 Try Again
               </button>
-              <a
+              <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 glass border border-border hover:border-primary/50 text-white font-medium rounded-lg transition-all duration-200 text-lg"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  />
-                </svg>
+                <Home className="w-5 h-5" />
                 Go Home
-              </a>
+              </Link>
             </div>
 
             {/* Help text */}
-            <div className="mt-12 pt-8 border-t border-slate-700">
-              <p className="text-sm text-slate-400">
-                If this problem persists, please contact support.
+            <div className="mt-12 pt-8 border-t border-border/50">
+              <p className="text-sm text-muted-foreground">
+                If this problem persists, please{" "}
+                <Link href="/#contact" className="text-primary hover:underline">
+                  contact me
+                </Link>{" "}
+                and I'll look into it.
               </p>
             </div>
           </div>

@@ -1,23 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Static export for Cloudflare Pages
+  // Remove static export for Vercel deployment
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   images: {
-    unoptimized: true, // Required for static export
+    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    formats: ['image/webp', 'image/avif'],
   },
-  // trailingSlash: false, // Removed to fix logo link issue
   
   env: {
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
   },
 
   webpack(config) {
-    // إزالة sourcemaps والملفات الكبيرة
-    config.devtool = false;
+    // Optimize for production
     config.optimization.splitChunks = {
       chunks: 'all',
-      maxSize: 2000000, // 2 MiB حد أقصى لكل chunk
+      maxSize: 2000000, // 2 MiB max per chunk
     };
     return config;
   },
