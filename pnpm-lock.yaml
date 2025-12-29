@@ -31,10 +31,10 @@ importers:
         version: 1.2.15(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@splinetool/react-spline':
         specifier: ^4.1.0
-        version: 4.1.0(@splinetool/runtime@1.10.84)(next@15.2.8(@babel/core@7.28.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 4.1.0(@splinetool/runtime@1.12.28)(next@15.2.8(@babel/core@7.28.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@splinetool/runtime':
-        specifier: ^1.10.84
-        version: 1.10.84
+        specifier: ^1.12.28
+        version: 1.12.28
       '@testing-library/dom':
         specifier: latest
         version: 10.4.1
@@ -1231,8 +1231,8 @@ packages:
       next:
         optional: true
 
-  '@splinetool/runtime@1.10.84':
-    resolution: {integrity: sha512-g2a7m6O3likar0geAPA3fudXvKAk+jOb/aGFK1K3gWyFqIZiJvnGH6I1nPbo32zWACtGDNyrvfABG2WJVpEBBw==}
+  '@splinetool/runtime@1.12.28':
+    resolution: {integrity: sha512-6G+m+JxHnhO8HygIllNkkA98ogY2O0pyzYEbDiEJzC2SeOwSmPk4sSP0TKjKOZhwmLrgHzVupgoHW++rXHYI8g==}
 
   '@stablelib/base64@1.0.1':
     resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
@@ -3286,8 +3286,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.6.2:
-    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -3838,6 +3838,7 @@ packages:
   whatwg-encoding@2.0.0:
     resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
     engines: {node: '>=12'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@3.0.0:
     resolution: {integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==}
@@ -4967,7 +4968,7 @@ snapshots:
   '@react-email/render@1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       html-to-text: 9.0.5
-      prettier: 3.6.2
+      prettier: 3.7.4
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       react-promise-suspense: 0.3.4
@@ -4991,9 +4992,9 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@splinetool/react-spline@4.1.0(@splinetool/runtime@1.10.84)(next@15.2.8(@babel/core@7.28.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@splinetool/react-spline@4.1.0(@splinetool/runtime@1.12.28)(next@15.2.8(@babel/core@7.28.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@splinetool/runtime': 1.10.84
+      '@splinetool/runtime': 1.12.28
       blurhash: 2.0.5
       lodash.debounce: 4.0.8
       react: 19.0.0
@@ -5003,7 +5004,7 @@ snapshots:
     optionalDependencies:
       next: 15.2.8(@babel/core@7.28.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
-  '@splinetool/runtime@1.10.84':
+  '@splinetool/runtime@1.12.28':
     dependencies:
       on-change: 4.0.2
       semver-compare: 1.0.0
@@ -7482,7 +7483,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.6.2:
+  prettier@3.7.4:
     optional: true
 
   pretty-format@27.5.1:
