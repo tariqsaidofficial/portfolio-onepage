@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Hide Trustpilot floating widget */
+#trustpilot-gtm-floating-wrapper {
+  display: none !important;
+}
+
 /* SR Only Utility */
 .sr-only {
   position: absolute;
