@@ -1,0 +1,15 @@
+# Block access to Next.js internal files (except ads.txt)
+/*.txt
+  X-Robots-Tag: noindex
+  
+# Allow ads.txt for AdSense
+/ads.txt
+  Content-Type: text/plain
+  X-Robots-Tag: all
+
+# Security headers for all pages
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()

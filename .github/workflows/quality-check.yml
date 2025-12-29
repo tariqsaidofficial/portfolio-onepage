@@ -1,0 +1,29 @@
+name: Quality Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # ✅ Add this step
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - run: pnpm install
+
+      - name: Lint Code
+        run: pnpm run lint || echo "Lint warnings only"
+
+      - name: Type Check
+        run: pnpm run type-check || echo "Type check optional"

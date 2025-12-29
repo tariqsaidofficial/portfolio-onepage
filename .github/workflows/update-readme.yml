@@ -1,0 +1,51 @@
+name: Update Profile (README)
+
+on:
+  schedule:
+    - cron: "0 0 */2 * *" # كل يومين بالضبط (كل ٤٨ ساعة)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-readme
+  cancel-in-progress: false
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run update script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CF_PAGES_URL: ${{ secrets.CF_PAGES_URL }} # اختياري
+        run: |
+          node -v
+          mkdir -p scripts
+          node scripts/update-readme.js
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          if ! git diff --quiet README.md; then
+            git add README.md
+            git commit -m "chore(readme): auto-update profile block"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes to commit."
+          fi

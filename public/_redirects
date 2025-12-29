@@ -1,0 +1,7 @@
+# Redirect index.txt to home page
+/index.txt / 301
+
+# Redirect any .txt files to home (except robots.txt and ads.txt)
+/*.txt / 301
+!/robots.txt
+!/ads.txt

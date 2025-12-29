@@ -1,0 +1,52 @@
+# robots.txt for portfolio.dxbmark.com
+# Generated according to Google Search Central guidelines
+# Last updated: 2025-10-22
+
+# Default rules for all search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /demo/
+Disallow: /color-demo/
+Disallow: /email-demo/
+Disallow: /engagement-demo/
+Disallow: /error-test/
+Disallow: /projects-demo/
+Disallow: /projects-demo-v3/
+Disallow: /500/
+
+# Block AI training bots (they can view but not train on content)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+# Block aggressive crawlers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://portfolio.dxbmark.com/sitemap.xml
