@@ -68,7 +68,7 @@ export default function NotFound() {
               About
             </Link>
             <span className="text-muted-foreground">•</span>
-            <Link href="/#projects" className="text-sm text-primary hover:underline">
+            <Link href="#projects" className="text-sm text-primary hover:underline">
               Projects
             </Link>
             <span className="text-muted-foreground">•</span>

@@ -12,9 +12,27 @@ import { generateImageObject, getProfileImageMetadata, getProjectImageMetadata }
  * This significantly improves initial page load performance
  */
 
-// About section - loads after Hero
-const About = dynamic(
-  () => import('@/components/about').then(mod => ({ default: mod.About })), 
+// Partnerships section - trust signals and business partnerships
+const Partnerships = dynamic(
+  () => import('@/components/partnerships').then(mod => ({ default: mod.Partnerships })), 
+  {
+    loading: () => <SectionLoadingSkeleton />,
+    ssr: true // Keep SSR for SEO
+  }
+)
+
+// Featured Projects section - business-focused showcase for Home
+const FeaturedProjects = dynamic(
+  () => import('@/components/featured-projects').then(mod => ({ default: mod.FeaturedProjects })), 
+  {
+    loading: () => <SectionLoadingSkeleton />,
+    ssr: true // Keep SSR for SEO
+  }
+)
+
+// About section - business-focused version for Home (reduced personal content)
+const HomeAbout = dynamic(
+  () => import('@/components/home-about').then(mod => ({ default: mod.HomeAbout })), 
   {
     loading: () => <SectionLoadingSkeleton />,
     ssr: true // Keep SSR for SEO
@@ -26,15 +44,6 @@ const Skills = dynamic(
   () => import('@/components/skills').then(mod => ({ default: mod.Skills })), 
   {
     loading: () => <SectionLoadingSkeleton />
-  }
-)
-
-// Projects section - contains images and animations
-const Projects = dynamic(
-  () => import('@/components/projects').then(mod => ({ default: mod.Projects })), 
-  {
-    loading: () => <SectionLoadingSkeleton />,
-    ssr: true // Keep SSR for SEO
   }
 )
 
@@ -119,9 +128,10 @@ export default function Home() {
       <main id="main-content" className="min-h-screen text-foreground relative z-10">
         <Header />
         <Hero />
-        <About />
+        <HomeAbout />
+        <Partnerships />
         <Skills />
-        <Projects />
+        <FeaturedProjects />
         <Services />
         <Testimonials />
         <OffTheGrid />

@@ -4,11 +4,14 @@
 
 Place your project screenshots in this directory with the following names:
 
-1. **nfc-manager.png** - NFC Manager app screenshot
-2. **dxbmark.png** - DXBMark platform screenshot
-3. **media-server.png** - Media Server interface screenshot
-4. **northern-estates.png** - Northern Estates website screenshot
-5. **travelify.png** - Travelify app screenshot
+1. **nfc-manager.webp** - NFC Manager app screenshot
+2. **dxbmark.webp** - DXBMark platform screenshot
+3. **media-server.webp** - Media Server interface screenshot
+4. **northern-estates.webp** - Northern Estates website screenshot
+5. **travelify.webp** - Travelify app screenshot
+6. **melodex.webp** - 
+7. **waqtor.webp** - 
+8. **procurelens.webp** - 
 
 ## Image Specifications:
 

@@ -2,25 +2,35 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, Play, TrendingUp, Users, Clock, Package } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 import Image from "next/image"
-import { projects, categories } from "@/data/projects"
+import { projects } from "@/data/projects"
 
-export function Projects() {
-  const [activeFilter, setActiveFilter] = useState("all")
+/**
+ * FeaturedProjects Component - Showcase top 4 projects on home page
+ * 
+ * Features:
+ * - Displays first 6 projects from projects data
+ * - Same design as original Projects component
+ * - Links to full projects page
+ * - Responsive grid layout
+ * 
+ * @component
+ */
+export function FeaturedProjects() {
+  // Get top 6 featured projects
+  const featuredProjects = projects.slice(0, 6)
   const [apkUrls, setApkUrls] = useState<Record<number, string>>({})
-
-  const filteredProjects = projects.filter(
-    (project) => activeFilter === "all" || project.category === activeFilter
-  )
 
   // Fetch APK URLs for projects with dynamic APK links (lazy load)
   useEffect(() => {
     // Delay API calls to not block initial render
     const timer = setTimeout(() => {
       const fetchApkUrls = async () => {
-        const projectsWithApk = projects.filter(p => p.apkUrl === "dynamic" && p.github)
+        const projectsWithApk = featuredProjects.filter(p => p.apkUrl === "dynamic" && p.github)
         
         for (const project of projectsWithApk) {
           try {
@@ -58,7 +68,7 @@ export function Projects() {
     }, 1000) // Wait 1 second after page load
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [featuredProjects])
 
   // Android Icon Component
   const AndroidIcon = ({ className }: { className?: string }) => (
@@ -117,47 +127,19 @@ export function Projects() {
   return (
     <section id="projects" className="relative py-12 md:py-20 px-4" style={{ zIndex: 10 }}>
       <div className="container mx-auto max-w-7xl">
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-foreground">
-            Projects & Achievements
+            Featured Projects
           </h2>
           <p className="text-muted-foreground text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-4">
-            Explore a portfolio of innovative web applications, AudioVisual/Event solutions, IT infrastructure, and professional video productions
+            Explore top innovative web applications, AudioVisual/Event solutions, and IT infrastructure projects
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
-          {categories.map((cat) => {
-            // Get color for each category
-            const categoryColors = {
-              "all": "bg-primary text-primary-foreground shadow-primary/30",
-              "Full-Stack Development": "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-amber-500/30",
-              "IT Infrastructure": "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-purple-500/30",
-              "AV & Event Management": "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-blue-500/30",
-              "Media Production": "bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-rose-500/30"
-            }
-            
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setActiveFilter(cat.id)}
-                className={`px-3 md:px-6 py-1.5 md:py-2.5 text-xs md:text-sm rounded-full font-medium transition-all duration-300 ${
-                  activeFilter === cat.id
-                    ? `${categoryColors[cat.id as keyof typeof categoryColors] || categoryColors["all"]} shadow-lg scale-105`
-                    : "bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground border border-border/50"
-                }`}
-              >
-                {cat.name}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {filteredProjects.map((project, index) => {
+        {/* Projects Grid - 3 columns, show all 6 projects (2 rows) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+          {featuredProjects.map((project, index) => {
             const colors = getCategoryColor(project.category)
             
             return (
@@ -375,6 +357,16 @@ export function Projects() {
                 </motion.div>
               )
             })}
+        </div>
+
+        {/* View All Projects CTA */}
+        <div className="text-center">
+          <Link href="/projects">
+            <Button size="lg" variant="outline" className="glass text-lg px-8">
+              View All Projects
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
 

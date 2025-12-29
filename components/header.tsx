@@ -74,7 +74,7 @@ export function Header() {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
+    { label: "Projects", href: "/projects" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Contact", href: "#contact" },
   ]
@@ -138,7 +138,7 @@ export function Header() {
               Skills
             </a>
             <a
-              href="#projects"
+              href="/projects"
               className="text-xs lg:text-sm font-medium text-white/90 hover:text-white transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative z-10 whitespace-nowrap"
             >
               Projects
@@ -201,6 +201,12 @@ export function Header() {
             >
               Contact
             </a>
+            <a
+              href="/faq"
+              className="text-xs lg:text-sm font-medium text-white/90 hover:text-white transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative z-10 whitespace-nowrap"
+            >
+              FAQ
+            </a>
 
             <Link
               href="/TariqResume-Oct2025-final.pdf"
@@ -257,7 +263,7 @@ export function Header() {
               Skills
             </a>
             <a
-              href="#projects"
+              href="/projects"
               className="text-sm font-medium text-white/90 hover:text-white transition-colors relative z-10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -293,6 +299,13 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact
+            </a>
+            <a
+              href="/faq"
+              className="text-sm font-medium text-white/90 hover:text-white transition-colors relative z-10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              FAQ
             </a>
 
             <div className="flex items-center justify-center py-2">
