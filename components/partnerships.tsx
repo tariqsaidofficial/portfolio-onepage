@@ -4,63 +4,37 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Users, Shield, Globe, Zap } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 /**
- * Partnerships Component - Trust signals and business partnerships
+ * Partnerships Component - Key partnerships and trust signals
  * 
  * Features:
- * - Showcase key partnerships and collaborations
+ * - Showcase key business partnerships
  * - Trust signals for business credibility
- * - Technology partnerships and integrations
- * - Geographic coverage and market presence
+ * - Trust & reliability metrics
  * 
  * @component
  */
 export function Partnerships() {
-  const partnerships = [
+  const keyPartners = [
     {
-      category: "Technology Partners",
-      icon: <Zap className="w-6 h-6" />,
-      description: "Strategic partnerships with leading technology providers",
-      partners: [
-        { name: "Google Cloud", type: "Cloud Infrastructure" },
-        { name: "AWS", type: "Cloud Services" },
-        { name: "Crestron", type: "AV Systems" },
-        { name: "Extron", type: "AV Integration" }
-      ]
+      name: "MWHEBA Agency",
+      url: "https://mwheba.com",
+      logo: "/mwheba-agency-logo.png",
+      description: "Digital Marketing & Branding Agency"
     },
     {
-      category: "Regional Presence",
-      icon: <Globe className="w-6 h-6" />,
-      description: "Established presence across key markets",
-      partners: [
-        { name: "UAE", type: "Primary Base" },
-        { name: "Egypt", type: "Development Hub" },
-        { name: "GCC", type: "Regional Coverage" },
-        { name: "UK", type: "International Reach" }
-      ]
+      name: "MWHEBA Hosting",
+      url: "https://mwheba.net",
+      logo: "/mwheba-hosting-logo.png",
+      description: "Web Hosting & Infrastructure Services"
     },
     {
-      category: "Industry Collaborations",
-      icon: <Users className="w-6 h-6" />,
-      description: "Working with leading organizations and institutions",
-      partners: [
-        { name: "Healthcare Institutions", type: "Medical AV Systems" },
-        { name: "Educational Organizations", type: "E-Learning Platforms" },
-        { name: "Government Entities", type: "Secure Infrastructure" },
-        { name: "Enterprise Clients", type: "Custom Solutions" }
-      ]
-    },
-    {
-      category: "Security & Compliance",
-      icon: <Shield className="w-6 h-6" />,
-      description: "Certified and compliant with industry standards",
-      partners: [
-        { name: "ISO Standards", type: "Quality Management" },
-        { name: "Security Protocols", type: "Data Protection" },
-        { name: "Industry Certifications", type: "Professional Standards" },
-        { name: "Compliance Frameworks", type: "Regulatory Adherence" }
-      ]
+      name: "Tawk.to",
+      url: "https://www.tawk.to/?pid=ep397g7",
+      logo: "/tawk-partner-badge.png",
+      description: "Live Chat & Customer Support Platform"
     }
   ]
 
@@ -73,45 +47,53 @@ export function Partnerships() {
             Partnerships & Trust Signals
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Building reliable solutions through strategic partnerships, industry certifications, 
-            and established presence across UAE, GCC, and international markets.
+            Building reliable solutions through strategic partnerships and established presence 
+            across UAE, GCC, and international markets.
           </p>
         </div>
 
-        {/* Partnerships Grid */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
-          {partnerships.map((partnership, index) => (
-            <Card key={index} className="glass border-border overflow-hidden group hover:border-primary/50 transition-all duration-300">
-              <CardContent className="p-6">
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                    {partnership.icon}
+        {/* Key Partners */}
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-xl md:text-2xl font-semibold mb-8 text-center">Key Partners</h3>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {keyPartners.map((partner, index) => (
+              <Card key={index} className="glass border-border overflow-hidden group hover:border-primary/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  {/* Partner Logo */}
+                  <div className="mb-4 flex items-center justify-center h-16">
+                    <Link href={partner.url} target="_blank" rel="noopener noreferrer">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        width={150}
+                        height={60}
+                        className="max-h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </Link>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                      {partnership.category}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {partnership.description}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Partners List */}
-                <div className="space-y-3">
-                  {partnership.partners.map((partner, partnerIndex) => (
-                    <div key={partnerIndex} className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
-                      <span className="font-medium text-sm">{partner.name}</span>
-                      <span className="text-xs text-muted-foreground bg-primary/10 px-2 py-1 rounded-md">
-                        {partner.type}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  {/* Partner Info */}
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                      {partner.name}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {partner.description}
+                    </p>
+                    <Link
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                    >
+                      Visit Website
+                      <ExternalLink className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Trust Metrics */}

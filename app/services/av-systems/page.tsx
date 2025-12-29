@@ -61,6 +61,10 @@ export default function AVSystemsPage() {
         "name": "United Arab Emirates"
       },
       {
+        "@type": "Country",
+        "name": "Egypt"
+      },
+      {
         "@type": "Country", 
         "name": "Saudi Arabia"
       },
@@ -79,6 +83,10 @@ export default function AVSystemsPage() {
       {
         "@type": "Country",
         "name": "Oman"
+      },
+      {
+        "@type": "Country",
+        "name": "United Kingdom"
       }
     ],
     "offers": [

@@ -6,6 +6,10 @@ import { ArrowRight, ExternalLink, Calendar, Code, Zap, Users } from "lucide-rea
 import { CalendlyButton } from "@/components/calendly-button"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { ServiceSection, BulletList } from "@/components/service-section"
+import { CitationBlock } from "@/components/citation-block"
+import { ExampleGrid, type ProjectMetric } from "@/components/example-card"
+import { MicroFAQSection, type FAQItem } from "@/components/micro-faq-section"
 
 export const metadata: Metadata = {
   title: "Web Development Services | Tariq Said - Full-Stack Developer",
@@ -55,6 +59,10 @@ export default function WebDevelopmentPage() {
         "name": "United Arab Emirates"
       },
       {
+        "@type": "Country",
+        "name": "Egypt"
+      },
+      {
         "@type": "Country", 
         "name": "Saudi Arabia"
       },
@@ -73,6 +81,10 @@ export default function WebDevelopmentPage() {
       {
         "@type": "Country",
         "name": "Oman"
+      },
+      {
+        "@type": "Country",
+        "name": "United Kingdom"
       }
     ],
     "offers": [
@@ -100,41 +112,64 @@ export default function WebDevelopmentPage() {
         "priceCurrency": "USD",
         "deliveryLeadTime": "P3M/P6M"
       }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Web Development Portfolio",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "SoftwareApplication",
-            "name": "Online Web Tools",
-            "description": "1500+ web tools platform with 10K+ users",
-            "url": "https://tools.dxbmark.com"
-          }
-        },
-        {
-          "@type": "Offer", 
-          "itemOffered": {
-            "@type": "SoftwareApplication",
-            "name": "Northern Estates Platform",
-            "description": "Real estate platform with 10K+ users and 500+ listings",
-            "url": "https://northernestates.ae"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "SoftwareApplication", 
-            "name": "DXBMark Platform",
-            "description": "Co-founded platform serving 3K+ users with 98% uptime",
-            "url": "https://dxbmark.com"
-          }
-        }
-      ]
-    }
+    ]
   }
+
+  // Project examples with relevance explanations
+  const projectExamples = [
+    {
+      title: "Online Web Tools",
+      metrics: [
+        { label: "1,500+ tools", value: "Comprehensive web utility platform" },
+        { label: "10,000+ users", value: "Active user base" },
+        { label: "Next.js + TypeScript", value: "Modern tech stack" },
+        { label: "SEO optimized", value: "High search visibility" }
+      ] as ProjectMetric[],
+      technologies: ["Next.js", "TypeScript", "SEO optimization", "Performance tuning"],
+      url: "https://tools.dxbmark.com",
+      relevanceExplanation: "Demonstrates scalable platform development with complex feature sets, SEO optimization, and high-traffic handling capabilities essential for business applications requiring comprehensive web utility functionality."
+    },
+    {
+      title: "Northern Estates Platform",
+      metrics: [
+        { label: "10,000+ users", value: "Real estate platform" },
+        { label: "500+ listings", value: "Property database" },
+        { label: "WordPress + Custom PHP", value: "Robust backend" },
+        { label: "Advanced search", value: "Filtering system" }
+      ] as ProjectMetric[],
+      technologies: ["WordPress", "Custom PHP", "MySQL", "Advanced search"],
+      url: "https://northernestates.ae",
+      relevanceExplanation: "Showcases database-driven application development with complex search functionality, user management, and content management systems suitable for data-heavy business platforms."
+    },
+    {
+      title: "DXBMark Platform",
+      metrics: [
+        { label: "3,000+ users", value: "Co-founded platform" },
+        { label: "98% uptime", value: "Reliable infrastructure" },
+        { label: "React + Node.js", value: "Full-stack solution" },
+        { label: "PostgreSQL + Redis", value: "Scalable database" }
+      ] as ProjectMetric[],
+      technologies: ["React", "Node.js", "PostgreSQL", "Redis", "AWS"],
+      url: "https://dxbmark.com",
+      relevanceExplanation: "Illustrates enterprise-level architecture with high availability requirements, modern full-stack development, and scalable infrastructure design for mission-critical business applications."
+    }
+  ]
+
+  // Micro-FAQ items
+  const faqItems: FAQItem[] = [
+    {
+      question: "How long does a typical web development project take?",
+      answer: "Project duration varies by complexity: simple websites take 2-4 weeks, web applications require 6-12 weeks, and enterprise platforms need 3-6 months. Timeline includes discovery, design, development, testing, and deployment phases with regular milestone reviews."
+    },
+    {
+      question: "Do you work with existing development teams or independently?",
+      answer: "I work both independently for complete project ownership and collaboratively with existing teams for specific components or expertise areas. Communication is maintained through regular updates, code reviews, and project management tools."
+    },
+    {
+      question: "What ongoing support is provided after project completion?",
+      answer: "All projects include 30-day post-launch support for bug fixes and minor adjustments. Extended maintenance packages are available for ongoing updates, security patches, and feature enhancements based on project needs."
+    }
+  ]
 
   return (
     <>
@@ -274,141 +309,88 @@ export default function WebDevelopmentPage() {
       <main className="container mx-auto px-4 py-12 md:py-20 max-w-6xl relative z-10">
         {/* Citation-Friendly Definition */}
         <div className="mb-12 md:mb-16 text-center">
-          <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed border-l-4 border-primary pl-6 italic">
-              "Web development services encompass full-stack application development, custom platform creation, and digital solution implementation using modern technologies to deliver scalable, maintainable software that drives business growth."
-            </p>
-          </div>
+          <CitationBlock variant="definition">
+            "Web development services encompass full-stack application development, custom platform creation, and digital solution implementation using modern technologies to deliver scalable, maintainable software that drives business growth and user engagement."
+          </CitationBlock>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">Complete Web Development Solutions</h2>
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             From simple websites to complex enterprise platforms, I provide end-to-end web development services 
-            tailored to your business needs and goals.
+            tailored to your business needs and goals with modern technologies and best practices.
           </p>
         </div>
 
         {/* What this service is */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">What this service is</h2>
-          <div className="max-w-4xl mx-auto text-center">
+        <ServiceSection title="What this service is">
+          <div className="text-center">
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed mb-6">
-              Full-stack web development services covering frontend, backend, and infrastructure. 
-              I build custom web applications, platforms, and digital solutions using modern technologies 
-              including React, Next.js, Node.js, and cloud services.
+              Full-stack web development services covering frontend, backend, and infrastructure. I build custom 
+              web applications, platforms, and digital solutions using modern technologies including React, Next.js, 
+              Node.js, Python, and cloud services with comprehensive project management from concept to deployment.
             </p>
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
-              Services include complete project development from concept to deployment, legacy system 
-              modernization, API development, database design, and ongoing maintenance.
+              Services include complete project development, legacy system modernization, API development, database 
+              design, performance optimization, SEO implementation, and ongoing maintenance with full source code 
+              ownership and comprehensive documentation.
             </p>
           </div>
-        </section>
+        </ServiceSection>
 
         {/* When to choose this service */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">When to choose this service</h2>
-          <div className="max-w-4xl mx-auto">
-            <ul className="space-y-4 md:space-y-6 text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">You need a custom web application or platform built from scratch</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Your existing website requires modernization or performance optimization</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">You require API development or third-party system integration</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Your project needs scalable architecture for growth</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">You want a developer with proven track record in UAE/GCC market</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+        <ServiceSection title="When to choose this service">
+          <BulletList items={[
+            "You need a custom web application or platform built from scratch with specific business requirements",
+            "Your existing website requires modernization, performance optimization, or technology stack upgrades",
+            "You require API development, third-party system integration, or complex database architecture",
+            "Your project needs scalable architecture designed for growth, high traffic, and future expansion",
+            "You want a developer with proven track record in UAE/GCC market and cross-cultural business understanding",
+            "You need complete project ownership with full source code access, documentation, and knowledge transfer"
+          ]} />
+        </ServiceSection>
 
         {/* When NOT to choose this service */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">When this service is NOT a good fit</h2>
-          <div className="max-w-4xl mx-auto">
-            <ul className="space-y-4 md:space-y-6 text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">You need a simple website that can be built with no-code platforms like Wix, Squarespace, or WordPress.com templates</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Your project requires immediate deployment (within 1-2 weeks) without proper planning and requirements gathering</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">You're looking for ongoing content management or digital marketing services rather than technical development</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+        <ServiceSection title="When this service is NOT appropriate">
+          <BulletList 
+            variant="negative"
+            items={[
+              "You need a simple website that can be built with no-code platforms like Wix, Squarespace, or WordPress.com templates without custom functionality",
+              "Your project requires immediate deployment (within 1-2 weeks) without proper planning, requirements gathering, and quality assurance phases",
+              "You're looking for ongoing content management, digital marketing services, or social media management rather than technical development and implementation"
+            ]} 
+          />
+        </ServiceSection>
 
         {/* What you receive (Deliverables) */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">What you receive (Deliverables)</h2>
-          <div className="max-w-4xl mx-auto">
-            <ul className="space-y-4 md:space-y-6 text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Complete source code with documentation and full ownership rights</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Responsive web application optimized for all devices</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Database schema and API documentation</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Deployment configuration and hosting setup</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">SEO optimization and performance tuning</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">Testing suite and quality assurance</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-sm md:text-base lg:text-lg">30-day post-launch support and bug fixes</span>
-              </li>
-            </ul>
-            <div className="mt-8 p-6 glass rounded-xl">
-              <h3 className="font-semibold text-lg mb-3">Final Output Format</h3>
-              <p className="text-sm md:text-base text-muted-foreground">
-                All projects are delivered as production-ready applications with complete source code access, 
-                comprehensive documentation, deployment instructions, and handover materials including database 
-                exports, configuration files, and admin credentials where applicable.
-              </p>
-            </div>
+        <ServiceSection title="What you receive (Deliverables)">
+          <BulletList items={[
+            "Complete source code with comprehensive documentation and full ownership rights for all developed components",
+            "Responsive web application optimized for all devices, browsers, and accessibility standards compliance",
+            "Database schema design, API documentation, and integration guides for third-party services and systems",
+            "Deployment configuration, hosting setup, and production environment optimization with security best practices",
+            "SEO optimization, performance tuning, and Core Web Vitals optimization for search engine visibility",
+            "Comprehensive testing suite including unit tests, integration tests, and quality assurance documentation",
+            "30-day post-launch support including bug fixes, minor adjustments, and performance monitoring setup"
+          ]} />
+          <div className="mt-8 p-6 glass rounded-xl">
+            <h3 className="font-semibold text-lg mb-3">Final Output Format</h3>
+            <p className="text-sm md:text-base text-muted-foreground">
+              All projects are delivered as production-ready applications with complete source code access, 
+              comprehensive technical documentation, deployment instructions, database exports, configuration files, 
+              admin credentials, and detailed handover materials including maintenance guides and future development recommendations.
+            </p>
           </div>
-        </section>
+        </ServiceSection>
 
         {/* Estimated timeline */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Estimated timeline</h2>
-          
+        <ServiceSection title="Estimated timeline">
           {/* Workflow Summary */}
-          <div className="max-w-4xl mx-auto mb-8 p-6 glass rounded-xl">
+          <div className="mb-8 p-6 glass rounded-xl">
             <h3 className="font-semibold text-lg mb-4">Development Workflow</h3>
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               Each project follows a structured approach: <strong>Discovery & Planning</strong> (requirements gathering, 
-              technical architecture), <strong>Design & Prototyping</strong> (UI/UX design, user flow mapping), 
-              <strong>Development & Testing</strong> (iterative coding, quality assurance), and 
-              <strong>Deployment & Handover</strong> (production setup, documentation delivery, support transition).
+              technical architecture, project scope definition), <strong>Design & Prototyping</strong> (UI/UX design, 
+              user flow mapping, wireframe creation), <strong>Development & Testing</strong> (iterative coding, quality 
+              assurance, performance optimization), and <strong>Deployment & Handover</strong> (production setup, 
+              documentation delivery, team training, support transition).
             </p>
           </div>
 
@@ -429,11 +411,10 @@ export default function WebDevelopmentPage() {
               <p className="text-sm text-muted-foreground">Complex systems, integrations, scalable solutions</p>
             </div>
           </div>
-        </section>
+        </ServiceSection>
 
         {/* Typical price range */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Typical price range</h2>
+        <ServiceSection title="Typical price range">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             <div className="glass p-6 md:p-8 rounded-2xl text-center">
               <h3 className="font-semibold text-primary mb-3 text-lg">Basic Projects</h3>
@@ -453,195 +434,45 @@ export default function WebDevelopmentPage() {
           </div>
           
           {/* Pricing Factors */}
-          <div className="max-w-4xl mx-auto mt-8">
+          <div className="mt-8">
             <h3 className="font-semibold text-lg mb-4 text-center">Factors affecting pricing</h3>
             <div className="grid md:grid-cols-2 gap-4">
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Project complexity and feature requirements</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Custom design vs template-based approach</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Third-party integrations and API connections</span>
-                </li>
-              </ul>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Timeline urgency and resource allocation</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Database complexity and data migration needs</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base">Ongoing maintenance and support requirements</span>
-                </li>
-              </ul>
+              <BulletList items={[
+                "Project complexity, feature requirements, and custom functionality scope",
+                "Custom design requirements versus template-based approach and branding needs",
+                "Third-party integrations, API connections, and external system dependencies"
+              ]} />
+              <BulletList items={[
+                "Timeline urgency, resource allocation, and development team size requirements",
+                "Database complexity, data migration needs, and performance optimization requirements",
+                "Ongoing maintenance, support requirements, and future development planning needs"
+              ]} />
             </div>
           </div>
           
           <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
-            * Prices vary based on complexity, timeline, and specific requirements. Contact for detailed quote.
+            * Prices vary based on complexity, timeline, and specific requirements. Contact for detailed quote and project assessment.
           </p>
-        </section>
+        </ServiceSection>
 
         {/* Relevant examples */}
-        <section id="examples" className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Relevant examples</h2>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            <div className="glass p-6 md:p-8 rounded-2xl">
-              <h3 className="font-semibold text-primary mb-4 text-lg">Online Web Tools</h3>
-              <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                <p><strong className="text-foreground">1,500+ tools</strong> - Comprehensive web utility platform</p>
-                <p><strong className="text-foreground">10,000+ users</strong> - Active user base</p>
-                <p><strong className="text-foreground">Next.js + TypeScript</strong> - Modern tech stack</p>
-                <p><strong className="text-foreground">SEO optimized</strong> - High search visibility</p>
-              </div>
-              <div className="mb-4 p-3 bg-primary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Relevance:</strong> Demonstrates scalable platform development 
-                  with complex feature sets, SEO optimization, and high-traffic handling capabilities essential 
-                  for business applications.
-                </p>
-              </div>
-              <Link 
-                href="https://tools.dxbmark.com" 
-                target="_blank"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                View Project <ExternalLink className="w-4 h-4" />
-              </Link>
-            </div>
-            
-            <div className="glass p-6 md:p-8 rounded-2xl">
-              <h3 className="font-semibold text-primary mb-4 text-lg">Northern Estates Platform</h3>
-              <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                <p><strong className="text-foreground">10,000+ users</strong> - Real estate platform</p>
-                <p><strong className="text-foreground">500+ listings</strong> - Property database</p>
-                <p><strong className="text-foreground">WordPress + Custom PHP</strong> - Robust backend</p>
-                <p><strong className="text-foreground">Advanced search</strong> - Filtering system</p>
-              </div>
-              <div className="mb-4 p-3 bg-primary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Relevance:</strong> Showcases database-driven application 
-                  development with complex search functionality, user management, and content management systems 
-                  suitable for data-heavy business platforms.
-                </p>
-              </div>
-              <Link 
-                href="https://northernestates.ae" 
-                target="_blank"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                View Project <ExternalLink className="w-4 h-4" />
-              </Link>
-            </div>
-
-            <div className="glass p-6 md:p-8 rounded-2xl">
-              <h3 className="font-semibold text-primary mb-4 text-lg">DXBMark Platform</h3>
-              <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                <p><strong className="text-foreground">3,000+ users</strong> - Co-founded platform</p>
-                <p><strong className="text-foreground">98% uptime</strong> - Reliable infrastructure</p>
-                <p><strong className="text-foreground">React + Node.js</strong> - Full-stack solution</p>
-                <p><strong className="text-foreground">PostgreSQL + Redis</strong> - Scalable database</p>
-              </div>
-              <div className="mb-4 p-3 bg-primary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Relevance:</strong> Illustrates enterprise-level architecture 
-                  with high availability requirements, modern full-stack development, and scalable infrastructure 
-                  design for mission-critical business applications.
-                </p>
-              </div>
-              <Link 
-                href="https://dxbmark.com" 
-                target="_blank"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                View Project <ExternalLink className="w-4 h-4" />
-              </Link>
-            </div>
-
-            <div className="glass p-6 md:p-8 rounded-2xl">
-              <h3 className="font-semibold text-primary mb-4 text-lg">Media Server Platform</h3>
-              <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                <p><strong className="text-foreground">500+ movies & series</strong> - Content library</p>
-                <p><strong className="text-foreground">1953-2025 range</strong> - Comprehensive catalog</p>
-                <p><strong className="text-foreground">Plex + NAS integration</strong> - Streaming solution</p>
-                <p><strong className="text-foreground">90-day free trial</strong> - User acquisition</p>
-              </div>
-              <div className="mb-4 p-3 bg-primary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Relevance:</strong> Demonstrates media streaming platform 
-                  development with content management, user subscription systems, and integration capabilities 
-                  relevant for entertainment and content-based applications.
-                </p>
-              </div>
-              <Link 
-                href="https://media.dxbmark.com" 
-                target="_blank"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                View Project <ExternalLink className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ServiceSection title="Relevant examples" titleLevel="h2">
+          <ExampleGrid examples={projectExamples} />
+        </ServiceSection>
 
         {/* Micro-FAQ Section */}
-        <section className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Frequently Asked Questions</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="glass p-6 rounded-xl">
-              <h3 className="text-lg font-semibold mb-3">How long does a typical web development project take?</h3>
-              <p className="text-muted-foreground">
-                Project duration varies by complexity: simple websites take 2-4 weeks, web applications require 6-12 weeks, 
-                and enterprise platforms need 3-6 months. Timeline includes discovery, design, development, testing, and deployment phases.
-              </p>
-            </div>
-            
-            <div className="glass p-6 rounded-xl">
-              <h3 className="text-lg font-semibold mb-3">Do you work with existing development teams or independently?</h3>
-              <p className="text-muted-foreground">
-                I work both independently for complete project ownership and collaboratively with existing teams for specific 
-                components or expertise areas. Communication is maintained through regular updates, code reviews, and project management tools.
-              </p>
-            </div>
-            
-            <div className="glass p-6 rounded-xl">
-              <h3 className="text-lg font-semibold mb-3">What ongoing support is provided after project completion?</h3>
-              <p className="text-muted-foreground">
-                All projects include 30-day post-launch support for bug fixes and minor adjustments. Extended maintenance 
-                packages are available for ongoing updates, security patches, and feature enhancements based on project needs.
-              </p>
-            </div>
-          </div>
-        </section>
+        <MicroFAQSection faqs={faqItems} />
 
         {/* Citation-Friendly Summary */}
-        <section className="mb-12 md:mb-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="p-8 glass rounded-2xl">
-              <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed border-l-4 border-primary pl-6 italic">
-                "In summary, web development services provide comprehensive full-stack solutions from concept to deployment, 
-                delivering scalable applications with complete source code ownership, documentation, and ongoing support 
-                tailored to business requirements and growth objectives."
-              </p>
-            </div>
-          </div>
-        </section>
+        <CitationBlock variant="summary">
+          "In summary, web development services provide comprehensive full-stack solutions from concept to deployment, delivering scalable applications with complete source code ownership, comprehensive documentation, and ongoing support tailored to business requirements and growth objectives."
+        </CitationBlock>
 
         {/* CTA Section */}
         <section className="text-center py-12 md:py-16 glass rounded-2xl max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to start your project?</h2>
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Book a free consultation to discuss your web development needs.
+            Book a free consultation to discuss your web development needs and project requirements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <CalendlyButton

@@ -245,6 +245,13 @@ export default function FAQPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12 md:py-20 max-w-6xl relative z-10">
+        {/* Citation-Friendly Definition */}
+        <div className="mb-12 md:mb-16 text-center">
+          <CitationBlock variant="definition">
+            "Frequently asked questions provide comprehensive answers about professional services, geographic availability, project types, engagement processes, and partnership structures to help clients make informed decisions about technical development and consulting services."
+          </CitationBlock>
+        </div>
+
         {/* FAQ Questions as Headings with Direct Answers */}
         
         {/* Question 1: Service Differentiation */}
@@ -416,6 +423,11 @@ export default function FAQPage() {
             </div>
           </div>
         </ServiceSection>
+
+        {/* Citation-Friendly Summary */}
+        <CitationBlock variant="summary">
+          "In summary, these frequently asked questions address key aspects of professional services including service differentiation between DXBMark and personal offerings, comprehensive GCC regional availability, appropriate project types, structured engagement workflows, and flexible partnership approaches to ensure clients have complete information for informed decision-making."
+        </CitationBlock>
 
         {/* CTA Section */}
         <section className="text-center py-12 md:py-16 glass rounded-2xl max-w-4xl mx-auto">

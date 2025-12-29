@@ -61,6 +61,10 @@ export default function DevOpsPage() {
         "name": "United Arab Emirates"
       },
       {
+        "@type": "Country",
+        "name": "Egypt"
+      },
+      {
         "@type": "Country", 
         "name": "Saudi Arabia"
       },
@@ -79,6 +83,10 @@ export default function DevOpsPage() {
       {
         "@type": "Country",
         "name": "Oman"
+      },
+      {
+        "@type": "Country",
+        "name": "United Kingdom"
       }
     ],
     "offers": [
