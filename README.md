@@ -298,12 +298,12 @@ For detailed version history and complete changelog, see [CHANGELOG.md](./CHANGE
 <!--AUTO-README:START-->
 ### 🔴 Live
 - **Production:** https://portfolio-1yp.pages.dev/
-- **Last update:** 2025-12-31T00:15:55.371Z
+- **Last update:** 2026-01-01T00:17:19.456Z
 
 ### 📊 Repo stats
 - **Stars:** 3
 - **Forks:** 0
-- **Last commit:** `aaf3136` — style(globals): Hide Trustpilot floating widget - Add CSS rule to hide Trustpilot GTM floating wrapper element - Use display: none with !important to ensure widget is not visible - Improve page aesthetics by removing third-party widget overlay (2025-12-30T01:20:11+04:00)
+- **Last commit:** `936114b` — chore(readme): auto-update profile block (2025-12-31T00:15:55Z)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/tariqsaidofficial/portfolio-onepage?style=flat)&nbsp;![GitHub forks](https://img.shields.io/github/forks/tariqsaidofficial/portfolio-onepage?style=flat)
 <!--AUTO-README:END-->
