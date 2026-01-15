@@ -22,12 +22,24 @@ export function Footer() {
           © {currentYear} Tariq Said. All rights reserved.
         </p>
         <div className="flex justify-center gap-4 text-xs">
-          <Link 
-            href="/privacy-policy" 
-            className="text-muted-foreground/70 hover:text-primary transition-colors"
-          >
-            Privacy Policy
-          </Link>
+            <Link 
+              href="/privacy-policy" 
+              className="text-muted-foreground/70 hover:text-primary transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link 
+              href="/cookie-policy" 
+              className="text-muted-foreground/70 hover:text-primary transition-colors"
+            >
+              Cookie Policy
+            </Link>
+            <Link 
+              href="/partnership-policy" 
+              className="text-muted-foreground/70 hover:text-primary transition-colors"
+            >
+              Partnership Policy
+            </Link>
         </div>
       </div>
     </footer>

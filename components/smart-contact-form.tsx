@@ -565,16 +565,34 @@ export function SmartContactForm() {
                 required
               />
               <label htmlFor="agreeToPrivacy" className="text-sm text-muted-foreground cursor-pointer">
-                I agree to the{" "}
+                I agree to the
                 <a 
                   href="/privacy-policy" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
+                  className="text-primary hover:underline font-medium mx-1"
                 >
                   Privacy Policy
                 </a>
-                {" "}and consent to the collection and use of my personal information as described. <span className="text-red-500">*</span>
+                ,
+                <a 
+                  href="/cookie-policy" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium mx-1"
+                >
+                  Cookie Policy
+                </a>
+                , and
+                <a 
+                  href="/partnership-policy" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium mx-1"
+                >
+                  Partnership Policy
+                </a>
+                , and consent to the collection and use of my personal information as described. <span className="text-red-500">*</span>
               </label>
             </div>
 
