@@ -89,7 +89,7 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
               <CalendlyButton
-                text="Hire Me - Book Meeting"
+                text="Hire Me – schedule a meeting"
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-lg px-8"
               />
