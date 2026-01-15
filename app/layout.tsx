@@ -610,14 +610,21 @@ export default function RootLayout({
         
         {/* Animated Background */}
         <AnimatedBackground />
-        
+
+        {/* Tawk.to Script - Custom Controlled */}
+        <Script
+          id="tawk-script"
+          src="https://tawk.to/chat/6777a952af5bfec1dbe615e7/1jf02o63o"
+          strategy="afterInteractive"
+        />
+
         {children}
-        
+
         {/* Floating Action Buttons */}
         <ShareButton variant="floating" />
         <FloatingWhatsApp />
         <BackToTop />
-        
+
         {/* Toast Notifications */}
         <Toaster position="bottom-right" richColors />
       </body>

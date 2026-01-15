@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero"
 import { Footer } from "@/components/footer"
 import { SectionLoadingSkeleton } from "@/components/loading-skeleton"
 import { generateImageObject, getProfileImageMetadata, getProjectImageMetadata } from "@/lib/image-metadata"
+import HomeTawkClient from '../components/HomeTawkClient'
 
 /**
  * Dynamic imports for heavy components
@@ -97,7 +98,8 @@ export default function Home() {
       '/projects/media-server.webp',
       'Media Server - Digital asset management system screenshot'
     ),
-  ]
+  ];
+
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -124,10 +126,12 @@ export default function Home() {
           __html: JSON.stringify(structuredData),
         }}
       />
-      
+
       <main id="main-content" className="min-h-screen text-foreground relative z-10">
         <Header />
         <Hero />
+        {/* Book a meeting CTA - place wherever needed */}
+        <HomeTawkClient />
         <HomeAbout />
         <Partnerships />
         <Skills />
