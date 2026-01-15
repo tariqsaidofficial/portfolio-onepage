@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   // Remove static export for Vercel deployment
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },

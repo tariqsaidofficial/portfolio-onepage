@@ -9,7 +9,6 @@
 *lock.yaml
 pnpm-lock.yaml
 yarn.lock
-package-lock.json
 
 # next.js
 /.next/
