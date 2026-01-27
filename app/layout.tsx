@@ -143,6 +143,44 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Microsoft UET (Bing Ads) - Global Site Tag */}
+        <Script
+          id="microsoft-uet-global-site-tag"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,t,r,u)
+              {
+                var f,n,i;
+                w[u]=w[u]||[],f=function()
+                {
+                  var o={ti:"97225796", enableAutoSpaTracking: true};
+                  o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+                },
+                n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+                {
+                  var s=this.readyState;
+                  s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+                },
+                i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+              })
+              (window,document,"script","//bat.bing.com/bat.js","uetq");
+            `
+          }}
+        />
+        {/* Microsoft UET Consent Mode - Default (GDPR/EEA/UK/CH) */}
+        <Script
+          id="microsoft-uet-consent-default"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.uetq=window.uetq||[];
+              window.uetq.push('consent', 'default', {
+                'ad_storage': 'denied',
+              });
+            `
+          }}
+        />
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

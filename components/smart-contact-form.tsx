@@ -292,6 +292,14 @@ export function SmartContactForm() {
 
       if (response.ok) {
         setSubmitStatus("success")
+        // Microsoft UET Enhanced Conversion Tracking
+        if (typeof window !== 'undefined' && window.uetq) {
+          window.uetq = window.uetq || [];
+          window.uetq.push('set', { 'pid': {
+            'em': formData.email || "",
+            'ph': formData.phone || ""
+          }});
+        }
         
         // Track successful form submission in GTM
         if (typeof window !== 'undefined' && (window as any).dataLayer) {
