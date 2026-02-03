@@ -115,6 +115,7 @@ export const metadata: Metadata = {
     creator: "@tariqsaidofficial",
   },
   other: {
+    "impact-site-verification": "3709bbaa-10c5-46ff-a006-081afe70648c",
     "facebook:profile_id": "tariqsaidofficial",
     "instagram:username": "tariqsaidofficial",
     "linkedin:profile": "tariqsaidofficial",
