@@ -195,6 +195,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0a122c" />
         
         {/* Additional Meta Tags */}
+        <meta name="impact-site-verification" value="3709bbaa-10c5-46ff-a006-081afe70648c" />
         <meta name="author" content="Tariq Said" />
         <meta name="copyright" content="© 2025 Tariq Said" />
         <meta name="application-name" content="Tariq Said Portfolio" />
